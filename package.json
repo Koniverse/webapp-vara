@@ -30,6 +30,8 @@
     "@polkadot/extension-dapp": "^0.47.2",
     "@polkadot/extension-inject": "^0.47.1",
     "@reduxjs/toolkit": "^2.2.3",
+    "@s2kael/invariant-sdk": "^0.1.23",
+    "@s2kael/invariant-sdk-wasm": "^0.1.23",
     "@storybook/addon-actions": "^8.1.10",
     "axios": "^1.6.8",
     "buffer": "^6.0.3",
@@ -86,8 +88,8 @@
   },
   "resolutions": {
     "@gear-js/api": "0.41.0",
-    "@invariant-labs/vara-sdk": "file:../protocol-vara/sdk/build",
-    "@invariant-labs/vara-sdk-wasm": "file:../protocol-vara/sdk/src/wasm/pkg",
+    "@polkadot/api": "15.9.1",
+    "@polkadot/types": "15.9.1",
     "@types/react": "^18.2.66",
     "vite": "5.4.8",
     "vite-node": "1.6.0"

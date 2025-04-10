@@ -16,7 +16,9 @@ export default defineConfig({
       '@store': '/src/store',
       '@web3': '/src/web3',
       '@utils': '/src/utils',
-      '@/': '/src'
+      '@/': '/src',
+      '@invariant-labs/vara-sdk': '@s2kael/invariant-sdk',
+      '@invariant-labs/vara-sdk-wasm': '@s2kael/invariant-sdk-wasm'
     }
   },
   server: {
