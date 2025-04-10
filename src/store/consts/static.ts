@@ -3,9 +3,6 @@ import {
   HexString,
   Network,
   Position,
-  TESTNET_BTC_ADDRESS,
-  TESTNET_ETH_ADDRESS,
-  TESTNET_USDC_ADDRESS
 } from '@invariant-labs/vara-sdk'
 import { Keyring } from '@polkadot/api'
 import {
@@ -19,7 +16,6 @@ import {
 import { bestTiersCreator } from '@utils/utils'
 import {
   POSITIONS_ENTRIES_LIMIT,
-  TESTNET_INVARIANT_ADDRESS,
   VARA_ADDRESS as VARA_ADDRESS_SDK
 } from '@invariant-labs/vara-sdk/target/consts'
 import mainnetListJson from '@store/consts/tokenLists/mainnet.json'
@@ -32,23 +28,23 @@ export const VARA_ADDRESS: Record<Network, HexString> = {
 
 export const BTC_ADDRESS: Record<Network, HexString> = {
   [Network.Mainnet]: '0x',
-  [Network.Testnet]: TESTNET_BTC_ADDRESS,
+  [Network.Testnet]: '0x80ea6ace20dcbfc95274987b4031ccc3e416461e9980b2e397eba4b5b470ff03',
   [Network.Local]: '0x'
 }
 export const ETH_ADDRESS: Record<Network, HexString> = {
   [Network.Mainnet]: '0x',
-  [Network.Testnet]: TESTNET_ETH_ADDRESS,
+  [Network.Testnet]: '0x59be95ad63df8369acc820d07bee8f86c75cbe72db3bdcb6822c0e7f3e2c8f50',
   [Network.Local]: '0x'
 }
 export const USDC_ADDRESS: Record<Network, HexString> = {
   [Network.Mainnet]: '0x',
-  [Network.Testnet]: TESTNET_USDC_ADDRESS,
+  [Network.Testnet]: '0x5e5dbe4219abd39812b9b9dd80f2f3bf47c497a1910e64802abf97ca5edd4415',
   [Network.Local]: '0x'
 }
 
 export const INVARIANT_ADDRESS: Record<Network, HexString> = {
   [Network.Mainnet]: '0x',
-  [Network.Testnet]: TESTNET_INVARIANT_ADDRESS,
+  [Network.Testnet]: '0x06c71389bc9370b8e6a2d35b676cea3973c8ab10187e8390945ebb01fb6b66cd',
   [Network.Local]: '0x'
 }
 export const USDT_MAINNET_ADDRESS = '0x'

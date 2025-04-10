@@ -3,6 +3,7 @@
   "author": "Wojciech Cichocki",
   "version": "0.1.0",
   "homepage": ".",
+  "license": "Apache-2.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -17,7 +18,7 @@
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
-    "@gear-js/api": "0.38.1",
+    "@gear-js/api": "0.41.0",
     "@invariant-labs/vara-sdk": "^0.1.20",
     "@invariant-labs/vara-sdk-wasm": "^0.1.17",
     "@mui/icons-material": "^5.15.15",
@@ -82,5 +83,14 @@
     "vite-plugin-compression2": "^1.1.1",
     "vite-plugin-wasm": "^3.3.0",
     "vitest": "^1.5.0"
-  }
+  },
+  "resolutions": {
+    "@gear-js/api": "0.41.0",
+    "@invariant-labs/vara-sdk": "file:../protocol-vara/sdk/build",
+    "@invariant-labs/vara-sdk-wasm": "file:../protocol-vara/sdk/src/wasm/pkg",
+    "@types/react": "^18.2.66",
+    "vite": "5.4.8",
+    "vite-node": "1.6.0"
+  },
+  "packageManager": "yarn@4.8.1"
 }
