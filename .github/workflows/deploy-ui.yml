@@ -26,9 +26,6 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Install NX globally
-        run: yarn global add nx
-
       - name: Build Webapp Vara
         run: yarn build
         
@@ -38,7 +35,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy ./dist/apps/koni-support-ui --project-name=webapp-vara --branch=${{ github.ref_name }}
+          command: pages deploy ./dist --project-name=webapp-vara --branch=${{ github.ref_name }}
           gitHubToken: ${{ secrets.GH_TOKEN }}
 
       - name: Notify to Discord
