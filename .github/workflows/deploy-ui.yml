@@ -1,4 +1,4 @@
-name: Koni Support UI CI
+name: Vara Webapp UI CD
 
 on:
   push:
