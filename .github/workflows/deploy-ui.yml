@@ -1,0 +1,55 @@
+name: Koni Support UI CI
+
+on:
+  push:
+    branches: [ sw-dev ]
+  pull_request:
+    branches: [ sw-dev ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Install NX globally
+        run: yarn global add nx
+
+      - name: Build Webapp Vara
+        run: yarn build
+        
+      - name: Deploy
+        id: deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy ./dist/apps/koni-support-ui --project-name=webapp-vara --branch=${{ github.ref_name }}
+          gitHubToken: ${{ secrets.GH_TOKEN }}
+
+      - name: Notify to Discord
+        uses: sarisia/actions-status-discord@v1
+        if: always()
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          status: ${{ job.status }}
+          username: WebApp Worker
+          title: ${{ github.workflow }}
+          description: |
+            The deployment of branch ${{ github.ref_name }} is completed.
+            - URL: ${{ steps.deploy.outputs.deployment-url }}
+            - Alias: ${{ steps.deploy.outputs.pages-deployment-alias-url }}
