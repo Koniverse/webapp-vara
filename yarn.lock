@@ -3438,23 +3438,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@subwallet/invariant-vara-sdk-wasm@file:../protocol-vara/sdk/src/wasm/pkg/::locator=webapp-vara%40workspace%3A.":
-  version: 0.1.0
-  resolution: "@subwallet/invariant-vara-sdk-wasm@file:../protocol-vara/sdk/src/wasm/pkg/#../protocol-vara/sdk/src/wasm/pkg/::hash=da40dd&locator=webapp-vara%40workspace%3A."
-  checksum: 10c0/17d90a742d3bf508ed38c9d2f991c53be26f4bbed97b8cdd50aa2c515174501bb90e86b20efd07a7b74152448b086edc1fdb503c6e9cf83cd65b6aa456ac71db
+"@subwallet/invariant-vara-sdk-wasm@npm:^0.1.21":
+  version: 0.1.21
+  resolution: "@subwallet/invariant-vara-sdk-wasm@npm:0.1.21"
+  checksum: 10c0/f0bbcdda0e72066b1b1373cadb415a16fc91ac10e26e1ae3673dd2de8e5ab13f3372d6d00c79b592f638123c01a2054b28c67a6625c86e7541356c9ee46adbc5
   languageName: node
   linkType: hard
 
-"@subwallet/invariant-vara-sdk@file:../protocol-vara/sdk/build/::locator=webapp-vara%40workspace%3A.":
+"@subwallet/invariant-vara-sdk@npm:^0.1.21":
   version: 0.1.21
-  resolution: "@subwallet/invariant-vara-sdk@file:../protocol-vara/sdk/build/#../protocol-vara/sdk/build/::hash=81a9b0&locator=webapp-vara%40workspace%3A."
+  resolution: "@subwallet/invariant-vara-sdk@npm:0.1.21"
   dependencies:
     "@gear-js/api": "npm:0.41.1"
     "@polkadot/api": "npm:15.9.1"
     "@polkadot/types": "npm:15.9.1"
     "@subwallet/invariant-vara-sdk-wasm": "npm:0.1.21"
     sails-js: "npm:0.4.0"
-  checksum: 10c0/8656716ce8b1341579bd343ff86ca3bdd7da77aaa9207f208bd9072927cb84ad4cc0dff28ac86d42801bc87150ab97080cfd3a76448ea110db1c30319ddc807e
+  checksum: 10c0/3d1fed994179d58177a413f898c9a15db192cd317a96f0fe9b98c599c2e8a0bfb8c803cfa1cd9a52212f1199d07ca5833269fe713426a93d436d1c593e6056cd
   languageName: node
   linkType: hard
 
@@ -9285,8 +9285,8 @@ __metadata:
     "@storybook/react": "npm:^8.1.10"
     "@storybook/react-vite": "npm:^8.1.10"
     "@storybook/test": "npm:^8.1.10"
-    "@subwallet/invariant-vara-sdk": "npm:^0.1.23"
-    "@subwallet/invariant-vara-sdk-wasm": "npm:^0.1.23"
+    "@subwallet/invariant-vara-sdk": "npm:^0.1.21"
+    "@subwallet/invariant-vara-sdk-wasm": "npm:^0.1.21"
     "@types/node": "npm:^20.12.7"
     "@types/react": "npm:^18.2.66"
     "@types/react-dom": "npm:^18.2.22"
