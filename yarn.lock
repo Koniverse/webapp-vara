@@ -840,14 +840,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@gear-js/api@npm:0.41.0":
-  version: 0.41.0
-  resolution: "@gear-js/api@npm:0.41.0"
+"@gear-js/api@npm:0.41.1":
+  version: 0.41.1
+  resolution: "@gear-js/api@npm:0.41.1"
   peerDependencies:
-    "@polkadot/api": 15.4.1
+    "@polkadot/api": 15.9.1
     "@polkadot/wasm-crypto": 7.4.1
-    rxjs: 7.8.1
-  checksum: 10c0/884d1b369d68d3b38203f81206b76be9782f2af504795050636ede7fd3b750fb49cc12f49c276745d37f77ba221e07f9044d32089c88615ff3041fe34babf5c0
+    rxjs: 7.8.2
+  checksum: 10c0/a8dd9d2eda946e5e7727aa6c8a30c958445cdd2093303a2438fbc9b72010fa5d36695e2e297399cfcae0c114508b9dee45da539157601abb35ebbbd0b4f80621
   languageName: node
   linkType: hard
 
@@ -2890,26 +2890,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@s2kael/invariant-sdk-wasm@npm:0.1.23, @s2kael/invariant-sdk-wasm@npm:^0.1.23":
-  version: 0.1.23
-  resolution: "@s2kael/invariant-sdk-wasm@npm:0.1.23"
-  checksum: 10c0/f401734bebfb57cbeeb3b291b955a53afb3e21e909c7239131e522a75ef2d2b45c685a0444a15fba39e274fde994245820d714bff36deddb81834a1ebfabf68a
-  languageName: node
-  linkType: hard
-
-"@s2kael/invariant-sdk@npm:^0.1.23":
-  version: 0.1.23
-  resolution: "@s2kael/invariant-sdk@npm:0.1.23"
-  dependencies:
-    "@gear-js/api": "npm:0.41.0"
-    "@polkadot/api": "npm:15.9.1"
-    "@polkadot/types": "npm:15.9.1"
-    "@s2kael/invariant-sdk-wasm": "npm:0.1.23"
-    sails-js: "npm:0.3.1"
-  checksum: 10c0/5fd7ffe1db534aa804fd53a122a9b64fb198881c038441eb8f2a4423c2e9a6e98acb3fa2138f85bb7c68f689c2292b66cdfdc4b0c0c48e0018ce360e596b2efa
-  languageName: node
-  linkType: hard
-
 "@scure/base@npm:^1.1.1, @scure/base@npm:^1.1.5, @scure/base@npm:^1.1.7, @scure/base@npm:~1.2.2, @scure/base@npm:~1.2.4":
   version: 1.2.4
   resolution: "@scure/base@npm:1.2.4"
@@ -3455,6 +3435,26 @@ __metadata:
   version: 1.51.0
   resolution: "@substrate/ss58-registry@npm:1.51.0"
   checksum: 10c0/f568ea2a5011ee1c288e577d23dd48a6ba0dc0db3611f268b1c35f41636b8ec39ae09fe0184f88d411e331b60d924e90054be736b1ff624cdcb9b742c94a9bf6
+  languageName: node
+  linkType: hard
+
+"@subwallet/invariant-vara-sdk-wasm@file:../protocol-vara/sdk/src/wasm/pkg/::locator=webapp-vara%40workspace%3A.":
+  version: 0.1.0
+  resolution: "@subwallet/invariant-vara-sdk-wasm@file:../protocol-vara/sdk/src/wasm/pkg/#../protocol-vara/sdk/src/wasm/pkg/::hash=da40dd&locator=webapp-vara%40workspace%3A."
+  checksum: 10c0/17d90a742d3bf508ed38c9d2f991c53be26f4bbed97b8cdd50aa2c515174501bb90e86b20efd07a7b74152448b086edc1fdb503c6e9cf83cd65b6aa456ac71db
+  languageName: node
+  linkType: hard
+
+"@subwallet/invariant-vara-sdk@file:../protocol-vara/sdk/build/::locator=webapp-vara%40workspace%3A.":
+  version: 0.1.21
+  resolution: "@subwallet/invariant-vara-sdk@file:../protocol-vara/sdk/build/#../protocol-vara/sdk/build/::hash=81a9b0&locator=webapp-vara%40workspace%3A."
+  dependencies:
+    "@gear-js/api": "npm:0.41.1"
+    "@polkadot/api": "npm:15.9.1"
+    "@polkadot/types": "npm:15.9.1"
+    "@subwallet/invariant-vara-sdk-wasm": "npm:0.1.21"
+    sails-js: "npm:0.4.0"
+  checksum: 10c0/8656716ce8b1341579bd343ff86ca3bdd7da77aaa9207f208bd9072927cb84ad4cc0dff28ac86d42801bc87150ab97080cfd3a76448ea110db1c30319ddc807e
   languageName: node
   linkType: hard
 
@@ -8204,6 +8204,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"sails-js-types@npm:0.4.0":
+  version: 0.4.0
+  resolution: "sails-js-types@npm:0.4.0"
+  checksum: 10c0/65b066d58e3b53ffe595eec664faaa53e5c2241a29b06a22c34b80dfdb012d4e076455b8cce4e8151ed0f35f1f1d63ce1fa1ccf3fed93b704266d3b10f023ff9
+  languageName: node
+  linkType: hard
+
+"sails-js-util@npm:0.4.0":
+  version: 0.4.0
+  resolution: "sails-js-util@npm:0.4.0"
+  checksum: 10c0/9ddd3e90fc183722a6d203fe0118f17e343c4de169a36f3ffe97fc6b25cfa23eeb78abd843fb52a7f72c98fae59c62e99d5074312e1813a68b4037ccaa3ff916
+  languageName: node
+  linkType: hard
+
 "sails-js@npm:0.1.4":
   version: 0.1.4
   resolution: "sails-js@npm:0.1.4"
@@ -8219,18 +8233,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sails-js@npm:0.3.1":
-  version: 0.3.1
-  resolution: "sails-js@npm:0.3.1"
+"sails-js@npm:0.4.0":
+  version: 0.4.0
+  resolution: "sails-js@npm:0.4.0"
+  dependencies:
+    sails-js-types: "npm:0.4.0"
+    sails-js-util: "npm:0.4.0"
   peerDependencies:
-    "@gear-js/api": 0.38.3
-    "@polkadot/api": 13.2.1
-    "@polkadot/types": 13.2.1
-    sails-js-types: 0.0.1
-    sails-js-util: 0.0.1
-  bin:
-    sails-js: ./lib/app.js
-  checksum: 10c0/d1a26f2c1e8aa760bfe99da2e23fd0d7bddd64cd84e3b2b2679dc10450168582f56a06682d8f9ccd6f92f4945325da22ea119d4c0871ccccbaba102f22a1e8f0
+    "@gear-js/api": ^0.41.1
+    "@polkadot/api": ^15.9.1
+  dependenciesMeta:
+    sails-js-types:
+      optional: true
+  checksum: 10c0/431e3e2c2d8593b9743c4b8118c29df9d38786a9baf27a2f15fd11cca6aaa2e4bf85facd16e0d96d95cf80ba1416cbb9bf75ef99e0cb4a1adc7e7d57139af237
   languageName: node
   linkType: hard
 
@@ -9246,7 +9261,7 @@ __metadata:
     "@chromatic-com/storybook": "npm:^1.5.0"
     "@emotion/react": "npm:^11.11.4"
     "@emotion/styled": "npm:^11.11.5"
-    "@gear-js/api": "npm:0.41.0"
+    "@gear-js/api": "npm:^0.41.1"
     "@invariant-labs/vara-sdk": "npm:^0.1.20"
     "@invariant-labs/vara-sdk-wasm": "npm:^0.1.17"
     "@mui/icons-material": "npm:^5.15.15"
@@ -9259,8 +9274,6 @@ __metadata:
     "@polkadot/extension-inject": "npm:^0.47.1"
     "@reduxjs/toolkit": "npm:^2.2.3"
     "@rollup/plugin-inject": "npm:^5.0.5"
-    "@s2kael/invariant-sdk": "npm:^0.1.23"
-    "@s2kael/invariant-sdk-wasm": "npm:^0.1.23"
     "@storybook/addon-actions": "npm:^8.1.10"
     "@storybook/addon-essentials": "npm:^8.1.10"
     "@storybook/addon-interactions": "npm:^8.1.10"
@@ -9272,6 +9285,8 @@ __metadata:
     "@storybook/react": "npm:^8.1.10"
     "@storybook/react-vite": "npm:^8.1.10"
     "@storybook/test": "npm:^8.1.10"
+    "@subwallet/invariant-vara-sdk": "npm:^0.1.23"
+    "@subwallet/invariant-vara-sdk-wasm": "npm:^0.1.23"
     "@types/node": "npm:^20.12.7"
     "@types/react": "npm:^18.2.66"
     "@types/react-dom": "npm:^18.2.22"

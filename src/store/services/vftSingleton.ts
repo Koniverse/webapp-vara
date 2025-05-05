@@ -12,7 +12,7 @@ class SingletonVft {
 
   static async loadInstance(api: GearApi): Promise<FungibleToken> {
     if (!this.vft || api !== this.api) {
-      this.vft = await FungibleToken.load(api)
+      this.vft = await FungibleToken.load(api, 250_000_000_000n)
       this.api = api
     }
 

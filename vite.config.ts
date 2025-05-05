@@ -17,8 +17,8 @@ export default defineConfig({
       '@web3': '/src/web3',
       '@utils': '/src/utils',
       '@/': '/src',
-      '@invariant-labs/vara-sdk': '@s2kael/invariant-sdk',
-      '@invariant-labs/vara-sdk-wasm': '@s2kael/invariant-sdk-wasm'
+      '@invariant-labs/vara-sdk': '@subwallet/invariant-vara-sdk',
+      '@invariant-labs/vara-sdk-wasm': '@subwallet/invariant-vara-sdk-wasm'
     }
   },
   server: {

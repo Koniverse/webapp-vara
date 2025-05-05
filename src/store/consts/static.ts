@@ -8,6 +8,7 @@ import {
   TESTNET_USDC_ADDRESS
 } from '@invariant-labs/vara-sdk'
 import { Keyring } from '@polkadot/api'
+import { DEV_PHRASE } from '@polkadot/keyring'
 import {
   BestTier,
   Chain,
@@ -70,8 +71,7 @@ export const tokensPrices: Record<Network, Record<string, TokenPriceData>> = {
   [Network.Local]: {}
 }
 
-export const FAUCET_DEPLOYER_MNEMONIC =
-  'perfect piece sorry put inch unknown divert please together clap dutch among'
+export const FAUCET_DEPLOYER_MNEMONIC = `${DEV_PHRASE}//Alice`
 
 export const FAUCET_TOKEN_AMOUNT = 1000n
 

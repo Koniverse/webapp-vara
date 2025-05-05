@@ -120,6 +120,8 @@ export function* handleAirdrop(): Generator {
       FAUCET_DEPLOYER_MNEMONIC
     )
 
+    console.log('Deployer:', deployerAccount.address, 'Uri:', FAUCET_DEPLOYER_MNEMONIC)
+
     const api = yield* getApi()
     const vft = yield* getVft()
     const network = yield* select(networkType)
@@ -132,6 +134,8 @@ export function* handleAirdrop(): Generator {
     for (const ticker in faucetTokenList) {
       const address = faucetTokenList[ticker as keyof typeof faucetTokenList]
       const airdropAmount = TokenAirdropAmount[ticker as keyof typeof faucetTokenList]
+
+      console.log('Airdropping', airdropAmount, ticker, address, 'to', walletAddress)
 
       const mintTx = yield* call([vft, vft.mintTx], walletAddress, airdropAmount, address)
       txs.push(mintTx)

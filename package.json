@@ -18,7 +18,7 @@
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
-    "@gear-js/api": "0.41.0",
+    "@gear-js/api": "^0.41.1",
     "@invariant-labs/vara-sdk": "^0.1.20",
     "@invariant-labs/vara-sdk-wasm": "^0.1.17",
     "@mui/icons-material": "^5.15.15",
@@ -30,9 +30,9 @@
     "@polkadot/extension-dapp": "^0.47.2",
     "@polkadot/extension-inject": "^0.47.1",
     "@reduxjs/toolkit": "^2.2.3",
-    "@s2kael/invariant-sdk": "^0.1.23",
-    "@s2kael/invariant-sdk-wasm": "^0.1.23",
     "@storybook/addon-actions": "^8.1.10",
+    "@subwallet/invariant-vara-sdk": "^0.1.23",
+    "@subwallet/invariant-vara-sdk-wasm": "^0.1.23",
     "axios": "^1.6.8",
     "buffer": "^6.0.3",
     "classnames": "^2.5.1",
@@ -87,9 +87,11 @@
     "vitest": "^1.5.0"
   },
   "resolutions": {
-    "@gear-js/api": "0.41.0",
+    "@gear-js/api": "0.41.1",
     "@polkadot/api": "15.9.1",
     "@polkadot/types": "15.9.1",
+    "@subwallet/invariant-vara-sdk": "file:../protocol-vara/sdk/build/",
+    "@subwallet/invariant-vara-sdk-wasm": "file:../protocol-vara/sdk/src/wasm/pkg/",
     "@types/react": "^18.2.66",
     "vite": "5.4.8",
     "vite-node": "1.6.0"
