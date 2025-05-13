@@ -416,7 +416,7 @@ export function* handleGetSimulateResult(action: PayloadAction<Simulate>) {
           continue
         }
 
-        if (result.MaxSwapStepsReached) {
+        if (result.maxSwapStepsReached) {
           errors.push(SwapError.MaxSwapStepsReached)
           continue
         }
