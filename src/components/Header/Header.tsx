@@ -21,6 +21,7 @@ import { ISelectChain } from '@store/consts/types'
 import SelectChain from '@components/Modals/SelectChain/SelectChain'
 import SelectMainnetRPC from '@components/Modals/SelectMainnetRPC/SelectMainnetRPC'
 import { RpcStatus } from '@store/reducers/connection'
+import { ArrowsLeftRight, ChartBar, DropHalf } from '@phosphor-icons/react'
 
 export interface IHeader {
   address: string
@@ -66,8 +67,23 @@ export const Header: React.FC<IHeader> = ({
   const navigate = useNavigate()
 
   const isMdDown = useMediaQuery(theme.breakpoints.down('md'))
-
-  const routes = ['exchange', 'liquidity', 'statistics']
+  const routes = [
+    {
+      path: 'exchange',
+      name: 'Exchange',
+      icon: ArrowsLeftRight,
+    },
+    {
+      path: 'liquidity',
+      name: 'Liquidity',
+      icon: DropHalf,
+    },
+    {
+      path: 'statistics',
+      name: 'Statistics',
+      icon: ChartBar,
+    }
+  ]
 
   const otherRoutesToHighlight: Record<string, RegExp[]> = {
     liquidity: [/^newPosition\/*/, /^position\/*/],
@@ -141,21 +157,22 @@ export const Header: React.FC<IHeader> = ({
           className={classes.routers}
           wrap='nowrap'
           sx={{ display: { xs: 'none', lg: 'block' } }}>
-          {routes.map(path => (
-            <Link key={`path-${path}`} to={`/${path}`} className={classes.link}>
+          {routes.map(route => (
+            <Link key={`path-${route.path}`} to={`/${route.path}`} className={classes.link}>
               <NavbarButton
-                name={path}
+                name={route.name}
+                startIcon={route.icon}
                 onClick={e => {
-                  if (path === 'exchange' && activePath.startsWith('exchange')) {
+                  if (route.path === 'exchange' && activePath.startsWith('exchange')) {
                     e.preventDefault()
                   }
 
-                  setActive(path)
+                  setActive(route.path)
                 }}
                 active={
-                  path === activePath ||
-                  (!!otherRoutesToHighlight[path] &&
-                    otherRoutesToHighlight[path].some(pathRegex => pathRegex.test(activePath)))
+                  route.path === activePath ||
+                  (!!otherRoutesToHighlight[route.path] &&
+                    otherRoutesToHighlight[route.path].some(pathRegex => pathRegex.test(activePath)))
                 }
               />
             </Link>
@@ -245,7 +262,7 @@ export const Header: React.FC<IHeader> = ({
             <CardMedia className={classes.menu} image={Hamburger} />
           </IconButton>
           <RoutesModal
-            routes={routes}
+            routes={routes.map((route) => route.path)}
             anchorEl={routesModalAnchor}
             open={routesModalOpen}
             current={activePath}

@@ -2,6 +2,7 @@ import React from 'react'
 import useStyles from './style'
 import { Button } from '@mui/material'
 import classNames from 'classnames'
+import { Icon, IconProps } from '@phosphor-icons/react'
 
 export interface IProps {
   name: string
@@ -9,7 +10,8 @@ export interface IProps {
   onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
   className?: string
   disabled?: boolean
-  startIcon?: JSX.Element
+  startIcon?: Icon
+  iconWeight?: IconProps['weight']
 }
 export const NavbarButton: React.FC<IProps> = ({
   name,
@@ -17,7 +19,8 @@ export const NavbarButton: React.FC<IProps> = ({
   onClick,
   className,
   disabled = false,
-  startIcon
+  startIcon: StartIcon,
+  iconWeight = 'fill'
 }) => {
   const { classes } = useStyles()
   return (
@@ -27,7 +30,11 @@ export const NavbarButton: React.FC<IProps> = ({
       classes={{ disabled: classes.disabled }}
       disabled={disabled}
       type={onClick ? 'button' : 'submit'}
-      startIcon={startIcon}
+      startIcon={StartIcon ? (
+          <StartIcon
+            weight={iconWeight}
+          />
+      ) : undefined}
       onClick={onClick}>
       {name}
     </Button>

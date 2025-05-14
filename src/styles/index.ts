@@ -1,0 +1,269 @@
+import { CSSObject } from '@emotion/react'
+import { koniColors, koniTypography } from '@static/theme'
+
+export const leftContentContainerStyle: CSSObject  = {
+  backgroundColor: koniColors.palette['violet-1'],
+  border: `3px solid ${koniColors.fadedDark['o-85']}`,
+  borderRadius: 24,
+  boxShadow: `-8px 8px 0 0 ${koniColors.palette['violet-4']}`,
+}
+
+export const generalButtonStyle: CSSObject  = {
+  '&.MuiButton-root': {
+    textTransform: 'none',
+    boxShadow: 'none',
+
+    '&:hover': {
+      boxShadow: 'none',
+    }
+  },
+
+  '.MuiButton-startIcon': {
+    marginLeft: 0,
+
+    svg: {
+      width: '100%',
+      height: '100%',
+    }
+  },
+
+  '&.-layout-icon-only': {
+    borderRadius: '50%',
+    padding: 0,
+
+    '.MuiButton-startIcon': {
+      marginRight: 0
+    },
+  },
+
+  '&.-layout-text-only': {
+    borderRadius: 12,
+    paddingLeft: 16,
+    paddingRight: 16,
+  },
+
+  '&.-layout-text-with-icon': {
+    borderRadius: 12,
+    paddingLeft: 16,
+    paddingRight: 16,
+
+    '.MuiButton-startIcon': {
+      height: 20,
+      width: 20,
+      marginRight: 4
+    },
+  },
+
+  '&.-size-lg': {
+    height: 56,
+
+    '&.-layout-icon-only': {
+      width: 56,
+
+      '.MuiButton-startIcon': {
+        height: 32,
+        width: 32,
+      },
+    },
+
+    '&.-layout-text-only': {
+      ...koniTypography.heading7
+    },
+
+    '&.-layout-text-with-icon': {
+      ...koniTypography.heading8
+    },
+  },
+
+  '&.-size-md': {
+    height: 48,
+
+    '&.-layout-icon-only': {
+      width: 48,
+
+      '.MuiButton-startIcon': {
+        height: 28,
+        width: 28,
+      },
+    },
+
+    '&.-layout-text-only': {
+      ...koniTypography.heading8
+    },
+
+    '&.-layout-text-with-icon': {
+      ...koniTypography.heading8
+    },
+  },
+
+  '&.-size-sm': {
+    height: 40,
+
+    '&.-layout-icon-only': {
+      width: 40,
+
+      '.MuiButton-startIcon': {
+        height: 24,
+        width: 24,
+      },
+    },
+
+    '&.-layout-text-only': {
+      ...koniTypography.body3
+    },
+
+    '&.-layout-text-with-icon': {
+      ...koniTypography.body3
+    },
+  },
+
+  '&.-variant-primary': {
+    '&, &.Mui-disabled': {
+      borderStyle: 'solid',
+      borderColor: koniColors.fadedDark['o-85'],
+      backgroundColor: koniColors.palette['violet-4'],
+      color: koniColors.background['dark-2'],
+    },
+
+    '&.-size-lg': {
+      '&.-layout-text-only': {
+        borderWidth: 2
+      },
+
+      '&.-layout-text-with-icon': {
+        borderWidth: 2
+      },
+    },
+
+    '&.-size-md': {
+      '&.-layout-text-only': {
+        borderWidth: 2
+      },
+
+      '&.-layout-text-with-icon': {
+        borderWidth: 2
+      },
+    },
+
+    '&.-size-sm': {
+      '&.-layout-text-only': {
+        borderWidth: 1
+      },
+
+      '&.-layout-text-with-icon': {
+        borderWidth: 1
+      },
+    },
+
+    '&:hover:not(:disabled)': {
+      borderColor: koniColors.fadedDark['o-85'],
+      backgroundColor: koniColors.background['dark-2'],
+      color: koniColors.palette['violet-4'],
+    },
+
+    '&:active:not(:disabled)': {
+      borderColor: koniColors.fadedDark['o-85'],
+      backgroundColor: koniColors.background['dark-2'],
+      color: koniColors.palette['violet-6'],
+    }
+  },
+
+  '&.-variant-secondary-dark': {
+    '&, &.Mui-disabled': {
+      backgroundColor: koniColors.background['dark-2'],
+      color: koniColors.fadedLight['o-100'],
+    },
+
+    '&:hover:not(:disabled)': {
+      backgroundColor: koniColors.background['dark-3'],
+      color: koniColors.fadedLight['o-100'],
+    },
+
+    '&:active:not(:disabled)': {
+      backgroundColor: koniColors.background['dark-1'],
+      color: koniColors.fadedLight['o-100'],
+    }
+  },
+
+  '&.-variant-secondary-light': {
+    '&, &.Mui-disabled': {
+      borderStyle: 'solid',
+      borderColor: koniColors.fadedDark['o-85'],
+      backgroundColor: koniColors.background['light-1'],
+      color: koniColors.background['dark-2'],
+    },
+
+    '&.-size-lg': {
+      '&.-layout-text-only': {
+        borderWidth: 2
+      },
+
+      '&.-layout-text-with-icon': {
+        borderWidth: 2
+      },
+    },
+
+    '&.-size-md': {
+      '&.-layout-text-only': {
+        borderWidth: 2
+      },
+
+      '&.-layout-text-with-icon': {
+        borderWidth: 2
+      },
+    },
+
+    '&.-size-sm': {
+      '&.-layout-text-only': {
+        borderWidth: 1
+      },
+
+      '&.-layout-text-with-icon': {
+        borderWidth: 1
+      },
+    },
+
+    '&:hover:not(:disabled)': {
+      borderColor: koniColors.fadedDark['o-85'],
+      backgroundColor: koniColors.background['dark-2'],
+      color: koniColors.fadedLight['o-100'],
+    },
+
+    '&:active:not(:disabled)': {
+      borderColor: koniColors.fadedDark['o-85'],
+      backgroundColor: koniColors.background['dark-1'],
+      color: koniColors.fadedLight['o-100'],
+    }
+  },
+
+  '&.-variant-ghost': {
+    '&, &.Mui-disabled': {
+      backgroundColor: 'transparent',
+      color: koniColors.background['dark-2'],
+    },
+
+    '&.-layout-text-only': {
+      borderRadius: 32,
+    },
+
+    '&.-layout-text-with-icon': {
+      borderRadius: 32,
+    },
+
+    '&:hover:not(:disabled)': {
+      backgroundColor: koniColors.fadedDark['o-5'],
+      color: koniColors.fadedDark['o-65'],
+    },
+
+    '&:active:not(:disabled)': {
+      backgroundColor: koniColors.fadedDark['o-10'],
+      color: koniColors.background['dark-2'],
+    }
+  },
+
+  '&.Mui-disabled.Mui-disabled': {
+    opacity: 0.4,
+    pointerEvents: 'auto',
+    cursor: 'not-allowed',
+  },
+}

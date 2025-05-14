@@ -26,6 +26,8 @@
       "@store/*": ["src/store/*"],
       "@web3/*": ["src/web3/*"],
       "@utils/*": ["src/utils/*"],
+      "@styles": ["src/styles/index.ts"],
+      "@styles/*": ["src/styles/*"],
       "@/*": ["src/*"]
     }
   },

@@ -16,6 +16,7 @@ export default defineConfig({
       '@store': '/src/store',
       '@web3': '/src/web3',
       '@utils': '/src/utils',
+      '@styles': '/src/styles',
       '@/': '/src',
       '@invariant-labs/vara-sdk': '@subwallet/invariant-vara-sdk',
       '@invariant-labs/vara-sdk-wasm': '@subwallet/invariant-vara-sdk-wasm'

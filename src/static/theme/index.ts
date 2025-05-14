@@ -89,6 +89,166 @@ export const colors = {
   }
 }
 
+export const koniColors = {
+  main: {
+    primary: '#FFE433',
+    'secondary-1': '#6F60F1',
+    'secondary-2': '#1DE885',
+    'dark-1': '#151823',
+    'light-1': '#151823',
+  },
+  semantic: {
+    warning: '#FFE433',
+    error: '#FF4A76',
+    success: '#95F37E',
+    processing: '#FFC123',
+    info: '#71CBFF',
+    cancel: '#8F97A8',
+  },
+  fadedDark: {
+    'o-100': 'rgba(21, 24, 35, 1)',
+    'o-85': 'rgba(21, 24, 35, 0.85)',
+    'o-65': 'rgba(21, 24, 35, 0.65)',
+    'o-45': 'rgba(21, 24, 35, 0.45)',
+    'o-30': 'rgba(21, 24, 35, 0.3)',
+    'o-20': 'rgba(21, 24, 35, 0.2)',
+    'o-10': 'rgba(21, 24, 35, 0.1)',
+    'o-5': 'rgba(21, 24, 35, 0.05)',
+  },
+  fadedLight: {
+    'o-100': 'rgba(255, 255, 255, 1)',
+    'o-85': 'rgba(255, 255, 255, 0.85)',
+    'o-65': 'rgba(255, 255, 255, 0.65)',
+    'o-45': 'rgba(255, 255, 255, 0.45)',
+    'o-30': 'rgba(255, 255, 255, 0.3)',
+    'o-20': 'rgba(255, 255, 255, 0.2)',
+    'o-10': 'rgba(255, 255, 255, 0.1)',
+    'o-6': 'rgba(255, 255, 255, 0.06)',
+  },
+  background: {
+    'dark-1': '#151823',
+    'dark-2': '#1F2536',
+    'dark-3': '#2C3242',
+    'dark-4': '#5F7298',
+    'light-1': '#FFFFFF',
+    'light-2': '#EEF2FB',
+    'light-3': '#92949E',
+    divider: 'rgba(31, 31, 35, 0.12)'
+  },
+  palette: {
+    'hollandaise-6': '#FFF643',
+    'lime-6': '#C4FE37',
+    'lightGreen-5': '#95F37E',
+    'lightGreen-7': '#59C442',
+    'green-5': '#79F1B7',
+    'sky-5': '#71CBFF',
+    'blue-4': '#729CFD',
+    'violet-1': '#E7E5FD',
+    'violet-4': '#9F95F6',
+    'violet-6': '#6F60F1',
+    'magenta-4': '#FF8CCB',
+    'cherryRed-4': '#FF6E91',
+    'orange-6': '#FF7338',
+    'cheese-6': '#FFC123',
+    'yellow-4': '#FFE433',
+  }
+}
+
+export const koniTypography = {
+  heading1: {
+    fontSize: 68,
+    lineHeight: '98px',
+    fontWeight: 700
+  },
+  heading2: {
+    fontSize: 56,
+    lineHeight: '81px',
+    fontWeight: 700
+  },
+  heading3: {
+    fontSize: 44,
+    lineHeight: '58px',
+    fontWeight: 700
+  },
+  heading4: {
+    fontSize: 36,
+    lineHeight: '48px',
+    fontWeight: 700
+  },
+  heading5: {
+    fontSize: 32,
+    lineHeight: '42px',
+    fontWeight: 700
+  },
+  heading6: {
+    fontSize: 24,
+    lineHeight: '32px',
+    fontWeight: 600
+  },
+  heading7: {
+    fontSize: 20,
+    lineHeight: '26px',
+    fontWeight: 600
+  },
+  heading8: {
+    fontSize: 16,
+    lineHeight: '21px',
+    fontWeight: 600
+  },
+  heading9: {
+    fontSize: 14,
+    lineHeight: '18px',
+    fontWeight: 600
+  },
+  heading10: {
+    fontSize: 12,
+    lineHeight: '16px',
+    fontWeight: 700
+  },
+  // body xlg
+  body1: {
+    fontSize: 20,
+    lineHeight: '30px',
+    fontWeight: 500
+  },
+  // body lg
+  body2: {
+    fontSize: 16,
+    lineHeight: '24px',
+    fontWeight: 500
+  },
+  // body md
+  body3: {
+    fontSize: 14,
+    lineHeight: '20px',
+    fontWeight: 500
+  },
+  // body sm
+  body4: {
+    fontSize: 12,
+    lineHeight: '19px',
+    fontWeight: 500
+  },
+  // body xs
+  body5: {
+    fontSize: 10,
+    lineHeight: '16px',
+    fontWeight: 500
+  },
+  // caption md
+  caption1: {
+    fontSize: 12,
+    lineHeight: '16px',
+    fontWeight: 600
+  },
+  // caption sm
+  caption2: {
+    fontSize: 11,
+    lineHeight: '14px',
+    fontWeight: 600
+  },
+}
+
 export const typography = {
   heading1: {
     fontSize: 32,
@@ -176,8 +336,8 @@ export const theme = createTheme({
     }
   },
   typography: {
-    fontFamily: 'Mukta',
-    fontWeightRegular: 600,
+    fontFamily: 'Bricolage Grotesque',
+    fontWeightRegular: 500,
     h1: typography.heading1,
     h2: typography.heading2,
     h3: typography.heading3,
@@ -194,6 +354,22 @@ export const theme = createTheme({
       md: 960,
       lg: 1280,
       xl: 1920
+    }
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          minWidth: 0,
+          textTransform: 'none'
+        },
+        startIcon: {
+          marginLeft: 0
+        }
+      },
+      defaultProps: {
+        disableRipple: true
+      }
     }
   }
 })

@@ -10,7 +10,7 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     '& g > text': {
       stroke: 'none',
       fill: '#A9B6BF!important',
-      fontFamily: 'Mukta!important',
+      fontFamily: 'Bricolage Grotesque !important',
 
       [theme.breakpoints.down('md')]: {
         fontSize: '8px!important'

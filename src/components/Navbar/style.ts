@@ -1,4 +1,4 @@
-import { colors, typography } from '@static/theme'
+import { koniColors, koniTypography } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
 
 const useStyles = makeStyles()(() => {
@@ -6,33 +6,44 @@ const useStyles = makeStyles()(() => {
     button: {
       minWidth: 67,
       backgroundColor: 'transparent',
-      color: colors.invariant.light,
-      height: 32,
-      borderRadius: 10,
-      ...typography.body1,
+      color: koniColors.fadedLight['o-85'],
+      height: 48,
+      borderRadius: 28,
+      ...koniTypography.heading8,
       textTransform: 'capitalize',
       boxShadow: 'none',
       margin: '4px',
-      '&:hover': {
-        background: 'transparent',
-        color: colors.invariant.lightGrey,
-        ...typography.body1,
-        '@media (hover: none)': {
-          color: colors.invariant.light
+      paddingLeft: 20,
+      paddingRight: 20,
+
+      '& .MuiButton-startIcon': {
+        marginLeft: 0,
+        marginRight: 12,
+
+        svg: {
+          fontSize: 24
         }
+      },
+
+      '&:hover': {
+        backgroundColor: 'transparent',
+        color: koniColors.fadedLight['o-100']
       }
     },
     active: {
-      background: colors.invariant.light,
-      color: colors.white.main,
-      ...typography.body1,
+      background: koniColors.palette['violet-4'],
+      color: koniColors.fadedDark['o-100'],
+      ...koniTypography.heading8,
       '&:hover': {
-        background: colors.invariant.light,
-        color: colors.white.main
+        background: koniColors.palette['violet-4'],
+        color: koniColors.fadedDark['o-100'],
       }
     },
     disabled: {
-      opacity: 1
+      opacity: 0.4
+    },
+    icon: {
+
     }
   }
 })

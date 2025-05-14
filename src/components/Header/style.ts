@@ -1,5 +1,5 @@
 import { Theme } from '@mui/material'
-import { colors } from '@static/theme'
+import { colors, koniColors } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
 
 const useStyles = makeStyles()((theme: Theme) => {
@@ -42,8 +42,8 @@ const useStyles = makeStyles()((theme: Theme) => {
       }
     },
     routers: {
-      backgroundColor: colors.invariant.black,
-      borderRadius: '10px',
+      backgroundColor: koniColors.fadedLight['o-6'],
+      borderRadius: '100px',
       transition: 'left 300ms',
       width: 'fit-content',
       margin: '0 10px 0 10px'

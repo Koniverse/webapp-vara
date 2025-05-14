@@ -26,6 +26,7 @@
     "@nightlylabs/wallet-selector-polkadot": "^0.2.5",
     "@nivo/bar": "^0.87.0",
     "@nivo/line": "^0.87.0",
+    "@phosphor-icons/react": "^2.1.7",
     "@polkadot/api-contract": "^10.11.2",
     "@polkadot/extension-dapp": "^0.47.2",
     "@polkadot/extension-inject": "^0.47.1",

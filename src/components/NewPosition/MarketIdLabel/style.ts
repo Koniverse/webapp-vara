@@ -4,7 +4,7 @@ import { makeStyles } from 'tss-react/mui'
 export const useLabelStyles = makeStyles()(() => {
   return {
     marketId: {
-      fontFamily: 'Mukta',
+      fontFamily: 'Bricolage Grotesque',
       fontSize: 16,
       fontWeight: 400,
       lineHeight: '20px',

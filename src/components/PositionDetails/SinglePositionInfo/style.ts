@@ -158,7 +158,7 @@ export const useStyles = makeStyles()((theme: Theme) => ({
   titleValue: {
     ...typography.heading3,
     color: colors.invariant.text,
-    fontFamily: 'Mukta'
+    fontFamily: 'Bricolage Grotesque'
   },
   violetButton: {
     background: colors.invariant.pinkLinearGradientOpacity,
