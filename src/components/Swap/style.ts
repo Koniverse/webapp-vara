@@ -1,53 +1,29 @@
 import { Theme } from '@mui/material'
-import { colors, typography } from '@static/theme'
+import { colors, koniColors, koniTypography, typography } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
 
 export const useStyles = makeStyles()((theme: Theme) => ({
   swapWrapper: {
-    maxWidth: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    [theme.breakpoints.down('sm')]: {
-      padding: '0 8px'
-    }
+    padding: '40px 32px' as any,
+
+    // [theme.breakpoints.down('sm')]: {
+    //   padding: '0 8px'
+    // }
   },
   header: {
     maxWidth: '100%',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    width: 500,
     position: 'relative',
-    paddingBottom: 9,
+    paddingBottom: 24,
+    paddingLeft: 8,
+    paddingRight: 8,
     rowGap: 8,
 
     '& h1': {
-      ...typography.heading4,
-      color: colors.white.main
-    }
-  },
-  refreshIcon: {
-    width: 26,
-    height: 21,
-    cursor: 'pointer',
-    transition: 'filter 100ms',
-    '&:hover': {
-      filter: 'brightness(1.5)',
-      '@media (hover: none)': {
-        filter: 'none'
-      }
-    }
-  },
-  settingsIcon: {
-    width: 20,
-    height: 20,
-    cursor: 'pointer',
-    transition: 'filter 100ms',
-    '&:hover': {
-      filter: 'brightness(1.5)',
-      '@media (hover: none)': {
-        filter: 'none'
-      }
+      ...koniTypography.heading4,
+      color: koniColors.fadedDark['o-100']
     }
   },
   HiddenTransactionButton: {
@@ -85,55 +61,44 @@ export const useStyles = makeStyles()((theme: Theme) => ({
   },
 
   refreshIconBtn: {
-    padding: 0,
-    margin: 0,
-    minWidth: 'auto',
-    background: 'none',
-    '&:hover': {
-      background: 'none'
-    },
-    '&:disabled': {
-      opacity: 0.5
-    }
+
   },
   settingsIconBtn: {
-    padding: 0,
-    margin: 0,
-    minWidth: 'auto',
-    background: 'none',
-    '&:hover': {
-      background: 'none'
-    }
+
   },
   slippage: {
     position: 'absolute'
   },
   root: {
-    maxWidth: '100%',
-    background: colors.invariant.component,
-    borderRadius: 24,
-    paddingInline: 24,
-    paddingBottom: 22,
+
+  },
+
+  inputArea: {
     paddingTop: 16,
-    width: 500,
-    [theme.breakpoints.down('sm')]: {
-      padding: '16px 8px'
-    }
+    backgroundColor: koniColors.background['light-1'],
+    borderRadius: 16
   },
 
   connectWalletButton: {
-    height: '48px !important',
-    borderRadius: '16px !important',
     width: '100%',
-
-    [theme.breakpoints.down('sm')]: {
-      width: '100% !important'
-    }
   },
   tokenComponentTextContainer: {
     display: 'flex',
-    justifyContent: 'space-between',
-    position: 'relative'
+    justifyContent: 'center',
+    position: 'relative',
+
+    '&:before': {
+      content: '""',
+      position: 'absolute',
+      left: 24,
+      right: 24,
+      display: 'block',
+      height: 1,
+      top: 0,
+      bottom: 0,
+      margin: 'auto',
+      backgroundColor: koniColors.background.divider,
+    }
   },
   amountInput: {
     position: 'relative'
@@ -151,44 +116,25 @@ export const useStyles = makeStyles()((theme: Theme) => ({
   },
 
   swapArrowBox: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: colors.invariant.component,
+    position: 'relative',
+    height: 40,
     width: 50,
-    height: 50,
-    borderRadius: '50%',
-    position: 'absolute',
-    zIndex: 2,
-    left: '50%',
-    top: '0%',
-    transform: 'translateX(-50%) translateY(-6px)',
-    cursor: 'pointer',
-    transition: 'background-color 200ms'
-  },
-  swapImgRoot: {
-    background: colors.invariant.newDark,
-    width: '40px',
-    height: '40px',
     display: 'flex',
-    alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 100,
-    '&:hover': {
-      backgroundColor: colors.invariant.light,
-      '@media (hover: none)': {
-        backgroundColor: colors.invariant.newDark
-      }
-    }
+    alignItems: 'center',
+    backgroundColor: koniColors.palette['lime-6'],
+    borderRadius: 32,
+    cursor: 'pointer',
   },
 
   swapArrows: {
-    width: '100%',
-    height: '100%',
-    objectFit: 'contain',
-    marginBlock: 13,
-    marginInline: 6,
-    transition: '.4s all'
+    fontSize: 24,
+    color: koniColors.fadedDark['o-100'],
+    transition: '.4s all',
+
+    svg: {
+      display: 'block',
+    }
   },
 
   transactionDetails: {
@@ -253,8 +199,7 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     }
   },
   swapButton: {
-    width: '100%',
-    height: 48
+    width: '100%'
   },
 
   exchangeRoot: {
@@ -279,14 +224,14 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     color: colors.invariant.lightGrey
   },
   ButtonSwapActive: {
-    transition: 'filter 0.3s linear',
-    background: `${colors.invariant.greenLinearGradient} !important`,
-    filter: 'brightness(0.8)',
-    '&:hover': {
-      filter: 'brightness(1.15)',
-      boxShadow:
-        '0px 3px 1px -2px rgba(43, 193, 144, 0.2),0px 1px 2px 0px rgba(45, 168, 128, 0.14),0px 0px 5px 7px rgba(59, 183, 142, 0.12)'
-    }
+    // transition: 'filter 0.3s linear',
+    // background: `${colors.invariant.greenLinearGradient} !important`,
+    // filter: 'brightness(0.8)',
+    // '&:hover': {
+    //   filter: 'brightness(1.15)',
+    //   boxShadow:
+    //     '0px 3px 1px -2px rgba(43, 193, 144, 0.2),0px 1px 2px 0px rgba(45, 168, 128, 0.14),0px 0px 5px 7px rgba(59, 183, 142, 0.12)'
+    // }
   },
   infoIcon: {
     display: 'inline-block',
@@ -305,33 +250,18 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     flexWrap: 'wrap'
   },
   slippageButton: {
-    height: 27,
-    padding: '0px 8px',
-    borderRadius: 8,
-    backgroundColor: colors.invariant.component,
-    color: colors.invariant.textGrey,
-    fontSize: 14,
-    cursor: 'pointer',
-    userSelect: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    textTransform: 'none',
 
-    '&:hover': {
-      background: colors.invariant.light,
-      color: colors.invariant.text,
-      '@media (hover: none)': {
-        backgroundColor: colors.invariant.component,
-        color: colors.invariant.textGrey
-      }
-    }
   },
   slippageAmount: {
-    color: colors.invariant.green
+    color: koniColors.palette['lightGreen-7']
   },
   swapLabel: {
-    ...typography.caption1,
-    color: colors.invariant.lightGrey,
+    ...koniTypography.body2,
+    color: koniColors.fadedDark['o-45'],
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingTop: 6,
+    paddingBottom: 6,
     marginBottom: 8
   },
   unknownWarningContainer: {

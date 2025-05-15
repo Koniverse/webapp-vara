@@ -1,27 +1,28 @@
-import { colors, typography } from '@static/theme'
+import { koniColors, koniTypography } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
 
 export const useWrapperStyles = makeStyles()(theme => ({
   wrapper: {
     margin: '0px 0 24px',
-    borderRadius: 16,
-    border: `1px solid ${colors.invariant.light}`,
-    padding: '8px 12px',
+    borderRadius: 12,
+    padding: '12px 16px',
+    backgroundColor: koniColors.background['light-1'],
+    border: `1px solid ${koniColors.fadedDark['o-10']}`,
 
     [theme.breakpoints.down('sm')]: {
-      flexDirection: 'column'
+      // flexDirection: 'column'
     }
   },
   divider: {
     width: 1,
-    height: '100%',
-    backgroundColor: colors.invariant.light,
-    margin: '0 24px',
-    [theme.breakpoints.down('sm')]: {
-      height: 1,
-      width: '100%',
-      margin: '8px 0'
-    }
+    height: 40,
+    backgroundColor: koniColors.background['divider'],
+    margin: '0 16px'
+    // [theme.breakpoints.down('sm')]: {
+    //   height: 1,
+    //   width: '100%',
+    //   margin: '8px 0'
+    // }
   }
 }))
 
@@ -33,16 +34,16 @@ export const useStyles = makeStyles<{ isToken: boolean }>()((_theme, { isToken }
     width: '100%'
   },
   imageContainer: {
-    minWidth: 30,
-    maxWidth: 30,
-    height: 30,
+    minWidth: 32,
+    maxWidth: 32,
+    height: 32,
     marginRight: 8,
     position: 'relative'
   },
   tokenIcon: {
-    minWidth: 30,
-    maxWidth: 30,
-    height: 30,
+    minWidth: 32,
+    maxWidth: 32,
+    height: 32,
     marginRight: 8,
     borderRadius: '50%'
   },
@@ -53,59 +54,58 @@ export const useStyles = makeStyles<{ isToken: boolean }>()((_theme, { isToken }
     bottom: -6,
     right: -6
   },
+  tokenNameWrapper: {
+    marginBottom: 2
+  },
   tokenName: {
-    color: colors.white.main,
-    ...typography.body1,
+    color: koniColors.fadedDark['o-85'],
+    ...koniTypography.heading8,
     whiteSpace: 'nowrap',
     overflow: 'hidden',
     textOverflow: 'ellipsis'
   },
   tokenAddress: {
-    backgroundColor: colors.invariant.newDark,
-    borderRadius: 4,
-    padding: '2px 4px',
+    backgroundColor: koniColors.fadedDark['o-10'],
+    borderRadius: 51,
+    height: 16,
+    paddingRight: 4,
+    paddingLeft: 4,
     display: 'flex',
     flexWrap: 'nowrap',
     alignItems: 'center',
-    columnGap: 4,
+    columnGap: 2,
     cursor: isToken ? 'pointer' : 'default',
-    '&:hover': {
-      filter: isToken ? 'brightness(1.2)' : 'none',
-      '@media (hover: none)': {
-        filter: 'none'
-      }
+
+    'p': {
+      ...koniTypography.body5,
+      color: koniColors.fadedDark['o-65'],
+      whiteSpace: 'nowrap'
     },
 
-    '& p': {
-      color: colors.invariant.textGrey,
-      ...typography.caption4,
-      whiteSpace: 'nowrap'
+    svg: {
+      width: 12,
+      height: 12,
+      color: koniColors.fadedDark['o-85'],
     }
   },
   tokenDescription: {
-    color: colors.invariant.textGrey,
-    ...typography.caption4,
-    lineHeight: '16px',
+    ...koniTypography.body4,
+    color: koniColors.fadedDark['o-65'],
     whiteSpace: 'nowrap',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
-    paddingRight: 24
   },
   price: {
-    color: colors.invariant.text,
-    ...typography.body1,
-    whiteSpace: 'nowrap'
+    ...koniTypography.heading8,
+    color: koniColors.fadedDark['o-85'],
+    whiteSpace: 'nowrap',
+    marginBottom: 5
   },
   rightItems: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'flex-end'
-  },
-  clipboardIcon: {
-    display: 'inline-block',
-    height: 10,
-    color: colors.invariant.textGrey
   },
   link: {
     maxHeight: 8,

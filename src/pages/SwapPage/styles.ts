@@ -1,14 +1,13 @@
 import { makeStyles } from 'tss-react/mui'
+import { leftContentContainerStyle } from '@styles'
 
 const useStyles = makeStyles()(() => {
   return {
     container: {
-      display: 'flex',
-      minHeight: '70vh',
-      marginTop: '65px',
-      justifyContent: 'center',
-      backgroundColor: 'transparent',
-      maxWidth: '100%'
+      ...leftContentContainerStyle,
+      maxWidth: 526,
+      marginLeft: 'auto',
+      marginRight: 'auto'
     }
   }
 })

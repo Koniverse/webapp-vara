@@ -1,4 +1,4 @@
-import { colors, typography } from '@static/theme'
+import { colors } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
 import { keyframes } from 'tss-react'
 
@@ -35,38 +35,38 @@ const useStyles = makeStyles()(() => {
   `
   return {
     button: {
-      height: 44,
-      borderRadius: 16,
-      textAlign: 'center',
-      textTransform: 'none',
-      ...typography.body1,
-      color: colors.invariant.componentBcg,
-      background: colors.invariant.pinkLinearGradient,
-      transition: 'background-color 0ms ease, box-shadow 150ms linear',
+      // height: 44,
+      // borderRadius: 16,
+      // textAlign: 'center',
+      // textTransform: 'none',
+      // ...typography.body1,
+      // color: colors.invariant.componentBcg,
+      // background: colors.invariant.pinkLinearGradient,
+      // transition: 'background-color 0ms ease, box-shadow 150ms linear',
       position: 'relative',
       overflow: 'hidden',
       zIndex: 4,
-      '&:disabled': {
-        background: colors.invariant.light,
-        color: colors.invariant.componentBcg,
-        pointerEvents: 'auto',
-        transition: 'all 0.2s',
-        '&:hover': {
-          boxShadow: 'none',
-          cursor: 'not-allowed',
-          filter: 'brightness(1.15)',
-          '@media (hover: none)': {
-            filter: 'none'
-          }
-        }
-      }
+      // '&:disabled': {
+      //   background: colors.invariant.light,
+      //   color: colors.invariant.componentBcg,
+      //   pointerEvents: 'auto',
+      //   transition: 'all 0.2s',
+      //   '&:hover': {
+      //     boxShadow: 'none',
+      //     cursor: 'not-allowed',
+      //     filter: 'brightness(1.15)',
+      //     '@media (hover: none)': {
+      //       filter: 'none'
+      //     }
+      //   }
+      // }
     },
 
     buttonRelease: {
-      background: `${colors.invariant.componentBcg} !important`,
-      '&:hover': {
-        background: `${colors.invariant.componentBcg} !important`
-      }
+      // background: `${colors.invariant.componentBcg} !important`,
+      // '&:hover': {
+        // background: `${colors.invariant.componentBcg} !important`
+      // }
     },
     background: {
       width: '100%',

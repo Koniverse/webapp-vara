@@ -6,6 +6,7 @@ import icons from '@static/icons'
 import { formatNumber } from '@utils/utils'
 import { VariantType } from 'notistack'
 import { TooltipHover } from '@components/TooltipHover/TooltipHover'
+import { Copy } from '@phosphor-icons/react'
 interface IProps {
   token?: SwapToken
   tokenPrice?: number
@@ -29,7 +30,7 @@ const SingleToken: React.FC<IProps> = ({ token, tokenPrice, copyTokenAddressHand
 
   return (
     <Grid className={classes.token}>
-      <Grid container direction='row' justifyContent='flex-start' alignItems='center' wrap='nowrap'>
+      <Grid container direction='row' justifyContent='flex-start' alignItems='center' wrap='nowrap' sx={{flex: 1}}>
         {token?.logoURI ? (
           <Box className={classes.imageContainer}>
             <img
@@ -45,7 +46,7 @@ const SingleToken: React.FC<IProps> = ({ token, tokenPrice, copyTokenAddressHand
         )}
 
         <Grid>
-          <Grid container direction='row' alignItems='center' gap='6px' wrap='nowrap' pr={1}>
+          <Grid container direction='row' alignItems='center' gap='6px' wrap='nowrap' className={classes.tokenNameWrapper}>
             <Typography className={classes.tokenName}>
               {token?.symbol ? token.symbol : 'Select a token'}{' '}
             </Typography>
@@ -82,13 +83,8 @@ const SingleToken: React.FC<IProps> = ({ token, tokenPrice, copyTokenAddressHand
                 ? token.assetAddress.slice(0, 4) + '...' + token.assetAddress.slice(-5, -1)
                 : '--'}
             </Typography>
-            <img
-              width={8}
-              height={8}
-              src={icons.copyAddress}
-              alt={'Copy address'}
-              className={classes.clipboardIcon}
-            />
+
+            <Copy />
           </Grid>
         </TooltipHover>
       </Grid>
