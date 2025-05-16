@@ -1,30 +1,40 @@
 import { Theme } from '@mui/material'
-import { colors, typography } from '@static/theme'
+import { koniColors, koniTypography } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
 
 export const useStyles = makeStyles()((theme: Theme) => {
   return {
     button: {
-      posiiton: 'relative',
-      width: 'auto',
-      textTransform: 'none',
+      backgroundColor: koniColors.fadedDark['o-5'],
+      height: 48,
+      borderRadius: 32,
       boxShadow: 'none',
-      borderRadius: 12,
-      height: 36,
-      minWidth: 'auto',
-      fontFamily: 'Bricolage Grotesque',
-      backgroundColor: colors.invariant.light,
-      ...typography.body3,
-      padding: '12px 18px',
+      paddingLeft: 16,
+      paddingRight: 8,
+      paddingBlock: 0,
+      color: koniColors.fadedDark['o-85'],
 
-      filter: 'brightness(0.8)',
+      '.MuiButton-startIcon': {
+        marginLeft: -10,
+        marginRight: 4
+      },
+
+      '.MuiButton-endIcon': {
+        marginRight: 0,
+        marginLeft: 0,
+        width: 32,
+        height: 32,
+
+        'svg': {
+          width: 16,
+          height: 16,
+          margin: 'auto'
+        },
+      },
 
       '&:hover': {
-        filter: 'brightness(1)',
-        backgroundColor: colors.invariant.light,
-        '@media (hover: none)': {
-          filter: 'brightness(0.8)'
-        }
+        backgroundColor: koniColors.fadedDark['o-10'],
+        boxShadow: 'none',
       },
 
       [theme.breakpoints.down('sm')]: {
@@ -32,21 +42,16 @@ export const useStyles = makeStyles()((theme: Theme) => {
       }
     },
     tokenName: {
-      position: 'relative',
-      top: 1,
-      color: colors.white.main
+      ...koniTypography.heading8,
+      marginRight: 4
     },
     imageContainer: {
-      minWidth: 20,
-      maxWidth: 20,
-      height: 20,
-      marginRight: 5,
       position: 'relative'
     },
     icon: {
-      marginRight: 5,
-      minWidth: 20,
-      height: 20,
+      display: 'block',
+      width: 32,
+      height: 32,
       borderRadius: '100%'
     },
     warningIcon: {

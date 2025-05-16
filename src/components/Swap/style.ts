@@ -1,5 +1,5 @@
 import { Theme } from '@mui/material'
-import { colors, koniColors, koniTypography, typography } from '@static/theme'
+import { colors, koniColors, koniTypography } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
 
 export const useStyles = makeStyles()((theme: Theme) => ({
@@ -26,33 +26,61 @@ export const useStyles = makeStyles()((theme: Theme) => ({
       color: koniColors.fadedDark['o-100']
     }
   },
-  HiddenTransactionButton: {
-    background: 'none !important',
-    border: 'none',
-    minWidth: 'auto',
-    color: colors.invariant.lightHover,
-    padding: 0,
-    '&:hover': {
-      filter: 'brightness(1.15)',
-      cursor: 'pointer',
-      '@media (hover: none)': {
-        filter: 'none'
-      }
+  transactionDetailsButton: {
+    border: 0,
+    backgroundColor: koniColors.fadedDark['o-10'],
+    borderRadius: 28,
+    paddingLeft: 16,
+    paddingRight: 16,
+    height: 44,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    cursor: 'pointer',
+
+    // [theme.breakpoints.down('sm')]: {
+    //   flexGrow: 1
+    // }
+
+    '&:not(.-disabled):hover': {
+      // backgroundColor: koniColors.fadedDark['o-10'],
     },
-    '@media (max-width: 400px)': {
-      width: '100%'
+
+    '&.-disabled': {
+      opacity: 0.4,
+      cursor: 'not-allowed'
     }
   },
 
+  HiddenTransactionButton: {
+    // background: 'none !important',
+    // border: 'none',
+    // minWidth: 'auto',
+    // color: colors.invariant.lightHover,
+    // padding: 0,
+    // '&:hover': {
+    //   filter: 'brightness(1.15)',
+    //   cursor: 'pointer',
+    //   '@media (hover: none)': {
+    //     filter: 'none'
+    //   }
+    // },
+    // '@media (max-width: 400px)': {
+    //   width: '100%'
+    // }
+  },
+
   transactionDetailDisabled: {
-    background: 'none !important',
-    border: 'none',
-    minWidth: 'auto',
-    padding: 0,
-    color: colors.invariant.lightHover,
-    '@media (max-width: 400px)': {
-      width: '100%'
-    }
+    opacity: 0.4,
+    cursor: 'not-allowed'
+    // background: 'none !important',
+    // border: 'none',
+    // minWidth: 'auto',
+    // padding: 0,
+    // color: colors.invariant.lightHover,
+    // '@media (max-width: 400px)': {
+    //   width: '100%'
+    // }
   },
 
   swapControls: {
@@ -75,6 +103,7 @@ export const useStyles = makeStyles()((theme: Theme) => ({
 
   inputArea: {
     paddingTop: 16,
+    paddingBottom: 16,
     backgroundColor: koniColors.background['light-1'],
     borderRadius: 16
   },
@@ -83,6 +112,8 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     width: '100%',
   },
   tokenComponentTextContainer: {
+    paddingTop: 8,
+    paddingBottom: 8,
     display: 'flex',
     justifyContent: 'center',
     position: 'relative',
@@ -143,8 +174,8 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     justifyContent: 'space-between',
     flexFlow: 'row',
     flexWrap: 'wrap',
-    marginTop: 12,
-    marginBottom: 12,
+    marginTop: 16,
+    marginBottom: 16,
     cursor: 'default',
     filter: 'brightness(0.9)',
     width: '100%',
@@ -161,27 +192,12 @@ export const useStyles = makeStyles()((theme: Theme) => ({
       width: '100%'
     }
   },
-  transactionDetailsButton: {
-    [theme.breakpoints.down('sm')]: {
-      flexGrow: 1
-    }
-  },
-  transactionDetailsWrapper: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    backgroundColor: colors.invariant.light,
-    paddingInline: 15,
-    borderRadius: '10px',
-    alignItems: 'center',
-    height: 34
-  },
 
   transactionDetailsHeader: {
-    ...typography.caption2,
+    ...koniTypography.body3,
     whiteSpace: 'nowrap',
     pointerEvents: 'none',
-    color: colors.invariant.lightGrey
+    color: koniColors.fadedDark['o-85'],
   },
 
   exchangeRateWrapper: {
@@ -204,8 +220,8 @@ export const useStyles = makeStyles()((theme: Theme) => ({
 
   exchangeRoot: {
     position: 'relative',
-    background: colors.invariant.newDark,
-    borderRadius: 20
+    // background: colors.invariant.newDark,
+    // borderRadius: 20
   },
   transactionTop: {
     marginTop: 10

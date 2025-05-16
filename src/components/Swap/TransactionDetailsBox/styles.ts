@@ -1,33 +1,36 @@
-import { colors, typography } from '@static/theme'
+import { koniColors, koniTypography } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
 
 export const useStyles = makeStyles<{ open: boolean }>()((_theme, { open }) => ({
   wrapper: {
-    borderRadius: 10,
+    borderRadius: 16,
     padding: 0,
-    background: colors.invariant.newDark,
+    background: koniColors.background['light-1'],
     overflow: 'hidden',
     transition: 'max-height 300ms',
-    maxHeight: open ? 160 : 0,
+    maxHeight: open ? 152 : 0,
     marginBottom: open ? 12 : 0
   },
   innerWrapper: {
-    padding: 16,
+    padding: '16px 24px',
     minHeight: 132
   },
   row: {
+    alignItems: 'center',
+    minHeight: 21,
+
     '&:not(:last-child)': {
-      marginBottom: 8
+      marginBottom: 12
     }
   },
   label: {
-    ...typography.body1,
-    color: colors.white.main,
-    marginRight: 3
+    ...koniTypography.heading9,
+    color: koniColors.fadedDark['o-65'],
+    marginRight: 4
   },
   value: {
-    ...typography.body2,
-    color: colors.white.main
+    ...koniTypography.heading8,
+    color: koniColors.fadedDark['o-100']
   },
   loadingContainer: {
     width: 20,

@@ -4,10 +4,10 @@ import classNames from 'classnames'
 import useStyles from './style'
 import { blurContent, unblurContent } from '@utils/uiUtils'
 import { Box, Button } from '@mui/material'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import SelectTokenModal from '@components/Modals/SelectModals/SelectTokenModal/SelectTokenModal'
 import { SwapToken } from '@store/selectors/wallet'
 import { HexString } from '@gear-js/api'
+import { CaretRight } from '@phosphor-icons/react'
 
 export interface ISelectModal {
   name?: string
@@ -84,7 +84,7 @@ export const Select: React.FC<ISelectModal> = ({
             </Box>
           )
         }
-        endIcon={<ExpandMoreIcon />}
+        endIcon={<CaretRight />}
         classes={{
           endIcon: 'selectArrow'
         }}

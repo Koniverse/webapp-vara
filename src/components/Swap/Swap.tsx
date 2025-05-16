@@ -685,27 +685,63 @@ export const Swap: React.FC<ISwap> = ({
           </Box>
         </div>
 
-        <Box className={classes.unknownWarningContainer}>
-          {tokens[tokenFrom ?? '']?.isUnknown && (
-            <TooltipHover
-              text={`${tokens[tokenFrom ?? ''].symbol} is unknown, make sure address is correct before trading`}>
-              <Box className={classes.unknownWarning}>
-                {tokens[tokenFrom ?? ''].symbol} is not verified
-              </Box>
-            </TooltipHover>
-          )}
-          {tokens[tokenTo ?? '']?.isUnknown && (
-            <TooltipHover
-              text={`${tokens[tokenTo ?? ''].symbol} is unknown, make sure address is correct before trading`}>
-              <Box className={classes.unknownWarning}>
-                {tokens[tokenTo ?? ''].symbol} is not verified
-              </Box>
-            </TooltipHover>
-          )}
-        </Box>
+        {
+          (tokens[tokenFrom ?? '']?.isUnknown || tokens[tokenTo ?? '']?.isUnknown) && (
+            <Box className={classes.unknownWarningContainer}>
+              {tokens[tokenFrom ?? '']?.isUnknown && (
+                <TooltipHover
+                  text={`${tokens[tokenFrom ?? ''].symbol} is unknown, make sure address is correct before trading`}>
+                  <Box className={classes.unknownWarning}>
+                    {tokens[tokenFrom ?? ''].symbol} is not verified
+                  </Box>
+                </TooltipHover>
+              )}
+              {tokens[tokenTo ?? '']?.isUnknown && (
+                <TooltipHover
+                  text={`${tokens[tokenTo ?? ''].symbol} is unknown, make sure address is correct before trading`}>
+                  <Box className={classes.unknownWarning}>
+                    {tokens[tokenTo ?? ''].symbol} is not verified
+                  </Box>
+                </TooltipHover>
+              )}
+            </Box>
+          )
+        }
 
         <Box className={classes.transactionDetails}>
+          <Box className={classes.exchangeRateWrapper}>
+            {canShowDetails && (
+              <ExchangeRate
+                onClick={() => setRateReversed(!rateReversed)}
+                tokenFromSymbol={tokens[rateReversed ? tokenTo : tokenFrom].symbol}
+                tokenToSymbol={tokens[rateReversed ? tokenFrom : tokenTo].symbol}
+                amount={rateReversed ? 1 / swapRate : swapRate}
+                tokenToDecimals={Number(tokens[rateReversed ? tokenFrom : tokenTo].decimals)}
+                loading={getStateMessage() === 'Loading'}
+              />
+            )}
+          </Box>
+
           <Box className={classes.transactionDetailsInner}>
+            {tokenFrom !== null && tokenTo !== null && tokenFrom !== tokenTo && (
+              <TooltipHover text='Refresh'>
+                <Grid
+                  container
+                  alignItems='center'
+                  justifyContent='center'
+                  width={20}
+                  height={34}
+                  minWidth='fit-content'
+                  mr={1}>
+                  <Refresher
+                    currentIndex={refresherTime}
+                    maxIndex={REFRESHER_INTERVAL}
+                    onClick={handleRefresh}
+                  />
+                </Grid>
+              </TooltipHover>
+            )}
+
             <button
               onClick={
                 tokenFrom !== null &&
@@ -722,47 +758,15 @@ export const Swap: React.FC<ISwap> = ({
                   hasShowRateMessage() &&
                   amountFrom !== '' &&
                   amountTo !== ''
-                  ? classes.HiddenTransactionButton
-                  : classes.transactionDetailDisabled,
+                  ? ''
+                  : '-disabled',
                 classes.transactionDetailsButton
               )}>
-              <Grid className={classes.transactionDetailsWrapper}>
-                <Typography className={classes.transactionDetailsHeader}>
-                  {detailsOpen && canShowDetails ? 'Hide' : 'Show'} transaction details
-                </Typography>
-              </Grid>
+              <Typography className={classes.transactionDetailsHeader}>
+                {detailsOpen && canShowDetails ? 'Hide' : 'Show'} transaction details
+              </Typography>
             </button>
-            {tokenFrom !== null && tokenTo !== null && tokenFrom !== tokenTo && (
-              <TooltipHover text='Refresh'>
-                <Grid
-                  container
-                  alignItems='center'
-                  justifyContent='center'
-                  width={20}
-                  height={34}
-                  minWidth='fit-content'
-                  ml={1}>
-                  <Refresher
-                    currentIndex={refresherTime}
-                    maxIndex={REFRESHER_INTERVAL}
-                    onClick={handleRefresh}
-                  />
-                </Grid>
-              </TooltipHover>
-            )}
           </Box>
-          {canShowDetails ? (
-            <Box className={classes.exchangeRateWrapper}>
-              <ExchangeRate
-                onClick={() => setRateReversed(!rateReversed)}
-                tokenFromSymbol={tokens[rateReversed ? tokenTo : tokenFrom].symbol}
-                tokenToSymbol={tokens[rateReversed ? tokenFrom : tokenTo].symbol}
-                amount={rateReversed ? 1 / swapRate : swapRate}
-                tokenToDecimals={Number(tokens[rateReversed ? tokenFrom : tokenTo].decimals)}
-                loading={getStateMessage() === 'Loading'}
-              />
-            </Box>
-          ) : null}
         </Box>
 
         <TransactionDetailsBox

@@ -1,84 +1,65 @@
 import { Theme } from '@mui/material'
-import { colors, typography } from '@static/theme'
+import { colors, koniColors, koniTypography, typography } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
 
 export const useStyles = makeStyles()((theme: Theme) => ({
+  amountInputWrapper: {
+    flex: 1,
+    paddingRight: 12
+  },
+
   amountInput: {
-    background: colors.invariant.newDark,
-    color: colors.invariant.light,
+    color: koniColors.fadedDark['o-85'],
     borderRadius: 20,
-    ...typography.heading2,
+    textAlign: 'left',
+    fontSize: 32,
     width: '100%',
-    textAlign: 'right',
     transition: 'all .4s',
+  },
+  input: {
+    height: 42,
+    paddingTop: 0,
+    paddingBottom: 0,
     '& ::placeholder': {
-      textAlign: 'right'
+      textAlign: 'left'
     }
   },
   maxButton: {
-    color: colors.invariant.componentBcg,
-    ...typography.tiny2,
-    borderRadius: 4,
-    width: 26,
-    minWidth: 26,
-    height: 14,
-    textTransform: 'none',
-    marginLeft: 4,
-    background: ' rgba(46, 224, 154, 0.8)',
-    lineHeight: '14px',
+    marginLeft: 8,
 
     '&:hover': {
-      background: 'none',
-      backgroundColor: colors.invariant.green,
-      boxShadow: '0px 0px 20px -10px white',
-      '@media (hover: none)': {
-        background: ' rgba(46, 224, 154, 0.8)',
-        boxShadow: 'none'
-      }
+
     },
     [theme.breakpoints.down('md')]: {
-      width: 26,
-      minWidth: 26,
-      height: 14,
-      marginTop: 2
+
     }
   },
   maxButtonNotActive: {
-    backgroundColor: colors.invariant.light,
+
     '&:hover': {
-      backgroundColor: colors.invariant.light,
+
       cursor: 'default'
     }
   },
+
   select: {
-    marginRight: 20,
     width: 'min-content'
   },
-  input: {
-    textAlign: 'right',
-    color: colors.white.main,
-    '& ::placeholder': {
-      textAlign: 'right'
-    }
-  },
+
   label: {
-    top: -1,
-    color: colors.invariant.dark
+
   },
   balanceContainer: {
     display: 'flex',
     alignItems: 'center',
-    paddingBlock: 6,
     flexShrink: 1,
-    marginRight: 10
   },
   showMaxButton: {
     cursor: 'pointer'
   },
   BalanceTypography: {
-    color: colors.invariant.lightGrey,
-    ...typography.caption2,
-    marginRight: 6,
+    ...koniTypography.body4,
+    color: koniColors.fadedDark['o-85'],
     overflow: 'hidden',
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
@@ -89,8 +70,9 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     color: colors.invariant.lightGrey
   },
   exchangeContainer: {
-    height: 65,
-    padding: `10px 15px 0 15px `,
+    paddingLeft: 20,
+    paddingRight: 20,
+    marginBottom: 8,
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center'
@@ -159,20 +141,26 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     backgroundColor: `${colors.invariant.Error}40`
   },
   caption2: {
-    ...typography.caption2,
-    color: colors.invariant.lightHover,
+    ...koniTypography.body4,
+    color: koniColors.fadedDark['o-85'],
     overflow: 'hidden',
     whiteSpace: 'nowrap',
-    textOverflow: 'ellipsis'
+    textOverflow: 'ellipsis',
+
+    '.__symbol': {
+      color: koniColors.fadedDark['o-45'],
+    }
   },
   bottom: {
-    paddingInline: 15
+    paddingTop: 4,
+    paddingBottom: 4,
+    paddingInline: 20
   },
   blur: {
     width: 120,
-    height: 40,
-    borderRadius: 16,
-    background: `linear-gradient(90deg, ${colors.invariant.component} 25%, ${colors.invariant.light} 50%, ${colors.invariant.component} 75%)`,
+    height: 42,
+    borderRadius: 32,
+    background: `linear-gradient(90deg, ${koniColors.fadedDark['o-5']} 25%, ${koniColors.fadedDark['o-10']} 50%, ${koniColors.fadedDark['o-5']} 75%)`,
     backgroundSize: '200% 100%',
     animation: 'shimmer 2s infinite'
   }

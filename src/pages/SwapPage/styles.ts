@@ -6,6 +6,7 @@ const useStyles = makeStyles()(() => {
     container: {
       ...leftContentContainerStyle,
       maxWidth: 526,
+      marginTop: 92,
       marginLeft: 'auto',
       marginRight: 'auto'
     }

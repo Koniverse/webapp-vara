@@ -113,6 +113,32 @@ export const AmountInput: React.FC<IProps> = ({
   return (
     <>
       <Grid container alignItems='center' wrap='nowrap' className={classes.exchangeContainer}>
+        <div className={classes.amountInputWrapper}>
+          {showBlur ? (
+            <div className={classes.blur}></div>
+          ) : (
+            <Input
+              inputRef={inputRef}
+              error={!!error}
+              className={classNames(classes.amountInput, className)}
+              classes={{ input: classes.input }}
+              style={style}
+              value={value}
+              disableUnderline={true}
+              placeholder={placeholder}
+              onChange={allowOnlyDigitsAndTrimUnnecessaryZeros}
+              inputProps={{
+                inputMode: 'decimal'
+              }}
+              onBlur={() => {
+                if (value) {
+                  setValue(trimDecimalZeros(value))
+                }
+              }}
+            />
+          )}
+        </div>
+
         <Select
           centered={true}
           tokens={tokens}
@@ -126,29 +152,6 @@ export const AmountInput: React.FC<IProps> = ({
           onHideUnknownTokensChange={onHideUnknownTokensChange}
           hiddenUnknownTokens={hiddenUnknownTokens}
         />
-        {showBlur ? (
-          <div className={classes.blur}></div>
-        ) : (
-          <Input
-            inputRef={inputRef}
-            error={!!error}
-            className={classNames(classes.amountInput, className)}
-            classes={{ input: classes.input }}
-            style={style}
-            value={value}
-            disableUnderline={true}
-            placeholder={placeholder}
-            onChange={allowOnlyDigitsAndTrimUnnecessaryZeros}
-            inputProps={{
-              inputMode: 'decimal'
-            }}
-            onBlur={() => {
-              if (value) {
-                setValue(trimDecimalZeros(value))
-              }
-            }}
-          />
-        )}
       </Grid>
 
       <Grid
@@ -158,11 +161,52 @@ export const AmountInput: React.FC<IProps> = ({
         direction='row'
         wrap='nowrap'
         className={classes.bottom}>
+          <Grid className={classes.percentages} container alignItems='center' wrap='nowrap'>
+            {!hideBalance && (
+              <>
+                {current ? (
+                  priceLoading ? (
+                    <img src={loadingAnimation} className={classes.loading} alt='loading' />
+                  ) : tokenPrice ? (
+                    <Tooltip
+                      enterTouchDelay={0}
+                      leaveTouchDelay={Number.MAX_SAFE_INTEGER}
+                      title='Estimated USD Value of the Selected Tokens in Your Wallet'
+                      placement='bottom'
+                      classes={{
+                        tooltip: classes.tooltip
+                      }}>
+                      <Typography className={classes.caption2}>
+                        <span className={'__symbol'}>{`~ $ `}</span>
+
+                        {formatNumber(usdBalance.toFixed(2))}
+                      </Typography>
+                    </Tooltip>
+                  ) : (
+                    <Tooltip
+                      enterTouchDelay={0}
+                      leaveTouchDelay={Number.MAX_SAFE_INTEGER}
+                      title='Cannot fetch price of token'
+                      placement='bottom'
+                      classes={{
+                        tooltip: classes.tooltip
+                      }}>
+                      <Typography className={classes.noData}>
+                        <span className={classes.noDataIcon}>?</span>No data
+                      </Typography>
+                    </Tooltip>
+                  )
+                ) : null}
+              </>
+            )}
+          </Grid>
+
         <Grid
           className={classNames(classes.balanceContainer, {
             [classes.showMaxButton]: showMaxButton
           })}
-          onClick={showMaxButton && !hideBalance ? onMaxClick : () => {}}>
+          // onClick={showMaxButton && !hideBalance ? onMaxClick : () => {}}
+        >
           <Typography className={classes.BalanceTypography}>
             Balance:{' '}
             {isBalanceLoading ? (
@@ -190,41 +234,6 @@ export const AmountInput: React.FC<IProps> = ({
             />
           )}
         </Grid>
-        {!hideBalance && (
-          <Grid className={classes.percentages} container alignItems='center' wrap='nowrap'>
-            {current ? (
-              priceLoading ? (
-                <img src={loadingAnimation} className={classes.loading} alt='loading' />
-              ) : tokenPrice ? (
-                <Tooltip
-                  enterTouchDelay={0}
-                  leaveTouchDelay={Number.MAX_SAFE_INTEGER}
-                  title='Estimated USD Value of the Selected Tokens in Your Wallet'
-                  placement='bottom'
-                  classes={{
-                    tooltip: classes.tooltip
-                  }}>
-                  <Typography className={classes.caption2}>
-                    ~${formatNumber(usdBalance.toFixed(2))}
-                  </Typography>
-                </Tooltip>
-              ) : (
-                <Tooltip
-                  enterTouchDelay={0}
-                  leaveTouchDelay={Number.MAX_SAFE_INTEGER}
-                  title='Cannot fetch price of token'
-                  placement='bottom'
-                  classes={{
-                    tooltip: classes.tooltip
-                  }}>
-                  <Typography className={classes.noData}>
-                    <span className={classes.noDataIcon}>?</span>No data
-                  </Typography>
-                </Tooltip>
-              )
-            ) : null}
-          </Grid>
-        )}
       </Grid>
     </>
   )
