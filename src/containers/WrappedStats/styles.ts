@@ -4,7 +4,7 @@ import { makeStyles } from 'tss-react/mui'
 
 export const useStyles = makeStyles()((theme: Theme) => ({
   wrapper: {
-    maxWidth: 1072,
+    maxWidth: 1384,
     minHeight: '100%'
   },
   subheader: {

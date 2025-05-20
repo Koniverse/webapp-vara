@@ -76,7 +76,6 @@ export const WrappedStats: React.FC = () => {
               percentFees={fees24h.change}
             />
           </Grid>
-          <Typography className={classes.subheader}>Top tokens</Typography>
           <Grid container className={classes.row}>
             <TokensList
               data={tokensList.map(tokenData => ({

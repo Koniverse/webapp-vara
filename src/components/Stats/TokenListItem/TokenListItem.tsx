@@ -1,5 +1,5 @@
 import React from 'react'
-import { colors, theme } from '@static/theme'
+import { theme } from '@static/theme'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp'
 import { useStyles } from './style'
@@ -7,6 +7,7 @@ import { Box, Grid, Typography, useMediaQuery } from '@mui/material'
 import { formatNumber } from '@utils/utils'
 import { SortTypeTokenList } from '@store/consts/static'
 import icons from '@static/icons'
+import classNames from 'classnames'
 
 interface IProps {
   displayType: string
@@ -46,14 +47,14 @@ const TokenListItem: React.FC<IProps> = ({
   const hideName = useMediaQuery(theme.breakpoints.down('xs'))
 
   return (
-    <Grid>
+    <>
       {displayType === 'tokens' ? (
         <Grid
           container
-          classes={{ container: classes.container, root: classes.tokenList }}
-          style={hideBottomLine ? { border: 'none' } : undefined}>
-          {!hideName && !isSm && <Typography component='p'>{itemNumber}</Typography>}
-          <Grid className={classes.tokenName}>
+          classes={{ container: classes.container, root: classes.tokenListItemRoot }}
+          style={hideBottomLine ? { marginBottom: 0 } : undefined}>
+          {!hideName && !isSm && <Typography component='p' className={'__col __col-no'}>{itemNumber}</Typography>}
+          <Grid className={classNames(classes.tokenName, '__col __col-name')}>
             {!isSm && (
               <Box className={classes.imageContainer}>
                 <img className={classes.tokenIcon} src={icon} alt='Token icon'></img>
@@ -65,28 +66,28 @@ const TokenListItem: React.FC<IProps> = ({
               {!hideName && <span className={classes.tokenSymbol}>{` (${symbol})`}</span>}
             </Typography>
           </Grid>
-          <Typography>{`~$${formatNumber(price)}`}</Typography>
+          <Typography className={'__col __col-price'}>{`~$${formatNumber(price)}`}</Typography>
 
           {/* {!hideName && (
             <Typography style={{ color: isNegative ? colors.invariant.Error : colors.green.main }}>
               {isNegative ? `${priceChange.toFixed(2)}%` : `+${priceChange.toFixed(2)}%`}
             </Typography>
           )} */}
-          <Typography>{`$${formatNumber(volume)}`}</Typography>
-          <Typography>{`$${formatNumber(TVL)}`}</Typography>
+          <Typography className={'__col __col-volume'}>{`$${formatNumber(volume)}`}</Typography>
+          <Typography className={'__col __col-tvl'}>{`$${formatNumber(TVL)}`}</Typography>
         </Grid>
       ) : (
         <Grid
           container
-          style={{ color: colors.invariant.textGrey, fontWeight: 400 }}
-          classes={{ container: classes.container, root: classes.header }}>
+          classes={{ container: classes.container, root: classes.headerRoot }}>
           {!hideName && !isSm && (
-            <Typography style={{ lineHeight: '12px' }}>
-              N<sup>o</sup>
+            <Typography className={'__col __col-no'}>
+              No
             </Typography>
           )}
           <Typography
             style={{ cursor: 'pointer' }}
+            className={'__col __col-name'}
             onClick={() => {
               if (sortType === SortTypeTokenList.NAME_ASC) {
                 onSort?.(SortTypeTokenList.NAME_DESC)
@@ -103,6 +104,7 @@ const TokenListItem: React.FC<IProps> = ({
           </Typography>
           <Typography
             style={{ cursor: 'pointer' }}
+            className={'__col __col-price'}
             onClick={() => {
               if (sortType === SortTypeTokenList.PRICE_ASC) {
                 onSort?.(SortTypeTokenList.PRICE_DESC)
@@ -136,6 +138,7 @@ const TokenListItem: React.FC<IProps> = ({
             </Typography>
           )} */}
           <Typography
+            className={'__col __col-volume'}
             style={{ cursor: 'pointer' }}
             onClick={() => {
               if (sortType === SortTypeTokenList.VOLUME_DESC) {
@@ -152,6 +155,7 @@ const TokenListItem: React.FC<IProps> = ({
             ) : null}
           </Typography>
           <Typography
+            className={'__col __col-tvl'}
             style={{ cursor: 'pointer' }}
             onClick={() => {
               if (sortType === SortTypeTokenList.TVL_DESC) {
@@ -169,7 +173,7 @@ const TokenListItem: React.FC<IProps> = ({
           </Typography>
         </Grid>
       )}
-    </Grid>
+    </>
   )
 }
 export default TokenListItem

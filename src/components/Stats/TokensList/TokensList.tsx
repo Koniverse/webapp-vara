@@ -2,7 +2,7 @@ import TokenListItem from '../TokenListItem/TokenListItem'
 import React, { useEffect, useMemo, useState } from 'react'
 import { theme } from '@static/theme'
 import useStyles from './style'
-import { Grid, useMediaQuery } from '@mui/material'
+import { Grid, Typography, useMediaQuery } from '@mui/material'
 import { PaginationList } from '@components/PaginationList/PaginationList'
 import { SortTypeTokenList } from '@store/consts/static'
 
@@ -85,6 +85,10 @@ const TokensList: React.FC<ITokensList> = ({ data }) => {
 
   return (
     <Grid container direction='column' classes={{ root: classes.container }} wrap='nowrap'>
+      <div className={classes.blockHeader}>
+        <Typography className={classes.blockTitle}>Top tokens</Typography>
+      </div>
+
       <TokenListItem displayType='header' onSort={setSortType} sortType={sortType} />
       {paginator(page).data.map((token, index) => {
         return (

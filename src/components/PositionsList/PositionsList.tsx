@@ -11,6 +11,8 @@ import { IPositionItem, PositionItem } from './PositionItem/PositionItem'
 import { useStyles } from './style'
 import { POSITIONS_PER_QUERY } from '@store/consts/static'
 import { TooltipHover } from '@components/TooltipHover/TooltipHover'
+import { getButtonClasses } from '@utils/uiUtils.ts'
+import { Plus } from '@phosphor-icons/react'
 
 interface IProps {
   initialPage: number
@@ -141,8 +143,16 @@ export const PositionsList: React.FC<IProps> = ({
                   </Button>
                 </Grid>
               </TooltipHover>
-              <Button className={classes.button} variant='contained' onClick={onAddPositionClick}>
-                <span className={classes.buttonText}>+ Add Position</span>
+              <Button
+                className={getButtonClasses({
+                  size: 'sm',
+                  variant: 'primary',
+                  layout: 'text-only'
+                }, classes.button)}
+                startIcon={<Plus />}
+                variant='contained'
+                onClick={onAddPositionClick}>
+                <span className={classes.buttonText}>Add Position</span>
               </Button>
             </Grid>
           </Grid>

@@ -1,48 +1,70 @@
 import { Theme } from '@mui/material'
-import { typography, colors } from '@static/theme'
+import { koniTypography, koniColors } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
 
 export const useStyles = makeStyles()((theme: Theme) => ({
   container: {
     display: 'grid',
-    gridTemplateColumns: '5% 35% 20% 20% 20%',
-    padding: '18px 0 ',
-    backgroundColor: colors.invariant.component,
-    borderBottom: `1px solid ${colors.invariant.light}`,
+    gridTemplateColumns: '76px 1fr 236px 236px 236px' as any,
     whiteSpace: 'nowrap',
 
     [theme.breakpoints.down('sm')]: {
       gridTemplateColumns: '30% 22.5% 32.5% 15%',
       '& p': {
-        ...typography.caption1
+
       }
     }
   },
 
-  tokenList: {
-    color: colors.white.main,
+  tokenListItemRoot: {
+    color: koniColors.fadedDark['o-100'],
+    backgroundColor: koniColors.background['light-1'],
+    borderRadius: 12,
+    padding: '12px 0' as any,
+
+    alignItems: 'center',
+
+    '& + &': {
+      marginTop: 8,
+    },
+
     '& p': {
-      ...typography.heading4
+      ...koniTypography.body2
+    },
+
+    '.__col': {
+      paddingRight: 24
+    },
+
+    '.__col-no': {
+      paddingLeft: 18
+    },
+
+    '.__col-tvl': {
+      paddingRight: 18
     },
 
     [theme.breakpoints.down('sm')]: {
       '& p': {
-        ...typography.caption1
+
       }
     }
   },
 
-  header: {
+  headerRoot: {
+    paddingTop: 0,
+    paddingBottom: 0,
+    marginBottom: 12,
+
     '& p': {
-      ...typography.heading4,
-      fontWeight: 400,
+      ...koniTypography.body4,
       display: 'flex',
+      color: koniColors.fadedDark['o-65'],
       justifyContent: 'start',
       alignItems: 'center'
     },
     [theme.breakpoints.down('sm')]: {
       '& p': {
-        ...typography.caption2
       }
     }
   },
@@ -60,30 +82,34 @@ export const useStyles = makeStyles()((theme: Theme) => ({
   },
 
   tokenSymbol: {
-    color: colors.invariant.textGrey,
-    fontWeight: 400
+    color: koniColors.fadedDark['o-65'],
   },
+
   icon: {
+    width: 16,
+    height: 16,
     [theme.breakpoints.down('sm')]: {
       marginLeft: -4
     }
   },
   imageContainer: {
-    minWidth: 28,
-    maxWidth: 28,
-    height: 28,
+    minWidth: 36,
+    maxWidth: 36,
+    height: 36,
     marginRight: 8,
     position: 'relative',
     display: 'flex',
     alignItems: 'center'
   },
+
   tokenIcon: {
-    minWidth: 28,
-    maxWidth: 28,
-    height: 28,
+    minWidth: 36,
+    maxWidth: 36,
+    height: 36,
     marginRight: 8,
     borderRadius: '50%'
   },
+
   warningIcon: {
     position: 'absolute',
     width: 12,

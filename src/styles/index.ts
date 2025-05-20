@@ -165,13 +165,13 @@ export const generalButtonStyle: CSSObject  = {
       },
     },
 
-    '&:hover:not(:disabled)': {
+    '&:hover:not(:disabled):not(.-non-interactive)': {
       borderColor: koniColors.fadedDark['o-85'],
       backgroundColor: koniColors.background['dark-2'],
       color: koniColors.palette['violet-4'],
     },
 
-    '&:active:not(:disabled)': {
+    '&:active:not(:disabled):not(.-non-interactive)': {
       borderColor: koniColors.fadedDark['o-85'],
       backgroundColor: koniColors.background['dark-2'],
       color: koniColors.palette['violet-6'],
@@ -184,12 +184,12 @@ export const generalButtonStyle: CSSObject  = {
       color: koniColors.fadedLight['o-100'],
     },
 
-    '&:hover:not(:disabled)': {
+    '&:hover:not(:disabled):not(.-non-interactive)': {
       backgroundColor: koniColors.background['dark-3'],
       color: koniColors.fadedLight['o-100'],
     },
 
-    '&:active:not(:disabled)': {
+    '&:active:not(:disabled):not(.-non-interactive)': {
       backgroundColor: koniColors.background['dark-1'],
       color: koniColors.fadedLight['o-100'],
     }
@@ -233,13 +233,13 @@ export const generalButtonStyle: CSSObject  = {
       },
     },
 
-    '&:hover:not(:disabled)': {
+    '&:hover:not(:disabled):not(.-non-interactive)': {
       borderColor: koniColors.fadedDark['o-85'],
       backgroundColor: koniColors.background['dark-2'],
       color: koniColors.fadedLight['o-100'],
     },
 
-    '&:active:not(:disabled)': {
+    '&:active:not(:disabled):not(.-non-interactive)': {
       borderColor: koniColors.fadedDark['o-85'],
       backgroundColor: koniColors.background['dark-1'],
       color: koniColors.fadedLight['o-100'],
@@ -260,12 +260,12 @@ export const generalButtonStyle: CSSObject  = {
       borderRadius: 32,
     },
 
-    '&:hover:not(:disabled)': {
+    '&:hover:not(:disabled):not(.-non-interactive)': {
       backgroundColor: koniColors.fadedDark['o-5'],
       color: koniColors.fadedDark['o-65'],
     },
 
-    '&:active:not(:disabled)': {
+    '&:active:not(:disabled):not(.-non-interactive)': {
       backgroundColor: koniColors.fadedDark['o-10'],
       color: koniColors.background['dark-2'],
     }

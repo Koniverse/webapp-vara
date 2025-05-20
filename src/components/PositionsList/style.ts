@@ -1,10 +1,15 @@
 import { Theme } from '@mui/material'
 import { colors, typography } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
+import { leftContentContainerStyle } from '@styles'
 
 export const useStyles = makeStyles()((theme: Theme) => ({
   root: {
-    width: 1122,
+    ...leftContentContainerStyle,
+    maxWidth: 1384,
+    marginTop: 92,
+    marginLeft: 'auto',
+    marginRight: 'auto',
 
     [theme.breakpoints.down('md')]: {
       width: '100%'
@@ -65,27 +70,12 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     }
   },
   button: {
-    color: colors.invariant.dark,
-    ...typography.body1,
-    textTransform: 'none',
-    borderRadius: 14,
-    height: 40,
-    minWidth: 130,
-    paddingInline: 0,
-    background:
-      'linear-gradient(180deg, rgba(239, 132, 245, 0.8) 0%, rgba(156, 62, 189, 0.8) 100%)',
 
     '&:hover': {
-      background: 'linear-gradient(180deg, #EF84F5 0%, #9C3EBD 100%)',
-      boxShadow: '0px 0px 16px rgba(239, 132, 245, 0.35)',
-      '@media (hover: none)': {
-        background:
-          'linear-gradient(180deg, rgba(239, 132, 245, 0.8) 0%, rgba(156, 62, 189, 0.8) 100%)',
-        boxShadow: 'none'
-      }
+
     },
     [theme.breakpoints.down('sm')]: {
-      width: '100%'
+
     }
   },
   fullWidthWrapper: {
