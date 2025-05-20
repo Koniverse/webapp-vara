@@ -8,6 +8,16 @@ export const leftContentContainerStyle: CSSObject  = {
   boxShadow: `-8px 8px 0 0 ${koniColors.palette['violet-4']}`,
 }
 
+export const popoverLayoutStyle: CSSObject  = {
+  backgroundColor: koniColors.palette['violet-1'],
+  border: `2px solid ${koniColors.fadedLight['o-100']}`,
+  paddingTop: 16,
+  paddingLeft: 24,
+  paddingRight: 24,
+  paddingBottom: 32,
+  borderRadius: 16,
+}
+
 export const generalButtonStyle: CSSObject  = {
   '&.MuiButton-root': {
     textTransform: 'none',

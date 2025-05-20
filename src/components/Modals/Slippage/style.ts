@@ -1,33 +1,38 @@
-import { colors, typography } from '@static/theme'
+import { colors, koniColors, koniTypography } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
+import { popoverLayoutStyle } from '@styles'
 
 export const useStyles = makeStyles()(() => {
   return {
     paper: {
       background: 'none',
       backgroundColor: 'transparent',
-      '& > *': {
-        backgroundColor: 'transparent'
-      }
+      boxShadow: 'none',
     },
     detailsWrapper: {
       width: 332,
-      display: 'flex',
-      flexDirection: 'column',
-      backgroundColor: colors.invariant.component,
-      padding: 16,
-      borderRadius: 20,
-      color: colors.white.main,
+      ...popoverLayoutStyle,
+
       '& h2': {
-        ...typography.heading4,
-        paddingBottom: 10
+        ...koniTypography.heading6,
       }
     },
 
+    headerPart: {
+      color: koniColors.fadedDark['o-100'],
+      marginBottom: 24,
+    },
+
+    inputArea: {
+      borderRadius: 16,
+      padding: 16,
+      backgroundColor: koniColors.background['light-1'],
+    },
+
     label: {
-      ...typography.body2,
-      color: colors.invariant.lightHover,
-      marginBottom: 8
+      ...koniTypography.body4,
+      color: koniColors.fadedDark['o-85'],
+      marginBottom: 12
     },
 
     selectTokenClose: {
@@ -41,21 +46,23 @@ export const useStyles = makeStyles()(() => {
         content: '"\u2715"',
         fontSize: 20,
         position: 'absolute',
-        color: colors.white.main,
+        color: koniColors.fadedDark['o-100'],
         top: '40%',
         right: '10%',
         transform: 'translateY(-50%)'
       }
     },
     detailsInfoForm: {
-      border: `1px solid ${colors.invariant.component}`,
-      color: colors.invariant.textGrey,
-      borderRadius: 15,
+      border: 0,
+      outline: 'none',
+      color: koniColors.fadedDark['o-85'],
+      borderRadius: 8,
       width: '100%',
-      backgroundColor: colors.invariant.newDark,
-      ...typography.heading4,
-      fontWeight: 400,
-      padding: 8,
+      backgroundColor: koniColors.background['light-2'],
+      ...koniTypography.body3,
+      paddingLeft: 16,
+      paddingRight: 16,
+      height: 46,
       '&::placeholder': {
         color: colors.invariant.light
       },
@@ -64,59 +71,62 @@ export const useStyles = makeStyles()(() => {
       }
     },
     activeForm: {
-      outline: `1px solid ${colors.invariant.light}`
+
     },
     innerInput: {
       paddingBlock: 0,
       textAlign: 'right'
     },
     detailsInfoBtn: {
-      minWidth: 49,
-      backgroundColor: colors.invariant.green,
-      borderRadius: 9,
+      minWidth: 56,
+      backgroundColor: koniColors.palette['violet-4'],
+      color: koniColors.background['dark-2'],
+      borderRadius: 8,
       border: 'none',
       padding: 0,
       width: 49,
-      height: 28,
+      height: 36,
+      marginRight: -9,
       cursor: 'pointer',
       marginLeft: 8,
-      ...typography.body2,
+      ...koniTypography.body3,
       '&:hover': {
-        filter: 'brightness(1.15)',
-        transition: ' .4s filter',
-        // boxShadow:
-          // '0px 3px 1px -2px rgba(43, 193, 144, 0.2),0px 1px 2px 0px rgba(45, 168, 128, 0.14),0px 0px 5px 7px rgba(59, 183, 142, 0.12)',
-        '@media (hover: none)': {
-          filter: 'none',
-          boxShadow: 'none'
-        }
+        backgroundColor: koniColors.background['dark-2'],
+        color: koniColors.palette['violet-4'],
+      },
+
+      '&:active:not(:disabled)': {
+        backgroundColor: koniColors.background['dark-2'],
+        color: koniColors.palette['violet-6'],
       }
+
     },
     info: {
-      ...typography.caption2,
-      color: colors.invariant.textGrey,
+      ...koniTypography.body3,
+      color: koniColors.fadedDark['o-65'],
       marginTop: 10
     },
     slippagePercentageButton: {
-      height: 28,
+      ...koniTypography.heading8,
+      height: 40,
       borderRadius: 8,
-      backgroundColor: colors.invariant.newDark,
-      color: colors.invariant.textGrey,
+      backgroundColor: koniColors.background['light-2'],
+      color: koniColors.fadedDark['o-100'],
       flex: 1,
 
       '&:hover': {
-        backgroundColor: colors.invariant.light,
-        color: colors.invariant.text,
-        '@media (hover: none)': {
-          backgroundColor: colors.invariant.newDark,
-          color: colors.invariant.textGrey
-        }
+        backgroundColor: koniColors.palette['violet-4'],
+        // backgroundColor: colors.invariant.light,
+        // color: colors.invariant.text,
+        // '@media (hover: none)': {
+        //   backgroundColor: colors.invariant.newDark,
+        //   color: colors.invariant.textGrey
+        // }
       }
     },
     slippagePercentageButtonActive: {
-      backgroundColor: colors.invariant.light,
-      color: colors.invariant.text,
-      fontWeight: 'bold'
+      backgroundColor: koniColors.palette['violet-4'],
+      color: koniColors.fadedDark['o-100']
     },
     inputAdornedEnd: {
       marginRight: 2
