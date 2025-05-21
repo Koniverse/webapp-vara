@@ -2,7 +2,7 @@ import React, { useMemo, useEffect } from 'react'
 
 import PoolListItem from '@components/Stats/PoolListItem/PoolListItem'
 import { useStyles } from './style'
-import { Grid } from '@mui/material'
+import { Grid, Typography } from '@mui/material'
 import { PaginationList } from '@components/PaginationList/PaginationList'
 import { SortTypePoolList } from '@store/consts/static'
 import { HexString, Network } from '@invariant-labs/vara-sdk'
@@ -82,6 +82,10 @@ const PoolList: React.FC<PoolListInterface> = ({ data, network }) => {
 
   return (
     <Grid container direction='column' classes={{ root: classes.container }}>
+      <div className={classes.blockHeader}>
+       <Typography className={classes.blockTitle}>Top pools</Typography>
+      </div>
+
       <PoolListItem displayType='header' onSort={setSortType} sortType={sortType} />
       {paginator(page).map((element, index) => (
         <PoolListItem

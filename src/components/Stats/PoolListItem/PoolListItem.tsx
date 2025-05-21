@@ -10,6 +10,9 @@ import icons from '@static/icons'
 import { SortTypePoolList } from '@store/consts/static'
 import { HexString, Network, PERCENTAGE_SCALE } from '@invariant-labs/vara-sdk'
 import { TooltipHover } from '@components/TooltipHover/TooltipHover'
+import classNames from 'classnames'
+import { ArrowsLeftRight, Plus } from '@phosphor-icons/react'
+import { getButtonClasses } from '@utils/uiUtils.ts'
 
 interface IProps {
   TVL?: number
@@ -80,22 +83,22 @@ const PoolListItem: React.FC<IProps> = ({
   }
 
   return (
-    <Grid maxWidth='100%'>
+    <>
       {displayType === 'token' ? (
         <Grid
           container
-          classes={{ container: classes.container }}
+          classes={{ container: classes.container, root: classes.poolListItemRoot }}
           style={hideBottomLine ? { border: 'none' } : undefined}>
-          {!isSm ? <Typography>{tokenIndex}</Typography> : null}
-          <Grid className={classes.imageContainer}>
+          {!isSm ? <Typography className={'__col __col-no'}>{tokenIndex}</Typography> : null}
+          <Grid className={classNames(classes.imageContainer, '__col __col-name')}>
             {!isSm && (
               <Box className={classes.iconsWrapper}>
                 <Box className={classes.iconContainer}>
-                  <img className={classes.tokenIcon} src={iconFrom} alt='Token from' />
+                  <img className={classNames(classes.tokenIcon, '__token-icon')} src={iconFrom} alt='Token from' />
                   {isUnknownFrom && <img className={classes.warningIcon} src={icons.warningIcon} />}
                 </Box>
                 <Box className={classes.iconContainer}>
-                  <img className={classes.tokenIcon} src={iconTo} alt='Token to' />
+                  <img className={classNames(classes.tokenIcon, '__token-icon')} src={iconTo} alt='Token to' />
                   {isUnknownTo && <img className={classes.warningIcon} src={icons.warningIcon} />}
                 </Box>
               </Box>
@@ -146,33 +149,42 @@ const PoolListItem: React.FC<IProps> = ({
               </Tooltip>
             </Typography>
           ) : null} */}
-          <Typography>{fee}%</Typography>
-          <Typography>{`$${formatNumber(volume)}`}</Typography>
-          <Typography>{`$${formatNumber(TVL)}`}</Typography>
+          <Typography className={'__col __col-fee'}>{fee}%</Typography>
+          <Typography className={'__col __col-volume'}>{`$${formatNumber(volume)}`}</Typography>
+          <Typography className={'__col __col-tvl'}>{`$${formatNumber(TVL)}`}</Typography>
           {!isSm && (
-            <Box className={classes.action}>
+            <Box className={classNames(classes.action, '__col __col-action')}>
               <TooltipHover text='Exchange'>
-                <button className={classes.actionButton} onClick={handleOpenSwap}>
-                  <img width={32} height={32} src={icons.horizontalSwapIcon} alt={'Exchange'} />
+                <button className={getButtonClasses({
+                  size: 'xs',
+                  layout: 'icon-only',
+                  variant: 'primary'
+                }, classes.actionButton)} onClick={handleOpenSwap}>
+                  <ArrowsLeftRight className={'__button-icon'} />
                 </button>
               </TooltipHover>
               <TooltipHover text='Add position'>
-                <button className={classes.actionButton} onClick={handleOpenPosition}>
-                  <img width={32} height={32} src={icons.plusIcon} alt={'Open'} />
+                <button className={getButtonClasses({
+                  size: 'xs',
+                  layout: 'icon-only',
+                  variant: 'primary'
+                }, classes.actionButton)} onClick={handleOpenPosition}>
+                  <Plus className={'__button-icon'} />
                 </button>
               </TooltipHover>
             </Box>
           )}
         </Grid>
       ) : (
-        <Grid container classes={{ container: classes.container, root: classes.header }}>
+        <Grid container classes={{ container: classes.container, root: classes.headerRoot }}>
           {!isSm && (
-            <Typography style={{ lineHeight: '11px' }}>
-              N<sup>o</sup>
+            <Typography className={'__col __col-no'}>
+              No
             </Typography>
           )}
           <Typography
             style={{ cursor: 'pointer' }}
+            className={'__col __col-name'}
             onClick={() => {
               if (sortType === SortTypePoolList.NAME_ASC) {
                 onSort?.(SortTypePoolList.NAME_DESC)
@@ -207,6 +219,7 @@ const PoolListItem: React.FC<IProps> = ({
           ) : null} */}
           <Typography
             style={{ cursor: 'pointer' }}
+            className={'__col __col-fee'}
             onClick={() => {
               if (sortType === SortTypePoolList.FEE_ASC) {
                 onSort?.(SortTypePoolList.FEE_DESC)
@@ -223,6 +236,7 @@ const PoolListItem: React.FC<IProps> = ({
           </Typography>
           <Typography
             style={{ cursor: 'pointer' }}
+            className={'__col __col-volume'}
             onClick={() => {
               if (sortType === SortTypePoolList.VOLUME_DESC) {
                 onSort?.(SortTypePoolList.VOLUME_ASC)
@@ -239,6 +253,7 @@ const PoolListItem: React.FC<IProps> = ({
           </Typography>
           <Typography
             style={{ cursor: 'pointer' }}
+            className={'__col __col-tvl'}
             onClick={() => {
               if (sortType === SortTypePoolList.TVL_DESC) {
                 onSort?.(SortTypePoolList.TVL_ASC)
@@ -253,10 +268,10 @@ const PoolListItem: React.FC<IProps> = ({
               <ArrowDropDownIcon className={classes.icon} />
             ) : null}
           </Typography>
-          {!isSm && <Typography align='right'>Action</Typography>}
+          {!isSm && <Typography align='right' className={'__col __col-action'}>Action</Typography>}
         </Grid>
       )}
-    </Grid>
+    </>
   )
 }
 

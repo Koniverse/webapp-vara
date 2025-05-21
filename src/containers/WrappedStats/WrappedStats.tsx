@@ -90,7 +90,6 @@ export const WrappedStats: React.FC = () => {
               }))}
             />
           </Grid>
-          <Typography className={classes.subheader}>Top pools</Typography>
           <PoolList
             data={poolsList.map(poolData => ({
               symbolFrom: poolData.tokenXDetails?.symbol,

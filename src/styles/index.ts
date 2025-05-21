@@ -69,8 +69,9 @@ export const generalButtonStyle: CSSObject  = {
 
     '&.-layout-icon-only': {
       width: 56,
+      minWidth: 56,
 
-      '.MuiButton-startIcon': {
+      '.MuiButton-startIcon, .__button-icon': {
         height: 32,
         width: 32,
       },
@@ -90,8 +91,9 @@ export const generalButtonStyle: CSSObject  = {
 
     '&.-layout-icon-only': {
       width: 48,
+      minWidth: 48,
 
-      '.MuiButton-startIcon': {
+      '.MuiButton-startIcon, .__button-icon': {
         height: 28,
         width: 28,
       },
@@ -111,8 +113,9 @@ export const generalButtonStyle: CSSObject  = {
 
     '&.-layout-icon-only': {
       width: 40,
+      minWidth: 40,
 
-      '.MuiButton-startIcon': {
+      '.MuiButton-startIcon, .__button-icon': {
         height: 24,
         width: 24,
       },
@@ -127,6 +130,20 @@ export const generalButtonStyle: CSSObject  = {
     },
   },
 
+  '&.-size-xs': {
+    height: 32,
+
+    '&.-layout-icon-only': {
+      width: 32,
+      minWidth: 32,
+
+      '.MuiButton-startIcon, .__button-icon': {
+        height: 20,
+        width: 20,
+      },
+    },
+  },
+
   '&.-variant-primary': {
     '&, &.Mui-disabled': {
       borderStyle: 'solid',
@@ -135,24 +152,16 @@ export const generalButtonStyle: CSSObject  = {
       color: koniColors.background['dark-2'],
     },
 
-    '&.-size-lg': {
-      '&.-layout-text-only': {
-        borderWidth: 2
-      },
-
-      '&.-layout-text-with-icon': {
-        borderWidth: 2
-      },
+    '&.-layout-icon-only': {
+      borderWidth: 0
     },
 
-    '&.-size-md': {
-      '&.-layout-text-only': {
-        borderWidth: 2
-      },
+    '&.-layout-text-only': {
+      borderWidth: 2
+    },
 
-      '&.-layout-text-with-icon': {
-        borderWidth: 2
-      },
+    '&.-layout-text-with-icon': {
+      borderWidth: 2
     },
 
     '&.-size-sm': {
@@ -203,24 +212,16 @@ export const generalButtonStyle: CSSObject  = {
       color: koniColors.background['dark-2'],
     },
 
-    '&.-size-lg': {
-      '&.-layout-text-only': {
-        borderWidth: 2
-      },
-
-      '&.-layout-text-with-icon': {
-        borderWidth: 2
-      },
+    '&.-layout-icon-only': {
+      borderWidth: 0
     },
 
-    '&.-size-md': {
-      '&.-layout-text-only': {
-        borderWidth: 2
-      },
+    '&.-layout-text-only': {
+      borderWidth: 2
+    },
 
-      '&.-layout-text-with-icon': {
-        borderWidth: 2
-      },
+    '&.-layout-text-with-icon': {
+      borderWidth: 2
     },
 
     '&.-size-sm': {

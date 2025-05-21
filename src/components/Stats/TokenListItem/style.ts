@@ -37,11 +37,11 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     },
 
     '.__col-no': {
-      paddingLeft: 18
+      paddingLeft: 20
     },
 
     '.__col-tvl': {
-      paddingRight: 18
+      paddingRight: 16
     },
 
     [theme.breakpoints.down('sm')]: {

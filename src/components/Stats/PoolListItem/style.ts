@@ -1,57 +1,64 @@
-import { colors, theme, typography } from '@static/theme'
+import { colors, koniColors, koniTypography, theme, typography } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
 
 export const useStyles = makeStyles()(() => ({
   container: {
-    color: colors.white.main,
     display: 'grid',
-    gridTemplateColumns: '5% auto 15% 15%  15% 80px',
-    padding: '18px 0',
-    backgroundColor: colors.invariant.component,
-    borderBottom: `1px solid ${colors.invariant.light}`,
+    gridTemplateColumns: '5% auto 15% 15%  15% 92px',
     whiteSpace: 'nowrap',
     maxWidth: '100%',
-
-    '& p': {
-      ...typography.heading4,
-      display: 'flex',
-      justifyContent: 'flex-start',
-      alignItems: 'center'
-    },
-    '& p:last-child': {
-      justifyContent: 'flex-end'
-    },
 
     [theme.breakpoints.down('sm')]: {
       gridTemplateColumns: '32.5% 17.5% 35% 15% ',
 
-      '& p': {
-        justifyContent: 'flex-start',
-        ...typography.caption1
-      }
+      '& p': {}
     }
   },
 
-  imageContainer: {
-    display: 'flex',
-    alignItems: 'center'
-  },
+  headerRoot: {
+    paddingTop: 0,
+    paddingBottom: 0,
+    marginBottom: 12,
 
-  iconsWrapper: {
-    display: 'flex',
-    height: 28
-  },
-
-  header: {
     '& p': {
-      color: colors.invariant.textGrey,
-      ...typography.heading4,
-      fontWeight: 400,
+      ...koniTypography.body4,
+      display: 'flex',
+      color: koniColors.fadedDark['o-65'],
+      justifyContent: 'start',
+      alignItems: 'center',
 
-      [theme.breakpoints.down('sm')]: {
-        ...typography.caption2
-      }
+      [theme.breakpoints.down('sm')]: {}
     }
+  },
+
+  poolListItemRoot: {
+    color: koniColors.fadedDark['o-100'],
+    backgroundColor: koniColors.background['light-1'],
+    borderRadius: 12,
+    padding: '12px 0' as any,
+    alignItems: 'center',
+
+    '& + &': {
+      marginTop: 8
+    },
+
+    '& p': {
+      ...koniTypography.body2
+    },
+
+    '.__col': {
+      paddingRight: 24
+    },
+
+    '.__col-no': {
+      paddingLeft: 20
+    },
+
+    '.__col-action': {
+      paddingRight: 16
+    },
+
+    [theme.breakpoints.down('sm')]: {}
   },
 
   symbolsContainer: {
@@ -109,43 +116,40 @@ export const useStyles = makeStyles()(() => ({
   },
   action: {
     display: 'flex',
-    justifyContent: 'flex-end',
     alignItems: 'center',
-    gap: 8
+    gap: 12
   },
   actionButton: {
-    height: 32,
-    background: 'none',
-    width: 32,
-    padding: 0,
-    margin: 0,
-    border: 'none',
+    cursor: 'pointer'
+  },
 
-    color: colors.invariant.black,
-    textTransform: 'none',
+  imageContainer: {
+    display: 'flex',
+    alignItems: 'center'
+  },
 
-    transition: 'filter 0.2s linear',
+  iconsWrapper: {
+    display: 'flex'
+  },
 
-    '&:hover': {
-      filter: 'brightness(1.2)',
-      cursor: 'pointer',
-      '@media (hover: none)': {
-        filter: 'none'
-      }
+  iconContainer: {
+    minWidth: 36,
+    maxWidth: 36,
+    height: 36,
+    position: 'relative',
+
+    '& + &': {
+      marginLeft: -14,
+
+      '.__token-icon': {
+        boxShadow: '-3.6px 0 3.6px 0 rgba(0, 0, 0, 0.3)' as any
+      },
     }
   },
-  iconContainer: {
-    minWidth: 28,
-    maxWidth: 28,
-    height: 28,
-    marginRight: 3,
-    position: 'relative'
-  },
   tokenIcon: {
-    minWidth: 28,
-    maxWidth: 28,
-    height: 28,
-    marginRight: 3,
+    minWidth: 36,
+    maxWidth: 36,
+    height: 36,
     borderRadius: '50%'
   },
   warningIcon: {
