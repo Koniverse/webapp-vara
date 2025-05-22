@@ -17,7 +17,7 @@ export const useStyles = makeStyles()(() => ({
   container: {
     ...leftContentContainerStyle,
     maxWidth: 1384,
-    padding: '0 32px',
+    padding: '0 32px 32px',
     borderRadius: 16
   },
   pagination: {
@@ -25,7 +25,6 @@ export const useStyles = makeStyles()(() => ({
     display: 'flex',
     justifyContent: 'center',
     paddingTop: 24,
-    paddingBottom: 32,
   }
 }))
 

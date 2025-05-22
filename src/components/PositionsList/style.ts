@@ -7,10 +7,11 @@ export const useStyles = makeStyles()((theme: Theme) => ({
   root: {
     ...leftContentContainerStyle,
     maxWidth: 1384,
+    minHeight: 507,
     marginTop: 92,
     marginLeft: 'auto',
     marginRight: 'auto',
-    padding: '0 32px',
+    padding: '0 32px 32px' as any,
 
     [theme.breakpoints.down('md')]: {
       width: '100%'
@@ -73,6 +74,13 @@ export const useStyles = makeStyles()((theme: Theme) => ({
 
   listHeader: {
 
+  },
+
+  pagination: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    paddingTop: 24
   },
 
   buttonSelectDisabled: {

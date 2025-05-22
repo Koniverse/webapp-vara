@@ -9,6 +9,9 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     }
   },
   button: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     fontFamily: 'inherit',
     cursor: 'pointer',
     ...koniTypography.body3,

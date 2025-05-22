@@ -8,7 +8,6 @@ const useStyles = makeStyles()(theme => {
       backgroundColor: 'transparent',
       marginTop: 45,
       paddingInline: 94,
-      minHeight: '70vh',
 
       [theme.breakpoints.down('lg')]: {
         paddingInline: 80

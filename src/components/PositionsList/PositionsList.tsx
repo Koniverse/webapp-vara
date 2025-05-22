@@ -182,13 +182,15 @@ export const PositionsList: React.FC<IProps> = ({
         )}
       </Grid>
       {paginator(page).totalPages > 1 ? (
-        <PaginationList
-          pages={paginator(page).totalPages}
-          defaultPage={defaultPage}
-          handleChangePage={handleChangePagination}
-          variant='end'
-          page={page}
-        />
+        <Grid className={classes.pagination}>
+          <PaginationList
+            pages={paginator(page).totalPages}
+            defaultPage={defaultPage}
+            handleChangePage={handleChangePagination}
+            variant='end'
+            page={page}
+          />
+        </Grid>
       ) : null}
     </Grid>
   )

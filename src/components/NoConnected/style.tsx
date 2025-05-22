@@ -1,80 +1,59 @@
-import { colors, typography } from '@static/theme'
+import { koniColors, koniTypography } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
 
 export const useStyles = makeStyles()(() => ({
   container: {
     width: '100%',
-    height: '370px',
-    position: 'absolute',
-    zIndex: 14
+    textAlign: 'center',
+    backgroundColor: koniColors.background['light-1'],
+    borderRadius: 16,
+    zIndex: 14,
+    paddingTop: 68,
+    paddingBottom: 68,
+    paddingInline: 32
   },
-  root: {
-    zIndex: 10,
+
+  iconWrapper: {
+    width: 104,
+    height: 104,
+    borderRadius: '50%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
     display: 'flex',
-    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingBottom: 25,
-    width: '100%',
-    height: '100%',
-    p: {
-      textAlign: 'center'
+    color: koniColors.fadedDark['o-100'],
+    backgroundColor: koniColors.fadedDark['o-20'],
+    marginBottom: 32,
+
+    svg: {
+      width: 60,
+      height: 60
     }
   },
-  img: {
-    paddingBottom: 25
+
+  title: {
+    ...koniTypography.heading6,
+    color: koniColors.fadedDark['o-85']
   },
-  blur: {
-    width: '100%',
-    height: '370px',
-    backgroundColor: 'rgba(12, 11, 13, 0.8)',
-    position: 'absolute',
-    zIndex: 13,
-    borderRadius: 10
-  },
+
   desc: {
-    ...typography.body2,
-    fontWeight: 500,
-    lineHeight: '20px',
-    color: colors.invariant.lightHover
+    ...koniTypography.body2,
+    color: koniColors.fadedDark['o-85'],
+    marginTop: 12
   },
+
+  button: {
+    display: 'flex',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  },
+
   buttonPrimary: {
-    height: 40,
-    width: 200,
-    marginTop: 16,
-    color: colors.invariant.componentBcg,
-    ...typography.body1,
-    textTransform: 'none',
-    borderRadius: 14,
-    background: colors.invariant.pinkLinearGradientOpacity,
-
-    '&:hover': {
-      background: colors.invariant.pinkLinearGradient,
-      boxShadow: '0px 0px 16px rgba(239, 132, 245, 0.35)',
-      '@media (hover: none)': {
-        background: colors.invariant.pinkLinearGradientOpacity,
-        boxShadow: 'none'
-      }
-    }
+    marginTop: 32
   },
-  buttonSecondary: {
-    width: 200,
-    height: 40,
-    marginTop: 12,
-    ...typography.body2,
-    color: colors.white.main,
-    textTransform: 'none',
-    backgroundColor: colors.invariant.light,
-    borderRadius: 14,
 
-    transition: '0.1s',
-    '&:hover': {
-      boxShadow: '0px 0px 16px rgba(255, 255, 255, 0.1)',
-      backgroundColor: colors.invariant.light,
-      filter: 'brightness(1.2)',
-      '@media (hover: none)': {
-        boxShadow: 'none'
-      }
-    }
+  buttonSecondary: {
+    marginTop: 12
   }
 }))
