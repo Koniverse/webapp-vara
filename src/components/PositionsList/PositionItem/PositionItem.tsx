@@ -1,12 +1,13 @@
-import { Grid, Hidden, Tooltip, Typography, useMediaQuery } from '@mui/material'
-import SwapList from '@static/svg/swap-list.svg'
+import { Box, Button, Grid, Tooltip, Typography, useMediaQuery } from '@mui/material'
 import { theme } from '@static/theme'
 import { formatNumber, initialXtoY, tickerToAddress } from '@utils/utils'
 import classNames from 'classnames'
-import { useMemo, useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import { useStyles } from './style'
 import { TooltipHover } from '@components/TooltipHover/TooltipHover'
 import { Network } from '@invariant-labs/vara-sdk'
+import { getButtonClasses } from '@utils/uiUtils.ts'
+import { ArrowsLeftRight, DotsThreeVertical } from '@phosphor-icons/react'
 
 export interface IPositionItem {
   tokenXName: string
@@ -26,6 +27,7 @@ export interface IPositionItem {
   tokenYLiq: number
   network: Network
   isFullRange: boolean
+  handleViewDetail?: VoidFunction
 }
 
 export const PositionItem: React.FC<IPositionItem> = ({
@@ -43,7 +45,8 @@ export const PositionItem: React.FC<IPositionItem> = ({
   tokenXLiq,
   tokenYLiq,
   network,
-  isFullRange
+  isFullRange,
+  handleViewDetail
 }) => {
   const { classes } = useStyles()
 
@@ -95,14 +98,11 @@ export const PositionItem: React.FC<IPositionItem> = ({
           tooltip: classes.tooltip
         }}>
         <Grid
-          container
-          item
-          className={classNames(classes.fee, isActive ? classes.activeFee : undefined)}
-          justifyContent='center'
-          alignItems='center'>
+          className={classNames(classes.fee, '__col __col-fee-tier', isActive ? classes.activeFee : undefined)}>
+
           <Typography
             className={classNames(classes.infoText, isActive ? classes.activeInfoText : undefined)}>
-            {fee}% fee
+            {fee}%
           </Typography>
         </Grid>
       </Tooltip>
@@ -113,18 +113,10 @@ export const PositionItem: React.FC<IPositionItem> = ({
   const valueFragment = useMemo(
     () => (
       <Grid
-        container
-        item
-        className={classes.value}
-        justifyContent='space-between'
-        alignItems='center'
-        wrap='nowrap'>
-        <Typography className={classNames(classes.infoText, classes.label)}>Value</Typography>
-        <Grid className={classes.infoCenter} container item justifyContent='center'>
-          <Typography className={classes.greenText}>
-            {formatNumber(xToY ? valueX : valueY)} {xToY ? tokenXName : tokenYName}
-          </Typography>
-        </Grid>
+        className={classNames(classes.value, '__col __col-value')}>
+        <Typography>
+          {formatNumber(xToY ? valueX : valueY)} {xToY ? tokenXName : tokenYName}
+        </Typography>
       </Grid>
     ),
     [valueX, valueY, tokenXName, classes, isXs, isDesktop, tokenYName, xToY]
@@ -134,102 +126,102 @@ export const PositionItem: React.FC<IPositionItem> = ({
     <Grid
       className={classes.root}
       container
-      direction='row'
-      alignItems='center'
-      justifyContent='space-between'>
-      <Grid container item className={classes.mdTop} direction='row' wrap='nowrap'>
-        <Grid container item className={classes.iconsAndNames} alignItems='center' wrap='nowrap'>
-          <Grid container item className={classes.icons} alignItems='center' wrap='nowrap'>
-            <img
-              className={classes.tokenIcon}
-              src={xToY ? tokenXIcon : tokenYIcon}
-              alt={xToY ? tokenXName : tokenYName}
-            />
-            <TooltipHover text='Reverse tokens'>
-              <img
-                className={classes.arrows}
-                src={SwapList}
-                alt='Arrow'
-                onClick={e => {
-                  e.stopPropagation()
-                  setXToY(!xToY)
-                }}
-              />
-            </TooltipHover>
-            <img
-              className={classes.tokenIcon}
-              src={xToY ? tokenYIcon : tokenXIcon}
-              alt={xToY ? tokenYName : tokenXName}
-            />
-          </Grid>
+      classes={{ container: classes.container, root: classes.listItemRoot }}
+    >
+      <div className={classNames(classes.iconsAndNames, '__col __col-token')}>
+        <div className={classes.icons}>
+          <img
+            className={classes.tokenIcon}
+            src={xToY ? tokenXIcon : tokenYIcon}
+            alt={xToY ? tokenXName : tokenYName}
+          />
+          <TooltipHover text='Reverse tokens'>
+            <Button
+              onClick={e => {
+                e.stopPropagation()
+                setXToY(!xToY)
+              }}
+              startIcon={<ArrowsLeftRight />}
+              className={getButtonClasses({
+                size: 'xs',
+                variant: 'ghost',
+                layout: 'icon-only'
+              }, classes.arrows)}>
+            </Button>
+          </TooltipHover>
+          <img
+            className={classes.tokenIcon}
+            src={xToY ? tokenYIcon : tokenXIcon}
+            alt={xToY ? tokenYName : tokenXName}
+          />
+        </div>
 
-          <Typography className={classes.names}>
-            {xToY ? tokenXName : tokenYName} - {xToY ? tokenYName : tokenXName}
-          </Typography>
-        </Grid>
+        <Typography className={classes.names}>
+          {xToY ? tokenXName : tokenYName} - {xToY ? tokenYName : tokenXName}
+        </Typography>
+      </div>
 
-        <Hidden mdUp>{feeFragment}</Hidden>
-      </Grid>
+      {feeFragment}
 
-      <Grid container item className={classes.mdInfo} direction='row'>
-        <Hidden mdDown>{feeFragment}</Hidden>
-        <Grid
-          container
-          item
-          className={classes.liquidity}
-          justifyContent='center'
-          alignItems='center'>
-          <Typography className={classes.infoText}>
-            {tokenXPercentage === 100 && (
-              <span>
+      <Grid
+        className={classNames(classes.liquidity, '__col __col-token-ratio')}
+      >
+        <Typography className={classes.infoText}>
+          {tokenXPercentage === 100 && (
+            <span>
                 {tokenXPercentage}
-                {'%'} {xToY ? tokenXName : tokenYName}
+              {'%'} {xToY ? tokenXName : tokenYName}
               </span>
-            )}
-            {tokenYPercentage === 100 && (
-              <span>
+          )}
+          {tokenYPercentage === 100 && (
+            <span>
                 {tokenYPercentage}
-                {'%'} {xToY ? tokenYName : tokenXName}
+              {'%'} {xToY ? tokenYName : tokenXName}
               </span>
-            )}
+          )}
 
-            {tokenYPercentage !== 100 && tokenXPercentage !== 100 && (
-              <span>
+          {tokenYPercentage !== 100 && tokenXPercentage !== 100 && (
+            <span>
                 {tokenXPercentage}
-                {'%'} {xToY ? tokenXName : tokenYName} {' - '} {tokenYPercentage}
-                {'%'} {xToY ? tokenYName : tokenXName}
+              {'%'} {xToY ? tokenXName : tokenYName} {' - '} {tokenYPercentage}
+              {'%'} {xToY ? tokenYName : tokenXName}
               </span>
-            )}
-          </Typography>
-        </Grid>
-        <Hidden mdUp>{valueFragment}</Hidden>
-
-        <Grid
-          container
-          item
-          className={classes.minMax}
-          justifyContent='space-between'
-          alignItems='center'
-          wrap='nowrap'>
-          <>
-            <Typography className={classNames(classes.greenText, classes.label)}>
-              MIN - MAX
-            </Typography>
-            <Grid className={classes.infoCenter} container item justifyContent='center'>
-              {isFullRange ? (
-                <Typography className={classes.infoText}>FULL RANGE</Typography>
-              ) : (
-                <Typography className={classes.infoText}>
-                  {formatNumber(xToY ? min : 1 / max)} - {formatNumber(xToY ? max : 1 / min)}{' '}
-                  {xToY ? tokenYName : tokenXName} per {xToY ? tokenXName : tokenYName}
-                </Typography>
-              )}
-            </Grid>
-          </>
-        </Grid>
-
-        <Hidden mdDown>{valueFragment}</Hidden>
+          )}
+        </Typography>
       </Grid>
+
+      {valueFragment}
+
+      <Grid
+        className={classNames(classes.minMax, '__col __col-price-range')}
+      >
+        <div className={'__col-content'}>
+          <span className={'__label'}>
+            MIN - MAX:&nbsp;
+          </span>
+
+          {isFullRange ? (
+            <span>FULL RANGE</span>
+          ) : (
+            <span>
+              {formatNumber(xToY ? min : 1 / max)} - {formatNumber(xToY ? max : 1 / min)}{' '}
+                {xToY ? tokenYName : tokenXName} per {xToY ? tokenXName : tokenYName}
+            </span>
+          )}
+        </div>
+      </Grid>
+
+      <Box className={classNames('__col __col-action')}>
+        <TooltipHover text='View detail'>
+          <button className={getButtonClasses({
+            size: 'xs',
+            layout: 'icon-only',
+            variant: 'primary'
+          }, classes.actionButton)} onClick={handleViewDetail}>
+            <DotsThreeVertical className={'__button-icon'} />
+          </button>
+        </TooltipHover>
+      </Box>
     </Grid>
   )
 }

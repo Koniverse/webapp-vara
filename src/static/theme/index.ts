@@ -140,6 +140,7 @@ export const koniColors = {
     'lime-6': '#C4FE37',
     'lightGreen-5': '#95F37E',
     'lightGreen-7': '#59C442',
+    'lightGreen-8': '#4B9F3B',
     'green-5': '#79F1B7',
     'sky-5': '#71CBFF',
     'blue-4': '#729CFD',

@@ -1,162 +1,162 @@
 import { Theme } from '@mui/material'
-import { colors, typography } from '@static/theme'
+import { colors, koniColors, koniTypography, typography } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
 
 export const useStyles = makeStyles()((theme: Theme) => ({
   root: {
-    background: colors.invariant.component,
-    borderRadius: 24,
-    padding: 20,
-    flexWrap: 'nowrap',
-
-    '&:not(:last-child)': {
-      marginBottom: 20
-    },
-
-    '&:hover': {
-      background: `${colors.invariant.component}B0`
-    },
-
-    [theme.breakpoints.down('lg')]: {
-      padding: 16,
-      flexWrap: 'wrap'
-    },
     [theme.breakpoints.down('sm')]: {
-      padding: 8
+
     }
   },
+
+  container: {
+    display: 'grid',
+    gridTemplateColumns: 'auto 150px 190px 150px 342px 72px',
+    whiteSpace: 'nowrap',
+    maxWidth: '100%',
+
+    [theme.breakpoints.down('sm')]: {
+
+      '& p': {}
+    }
+  },
+
+  headerRoot: {
+    paddingTop: 0,
+    paddingBottom: 0,
+    marginBottom: 12,
+
+    '& p': {
+      ...koniTypography.body4,
+      display: 'flex',
+      color: koniColors.fadedDark['o-65'],
+      justifyContent: 'start',
+      alignItems: 'center',
+
+      [theme.breakpoints.down('sm')]: {}
+    }
+  },
+
+  listItemRoot: {
+    color: koniColors.fadedDark['o-100'],
+    backgroundColor: koniColors.background['light-1'],
+    borderRadius: 12,
+    padding: '12px 0' as any,
+    alignItems: 'center',
+
+    '& + &': {
+      marginTop: 8
+    },
+
+    '& p': {
+      ...koniTypography.body2
+    },
+
+    '.__col': {
+      paddingRight: 24
+    },
+
+    '.__col-action': {
+      textAlign: 'right',
+      paddingRight: 16
+    },
+
+    '.__col-token': {
+      paddingLeft: 16
+    },
+
+    [theme.breakpoints.down('sm')]: {}
+  },
+
+  // action col
+
+  actionButton: {
+    cursor: 'pointer'
+  },
+
+  // token col
+
+  iconsAndNames: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+
   icons: {
-    marginRight: 12,
-    width: 'fit-content',
-
-    [theme.breakpoints.down('lg')]: {
-      marginRight: 12
-    }
+    marginRight: 16,
+    display: 'flex',
+    alignItems: 'center',
   },
+
   tokenIcon: {
-    width: 40,
-    borderRadius: '100%',
-
-    [theme.breakpoints.down('sm')]: {
-      width: 28
-    }
-  },
-  arrows: {
     width: 36,
+    borderRadius: '100%',
+  },
+
+  arrows: {
     marginLeft: 4,
     marginRight: 4,
-
-    [theme.breakpoints.down('lg')]: {
-      width: 30
-    },
-
-    [theme.breakpoints.down('sm')]: {
-      width: 24
-    },
-
-    '&:hover': {
-      filter: 'brightness(2)'
-    }
   },
+
   names: {
     textOverflow: 'ellipsis',
     overflow: 'hidden',
-    ...typography.heading2,
-    color: colors.invariant.text,
-    lineHeight: '40px',
     whiteSpace: 'nowrap',
-    width: 180,
-    [theme.breakpoints.down('xl')]: {
-      ...typography.heading2
-    },
-    [theme.breakpoints.down('lg')]: {
-      lineHeight: '32px',
-      width: 'unset'
-    },
-    [theme.breakpoints.down('sm')]: {
-      ...typography.heading3,
-      lineHeight: '25px'
-    }
   },
-  infoText: {
-    ...typography.body1,
-    color: colors.invariant.lightGrey,
-    whiteSpace: 'nowrap',
-    textOverflow: 'ellipsis',
-    overflow: 'hidden',
-    [theme.breakpoints.down('sm')]: {
-      ...typography.caption1,
-      padding: '0 4px'
-    }
-  },
-  activeInfoText: {
-    color: colors.invariant.black
-  },
-  greenText: {
-    ...typography.body1,
-    color: colors.invariant.green,
-    whiteSpace: 'nowrap',
-    textOverflow: 'ellipsis',
-    overflow: 'hidden',
-    [theme.breakpoints.down('sm')]: {
-      ...typography.caption1
-    }
-  },
-  liquidity: {
-    background: colors.invariant.light,
-    borderRadius: 11,
-    height: 36,
-    width: 170,
-    marginRight: 8,
-    lineHeight: 20,
-    paddingInline: 10,
-    [theme.breakpoints.down('lg')]: {
-      flex: '1 1 0%'
-    }
-  },
+
+  // fee col
   fee: {
-    background: colors.invariant.light,
-    borderRadius: 11,
-    height: 36,
-    width: 90,
-    marginRight: 8,
+
 
     [theme.breakpoints.down('md')]: {
-      marginRight: 0
+
     }
   },
   activeFee: {
-    background: colors.invariant.green
+
   },
-  infoCenter: {
-    flex: '1 1 0%'
+
+  // Token ratio col
+
+  liquidity: {
+    [theme.breakpoints.down('lg')]: {
+
+    }
   },
+
+  infoText: {
+
+  },
+
+  activeInfoText: {
+
+  },
+
+  // Value col
+
+  value: {
+    [theme.breakpoints.down('sm')]: {
+
+    }
+  },
+
   minMax: {
-    background: colors.invariant.light,
-    borderRadius: 11,
-    height: 36,
-    width: 320,
-    paddingInline: 10,
-    marginRight: 8,
+    display: 'flex',
+
+    '.__col-content': {
+      whiteSpace: 'nowrap',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis'
+    },
+
+    '.__label': {
+      color: koniColors.palette['lightGreen-8']
+    },
 
     [theme.breakpoints.down('md')]: {
-      width: '100%',
-      marginRight: 0,
-      marginTop: 8
-    }
-  },
-  value: {
-    background: colors.invariant.light,
-    borderRadius: 11,
-    height: 36,
-    width: 160,
-    paddingInline: 12,
 
-    [theme.breakpoints.down('sm')]: {
-      width: 144,
-      paddingInline: 6
     }
   },
+
   mdInfo: {
     width: 'fit-content',
     flexWrap: 'nowrap',
@@ -178,9 +178,6 @@ export const useStyles = makeStyles()((theme: Theme) => ({
       width: '100%',
       justifyContent: 'space-between'
     }
-  },
-  iconsAndNames: {
-    width: 'fit-content'
   },
   label: {
     marginRight: 2

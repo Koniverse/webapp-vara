@@ -1,60 +1,43 @@
-import { colors, typography } from '@static/theme'
+import { koniColors, koniTypography } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
 
 export const useStyles = makeStyles()(() => ({
   container: {
-    width: '100%',
-    height: '370px',
-    position: 'absolute',
-    zIndex: 14
+    textAlign: 'center',
+    backgroundColor: koniColors.background['light-1']
   },
-  root: {
-    zIndex: 10,
+
+  iconWrapper: {
+    width: 104,
+    height: 104,
+    borderRadius: '50%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
     display: 'flex',
-    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingBottom: 25,
-    width: '100%',
-    height: '100%',
-    p: {
-      textAlign: 'center'
-    }
-  },
-  img: {
-    paddingBottom: 25
-  },
-  blur: {
-    width: '100%',
-    height: '370px',
-    backgroundColor: 'rgba(12, 11, 13, 0.8)',
-    position: 'absolute',
-    zIndex: 13,
-    borderRadius: 10
-  },
-  desc: {
-    ...typography.body2,
-    fontWeight: 500,
-    lineHeight: '20px',
-    color: colors.invariant.lightHover
-  },
-  button: {
-    height: 40,
-    width: 200,
-    marginTop: 20,
-    color: colors.invariant.componentBcg,
-    ...typography.body1,
-    textTransform: 'none',
-    borderRadius: 14,
-    background: colors.invariant.pinkLinearGradientOpacity,
+    color: koniColors.fadedDark['o-100'],
+    backgroundColor: koniColors.fadedDark['o-20'],
+    marginBottom: 32,
 
-    '&:hover': {
-      background: colors.invariant.pinkLinearGradient,
-      boxShadow: '0px 0px 16px rgba(239, 132, 245, 0.35)',
-      '@media (hover: none)': {
-        background: colors.invariant.pinkLinearGradientOpacity,
-        boxShadow: 'none'
-      }
+    svg: {
+      width: 60,
+      height: 60
     }
+  },
+
+  title: {
+    ...koniTypography.heading6,
+    color: koniColors.fadedDark['o-85']
+  },
+
+  desc: {
+    ...koniTypography.body2,
+    color: koniColors.fadedDark['o-85'],
+    marginTop: 12
+  },
+
+  button: {
+    marginTop: 32
   }
 }))

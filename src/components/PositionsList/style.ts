@@ -1,5 +1,5 @@
 import { Theme } from '@mui/material'
-import { colors, typography } from '@static/theme'
+import { colors, koniColors, koniTypography, typography } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
 import { leftContentContainerStyle } from '@styles'
 
@@ -10,65 +10,57 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     marginTop: 92,
     marginLeft: 'auto',
     marginRight: 'auto',
+    padding: '0 32px',
 
     [theme.breakpoints.down('md')]: {
       width: '100%'
     }
   },
-  header: {
-    paddingBottom: 16,
+  blockHeader: {
+    paddingTop: 32,
+    paddingBottom: 24,
     display: 'flex',
-    alignItems: 'flex-end'
   },
-  titleBar: {
-    display: 'flex',
-    marginBottom: 20
+  titleWrapper: {
+
   },
   title: {
-    color: colors.invariant.text,
-    ...typography.heading4,
-    fontWeight: 500
-  },
-  positionsNumber: {
-    width: 28,
-    height: 28,
-    color: colors.invariant.text,
-    background: colors.invariant.light,
-    marginLeft: 8,
-    borderRadius: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  searchRoot: {
-    width: '100%'
+    ...koniTypography.heading5,
+    color: koniColors.fadedDark['o-100'],
   },
   searchWrapper: {
     display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    columnGap: 16,
     alignItems: 'center',
-    flexWrap: 'wrap',
-    rowGap: '8px',
+
     [theme.breakpoints.down('sm')]: {
-      flexDirection: 'column-reverse',
-      alignItems: 'flex-start'
+
     }
   },
   searchBar: {
-    width: 221,
-    height: 32,
-    padding: '7px 12px',
-    borderRadius: 10,
-    background: colors.invariant.black,
-    border: '1px solid #202946',
-    color: colors.invariant.lightGrey,
-    ...typography.body2,
+    borderRadius: 24,
+    backgroundColor: koniColors.background['light-1'],
+    color: koniColors.fadedDark['o-100'],
+    ...koniTypography.body3,
+    height: 42,
+    paddingLeft: 16,
+    paddingRight: 16,
+
+    '.MuiInputAdornment-positionStart': {
+      marginRight: 8
+    },
+
     [theme.breakpoints.down('sm')]: {
       width: '100%',
-      height: 48
     }
   },
+
+  searchIcon: {
+    minWidth: 20,
+    height: 20,
+    color: koniColors.fadedDark['o-100'],
+  },
+
   button: {
 
     '&:hover': {
@@ -78,13 +70,11 @@ export const useStyles = makeStyles()((theme: Theme) => ({
 
     }
   },
-  fullWidthWrapper: {
-    [theme.breakpoints.down('sm')]: {
-      width: '100%',
-      marginBottom: 8,
-      flexDirection: 'row-reverse'
-    }
+
+  listHeader: {
+
   },
+
   buttonSelectDisabled: {
     ...typography.body1,
     textTransform: 'none',
@@ -105,9 +95,7 @@ export const useStyles = makeStyles()((theme: Theme) => ({
       flexGrow: 1
     }
   },
-  buttonText: {
-    WebkitPaddingBefore: '2px'
-  },
+
   noPositionsText: {
     ...typography.heading1,
     textAlign: 'center',
@@ -130,42 +118,28 @@ export const useStyles = makeStyles()((theme: Theme) => ({
       }
     }
   },
-  searchIcon: {
-    width: 17
-  },
+
   loading: {
     width: 150,
     height: 150,
     margin: 'auto'
   },
   placeholder: {
-    margin: 'auto'
+    width: '100%',
+    paddingInline: 40,
+    paddingBlock: 68,
+    borderRadius: 16
   },
   refreshIconBtn: {
     padding: 0,
     margin: 0,
     minWidth: 'auto',
-    background: 'none',
-    marginRight: 7,
-    '&:hover': {
-      background: 'none'
-    },
-    '&:disabled': {
-      opacity: 0.5
-    },
+
     [theme.breakpoints.down('sm')]: {
-      marginRight: 16
+
     }
   },
-  refreshIcon: {
-    width: 26,
-    height: 21,
-    cursor: 'pointer',
-    transition: 'filter 100ms',
-    '&:hover': {
-      filter: 'brightness(1.5)'
-    }
-  },
+
   titleMobileContainer: {
     display: 'flex',
     flexDirection: 'row',

@@ -3,8 +3,6 @@ import { INoConnected, NoConnected } from '@components/NoConnected/NoConnected'
 import { PaginationList } from '@components/PaginationList/PaginationList'
 import { Button, Grid, InputAdornment, InputBase, Typography } from '@mui/material'
 import loader from '@static/gif/loader.gif'
-import SearchIcon from '@static/svg/lupaDark.svg'
-import refreshIcon from '@static/svg/refresh.svg'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { IPositionItem, PositionItem } from './PositionItem/PositionItem'
@@ -12,7 +10,8 @@ import { useStyles } from './style'
 import { POSITIONS_PER_QUERY } from '@store/consts/static'
 import { TooltipHover } from '@components/TooltipHover/TooltipHover'
 import { getButtonClasses } from '@utils/uiUtils.ts'
-import { Plus } from '@phosphor-icons/react'
+import { ArrowsCounterClockwise, MagnifyingGlass, Plus } from '@phosphor-icons/react'
+import { PositionListHeader } from '@components/PositionsList/PositionItem/PositionListHeader.tsx'
 
 interface IProps {
   initialPage: number
@@ -102,73 +101,66 @@ export const PositionsList: React.FC<IProps> = ({
   return (
     <Grid container direction='column' className={classes.root}>
       <Grid
-        className={classes.header}
+        className={classes.blockHeader}
         container
         direction='row'
         justifyContent='space-between'
         alignItems='center'>
-        <Grid className={classes.searchRoot}>
-          <Grid className={classes.titleBar}>
-            <Typography className={classes.title}>Your Positions</Typography>
-            <TooltipHover text='Total number of your positions'>
-              <Typography className={classes.positionsNumber}>{String(length)}</Typography>
-            </TooltipHover>
-          </Grid>
-          <Grid className={classes.searchWrapper}>
-            <InputBase
-              type={'text'}
-              className={classes.searchBar}
-              placeholder='Search position'
-              endAdornment={
-                <InputAdornment position='end'>
-                  <img src={SearchIcon} className={classes.searchIcon} alt='Search' />
-                </InputAdornment>
-              }
-              onChange={handleChangeInput}
-              value={searchValue}
-              disabled={noInitialPositions}
-            />
-            <Grid
-              display='flex'
-              columnGap={2}
-              justifyContent='space-between'
-              className={classes.fullWidthWrapper}>
-              <TooltipHover text='Refresh'>
-                <Grid display='flex' alignItems='center'>
-                  <Button
-                    disabled={showNoConnected}
-                    onClick={showNoConnected ? () => {} : handleRefresh}
-                    className={classes.refreshIconBtn}>
-                    <img src={refreshIcon} className={classes.refreshIcon} alt='Refresh' />
-                  </Button>
-                </Grid>
-              </TooltipHover>
-              <Button
-                className={getButtonClasses({
-                  size: 'sm',
-                  variant: 'primary',
-                  layout: 'text-only'
-                }, classes.button)}
-                startIcon={<Plus />}
-                variant='contained'
-                onClick={onAddPositionClick}>
-                <span className={classes.buttonText}>Add Position</span>
-              </Button>
-            </Grid>
-          </Grid>
+        <Grid className={classes.titleWrapper}>
+          <Typography className={classes.title}>Your Positions</Typography>
+        </Grid>
+
+        <Grid className={classes.searchWrapper}>
+          <TooltipHover text='Refresh'>
+            <Button
+              disabled={showNoConnected}
+              onClick={showNoConnected ? () => {} : handleRefresh}
+              startIcon={<ArrowsCounterClockwise />}
+              className={getButtonClasses({
+                size: 'sm',
+                variant: 'ghost',
+                layout: 'icon-only'
+              }, classes.refreshIconBtn)}>
+            </Button>
+          </TooltipHover>
+
+          <InputBase
+            type={'text'}
+            className={classes.searchBar}
+            placeholder='Search position'
+            startAdornment={
+              <InputAdornment position='start'>
+                <MagnifyingGlass className={classes.searchIcon} />
+              </InputAdornment>
+            }
+            onChange={handleChangeInput}
+            value={searchValue}
+            disabled={noInitialPositions}
+          />
+
+          <Button
+            className={getButtonClasses({
+              size: 'sm',
+              variant: 'primary',
+              layout: 'text-only'
+            }, classes.button)}
+            startIcon={<Plus />}
+            variant='contained'
+            onClick={onAddPositionClick}>
+            Add Position
+          </Button>
         </Grid>
       </Grid>
+
       <Grid container direction='column' className={classes.list} justifyContent='flex-start'>
+        <PositionListHeader className={classes.listHeader} />
+
         {data.length > 0 && !loading ? (
-          paginator(page).data.map((element, index) => (
-            <Grid
-              onClick={() => {
-                navigate(`/position/${element.address}/${element.id}`)
-              }}
-              key={element.address + element.id}
-              className={classes.itemLink}>
-              <PositionItem key={index} {...element} />
-            </Grid>
+          paginator(page).data.map((element) => (
+            <PositionItem key={element.address + element.id} {...element} handleViewDetail={() => {
+              navigate(`/position/${element.address}/${element.id}`)
+            }}
+            />
           ))
         ) : showNoConnected ? (
           <NoConnected {...noConnectedBlockerProps} />
