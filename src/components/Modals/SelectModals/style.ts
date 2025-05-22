@@ -1,5 +1,5 @@
 import { Theme } from '@mui/material'
-import { colors, typography } from '@static/theme'
+import { colors, koniColors, koniTypography, typography } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
 
 const useStyles = makeStyles()((theme: Theme) => {
@@ -13,11 +13,13 @@ const useStyles = makeStyles()((theme: Theme) => {
         justifyContent: 'center'
       }
     },
+
     container: {
       overflow: 'hidden',
       padding: 24,
-      backgroundColor: colors.invariant.component,
-      borderRadius: 20,
+      backgroundColor: koniColors.palette['violet-1'],
+      border: `2px solid ${koniColors.fadedLight['o-100']}`,
+      borderRadius: 16,
       width: 500,
       [theme.breakpoints.down('sm')]: {
         maxWidth: '100vw',
@@ -34,21 +36,22 @@ const useStyles = makeStyles()((theme: Theme) => {
         color: colors.green.button
       }
     },
+
+    // header
+
     selectTokenHeader: {
       width: '100%',
-      paddingBottom: 20,
+      paddingBottom: 24,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
+      color: koniColors.fadedDark['o-100'],
 
       '& h1': {
-        ...typography.heading4
+        ...koniTypography.heading6,
       }
     },
-    inputControl: {
-      width: '100%',
-      position: 'relative'
-    },
+
     selectTokenClose: {
       minWidth: 0,
       height: 20,
@@ -56,51 +59,87 @@ const useStyles = makeStyles()((theme: Theme) => {
         content: '"\u2715"',
         fontSize: 22,
         position: 'absolute',
-        color: 'white',
+        color: koniColors.fadedDark['o-100'],
         top: '50%',
         right: '0%',
         transform: 'translateY(-50%)'
       },
       '&:hover': {
-        backgroundColor: '#1B191F'
+
       }
     },
-    selectTokenInput: {
-      backgroundColor: colors.invariant.newDark,
+
+    // body
+
+    selectTokenBody: {
+      backgroundColor: koniColors.background['light-1'],
+      borderRadius: 16,
+      padding: 12,
       width: '100%',
-      ...typography.body3,
-      position: 'relative',
-      color: 'white',
-      border: `1px solid ${colors.invariant.newDark}`,
-      borderColor: colors.invariant.newDark,
-      borderRadius: 15,
-      padding: '13px 44px 13px 10px !important',
+    },
+
+    // topRow
+
+    topRow: {
+      marginBottom: 12
+    },
+
+    // input
+
+    inputControl: {
+      width: '100%',
+      position: 'relative'
+    },
+
+    inputIcon: {
+      color: koniColors.fadedDark['o-85'],
+      width: 20,
+      height: 20,
+      position: 'absolute',
+      top: 0,
+      bottom: 0,
+      left: 8,
+      marginTop: 'auto',
+      marginBottom: 'auto'
+    },
+
+    selectTokenInput: {
+      fontFamily: 'inherit',
+      ...koniTypography.body3,
+      border: 0,
+      backgroundColor: koniColors.fadedDark['o-5'],
+      height: 40,
+      paddingTop: 0,
+      paddingBottom: 0,
+      borderRadius: 28,
       whiteSpace: 'nowrap',
       overflow: 'hidden',
       textOverflow: 'ellipsis',
-      paddingRight: 32,
+      paddingLeft: 36,
+      paddingRight: 8,
+      width: '100%',
 
       '&::placeholder': {
-        color: colors.invariant.light,
-        ...typography.body3
+        color: koniColors.fadedDark['o-45'],
+        ...koniTypography.body3,
       },
       '&:focus': {
+        ...koniTypography.body3,
         outline: 'none'
       }
     },
-    inputIcon: {
-      position: 'absolute',
-      width: 24,
-      height: 26,
-      right: '12px',
-      top: '14px'
+
+    addIcon: {
+      marginLeft: 4,
+      cursor: 'pointer'
     },
-    commonTokensHeader: {
-      ...typography.body2
-    },
+
+    // commonTokensList
+
     commonTokensList: {
       display: 'flex',
-      flexFlow: 'row wrap'
+      flexFlow: 'row wrap',
+      gap: 12,
     },
 
     commonTokenItem: {
@@ -109,39 +148,98 @@ const useStyles = makeStyles()((theme: Theme) => {
       cursor: 'pointer',
       justifyContent: 'center',
       alignItems: 'center',
-      background: colors.invariant.newDark,
-      borderRadius: 12,
-      padding: '8px 12px',
-      marginRight: 6,
-      marginBottom: 8,
+      backgroundColor: koniColors.fadedDark['o-5'],
+      borderRadius: 8,
+      padding: '6px 12px',
+
       '& p': {
-        ...typography.body3,
-        fontWeight: 400
+        ...koniTypography.heading9,
+        color: koniColors.fadedDark['o-85'],
       },
 
       '&:hover': {
-        background: colors.invariant.light,
-        '@media (hover: none)': {
-          background: colors.invariant.newDark
-        }
+        backgroundColor: koniColors.fadedDark['o-10'],
       }
     },
+
     commonTokenIcon: {
       width: 24,
       height: 24,
       borderRadius: '50%',
       marginRight: 8
     },
-    tokenList: {
-      background: colors.invariant.component,
-      borderTop: `1px solid ${colors.invariant.light}`,
-      width: 451,
-      height: 400,
-      paddingTop: 8,
-      [theme.breakpoints.down('sm')]: {
-        flexDirection: 'column',
-        width: 501
+
+    // checkbox
+    checkboxContainer: {
+      '.MuiCheckbox-root': {
+        color: koniColors.fadedDark['o-85'],
+      },
+
+      '.MuiCheckbox-root.Mui-checked': {
+        color: koniColors.palette['lightGreen-8'],
+      },
+
+      '.MuiFormControlLabel-label': {
+        ...koniTypography.body3,
+        color: koniColors.fadedDark['o-85'],
+        transform: 'none'
       }
+    },
+
+    // tokenList
+
+    tokenList: {
+      height: 400,
+
+      '.rc-scrollbars-track': {
+        display: 'none',
+      },
+
+      '.rc-scrollbars-view': {
+        marginRight: '0 !important',
+        marginBottom: '0 !important',
+      },
+
+      '.rc-scrollbars-view::-webkit-scrollbar': {
+        display: 'none'
+      }
+    },
+
+    // token item
+
+    tokenItem: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      borderRadius: 24,
+      cursor: 'pointer',
+
+      '& > p': {
+        whiteSpace: 'nowrap'
+      },
+    },
+
+    imageContainer: {
+      minWidth: 28,
+      maxWidth: 28,
+      height: 28,
+      marginRight: 8,
+      position: 'relative'
+    },
+
+    tokenIcon: {
+      minWidth: 28,
+      maxWidth: 28,
+      height: 28,
+      marginRight: 8,
+      borderRadius: '50%',
+    },
+
+    warningIcon: {
+      position: 'absolute',
+      width: 12,
+      height: 12,
+      bottom: -6,
+      right: -6
     },
 
     tokenContainer: {
@@ -150,99 +248,55 @@ const useStyles = makeStyles()((theme: Theme) => {
       minWidth: 'min-content'
     },
 
-    tokenItem: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      marginBottom: 4,
-      borderRadius: 24,
-      cursor: 'pointer',
-      padding: '0 16px ',
-
-      '& > p': {
-        whiteSpace: 'nowrap'
-      },
-
-      '&:hover': {
-        background: colors.invariant.light,
-        borderRadius: 24
-      }
-    },
     tokenName: {
-      color: colors.white.main,
-      ...typography.heading4
+      color: koniColors.fadedDark['o-85'],
+      ...koniTypography.heading9
     },
-    tokenAddress: {
-      backgroundColor: colors.invariant.newDark,
-      borderRadius: 4,
-      padding: '2px 4px',
-      width: 'min-content',
-      height: 'min-content',
-      '& a': {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: '12px',
-        textDecoration: 'none',
 
-        '&:hover': {
-          filter: 'brightness(1.2)',
-          '@media (hover: none)': {
-            filter: 'none'
-          }
-        },
-        '& p': {
-          color: colors.invariant.lightGrey,
-          ...typography.caption4,
-          letterSpacing: '0.03em'
-        }
-      }
-    },
-    tokenDescrpiption: {
-      color: colors.invariant.textGrey,
-      ...typography.caption2,
-      lineHeight: '16px',
+    // tokenAddress: {
+    //   backgroundColor: colors.invariant.newDark,
+    //   borderRadius: 4,
+    //   padding: '2px 4px',
+    //   width: 'min-content',
+    //   height: 'min-content',
+    //   '& a': {
+    //     display: 'flex',
+    //     alignItems: 'center',
+    //     justifyContent: 'center',
+    //     gap: '12px',
+    //     textDecoration: 'none',
+    //
+    //     '&:hover': {
+    //       filter: 'brightness(1.2)',
+    //       '@media (hover: none)': {
+    //         filter: 'none'
+    //       }
+    //     },
+    //     '& p': {
+    //       color: colors.invariant.lightGrey,
+    //       ...typography.caption4,
+    //       letterSpacing: '0.03em'
+    //     }
+    //   }
+    // },
+
+    tokenDescription: {
+      marginTop: 2,
+      color: koniColors.fadedDark['o-45'],
+      ...koniTypography.body5,
       whiteSpace: 'nowrap'
     },
+
     tokenBalanceStatus: {
-      color: colors.invariant.textGrey,
+      color: koniColors.fadedDark['o-45'],
       maxHeight: 40,
       '& p': {
-        ...typography.body2
+        ...koniTypography.heading9
       },
 
       '& p:last-child': {
-        color: colors.invariant.text
+        color: koniColors.fadedDark['o-85'],
       }
-    },
-    imageContainer: {
-      minWidth: 30,
-      maxWidth: 30,
-      height: 30,
-      marginRight: 16,
-      position: 'relative'
-    },
-    tokenIcon: {
-      minWidth: 30,
-      maxWidth: 30,
-      height: 30,
-      marginRight: 16,
-      borderRadius: '50%',
-      boxShadow: '0px 0px 10px rgba(216, 255, 181, 0.5)'
-    },
-    warningIcon: {
-      position: 'absolute',
-      width: 12,
-      height: 12,
-      bottom: -6,
-      right: -6
-    },
-    tokenBalance: {
-      ...typography.body2,
-      color: colors.invariant.textGrey,
-      whiteSpace: 'nowrap'
-    },
-    searchIcon: {
-      color: colors.invariant.light
     },
 
     hideScroll: {
@@ -267,7 +321,7 @@ const useStyles = makeStyles()((theme: Theme) => {
     },
     scrollbarView: {
       padding: 0 + '!important',
-      width: 'calc(100% + 50px)'
+      // width: 'calc(100% + 50px)'
     },
     paper: {
       background: 'transparent',
@@ -282,12 +336,6 @@ const useStyles = makeStyles()((theme: Theme) => {
         background: colors.invariant.light,
         borderRadius: 6
       }
-    },
-    clearIcon: {
-      minWidth: 12,
-      height: 12,
-      marginLeft: 8,
-      cursor: 'pointer'
     },
     dualIcon: {
       display: 'flex',
@@ -380,48 +428,48 @@ const useStyles = makeStyles()((theme: Theme) => {
       minWidth: 102,
       position: 'absolute'
     },
-    topRow: {
-      marginBottom: 20
-    },
-    addIcon: {
-      marginLeft: 10,
-      cursor: 'pointer',
-      fontSize: 28
-    },
-    noTokenFoundPlaceholder: {
-      ...typography.body2,
-      fontWeight: 500,
-      lineHeight: '20px',
-      color: colors.invariant.lightHover
-    },
-    addTokenButton: {
-      height: 40,
-      width: 200,
-      marginTop: 20,
-      color: colors.invariant.componentBcg,
-      ...typography.body1,
-      textTransform: 'none',
-      borderRadius: 14,
-      background: colors.invariant.pinkLinearGradientOpacity,
 
-      '&:hover': {
-        background: colors.invariant.pinkLinearGradient,
-        boxShadow: '0px 0px 16px rgba(239, 132, 245, 0.35)',
-        '@media (hover: none)': {
-          background: colors.invariant.pinkLinearGradientOpacity,
-          boxShadow: 'none'
-        }
+    // noTokenFound
+
+    noTokenFoundContainer: {
+      textAlign: 'center',
+      paddingTop: 32,
+      paddingBottom: 32,
+    },
+
+    noTokenFoundIconWrapper: {
+      width: 104,
+      height: 104,
+      borderRadius: '50%',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      color: koniColors.fadedDark['o-100'],
+      backgroundColor: koniColors.fadedDark['o-20'],
+      marginBottom: 32,
+
+      svg: {
+        width: 60,
+        height: 60
       }
     },
-    noTokenFoundContainer: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
+
+    noTokenFoundTitle: {
+      ...koniTypography.heading6,
+      color: koniColors.fadedDark['o-85']
+    },
+
+    noTokenFoundDesc: {
+      ...koniTypography.body2,
+      color: koniColors.fadedDark['o-85'],
+      marginTop: 12
+    },
+
+    addTokenButton: {
       marginTop: 32
     },
-    img: {
-      paddingBottom: 25
-    }
   }
 })
 

@@ -1,5 +1,3 @@
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
-import searchIcon from '@static/svg/lupa.svg'
 import { theme } from '@static/theme'
 import React, { forwardRef, useEffect, useMemo, useRef, useState } from 'react'
 import { FixedSizeList as List } from 'react-window'
@@ -10,7 +8,6 @@ import AddTokenModal from '@components/Modals/AddTokenModal/AddTokenModal'
 import {
   Box,
   Button,
-  CardMedia,
   Checkbox,
   FormControlLabel,
   Grid,
@@ -24,6 +21,8 @@ import Scrollbars from 'rc-scrollbars'
 import icons from '@static/icons'
 import { TooltipHover } from '@components/TooltipHover/TooltipHover'
 import { HexString } from '@gear-js/api'
+import { MagnifyingGlass, PlusCircle } from '@phosphor-icons/react'
+import { getButtonClasses } from '@utils/uiUtils.ts'
 
 export interface ISelectTokenModal {
   tokens: Record<HexString, SwapToken>
@@ -192,30 +191,41 @@ export const SelectTokenModal: React.FC<ISelectTokenModal> = ({
             <Typography component='h1'>Select a token</Typography>
             <Button className={classes.selectTokenClose} onClick={handleClose} aria-label='Close' />
           </Grid>
-          <Grid
-            className={classes.topRow}
-            container
-            direction='row'
-            wrap='nowrap'
-            alignItems='center'>
-            <Grid container className={classes.inputControl}>
-              <input
-                ref={inputRef}
-                className={classes.selectTokenInput}
-                placeholder='Search token name or address'
-                onChange={searchToken}
-                value={value}
-              />
-              <CardMedia image={searchIcon} className={classes.inputIcon} />
+
+          <div  className={classes.selectTokenBody}>
+            <Grid
+              className={classes.topRow}
+              container
+              direction='row'
+              wrap='nowrap'
+              alignItems='center'>
+              <Grid container className={classes.inputControl}>
+                <MagnifyingGlass className={classes.inputIcon} />
+
+                <input
+                  ref={inputRef}
+                  className={classes.selectTokenInput}
+                  placeholder='Search token name or address'
+                  onChange={searchToken}
+                  value={value}
+                />
+              </Grid>
+              <TooltipHover text='Add token'>
+                <Button
+                  onClick={() => setIsAddOpen(true)}
+                  className={getButtonClasses(
+                    {
+                      variant: 'ghost',
+                      layout: 'icon-only',
+                      size: 'sm'
+                    },
+                    classes.addIcon
+                  )}
+                  startIcon={<PlusCircle />}
+                />
+              </TooltipHover>
             </Grid>
-            <TooltipHover text='Add token'>
-              <AddCircleOutlineIcon
-                className={classes.addIcon}
-                onClick={() => setIsAddOpen(true)}
-              />
-            </TooltipHover>
-          </Grid>
-          <Grid container>
+
             <Grid className={classes.commonTokensList}>
               {commonTokensList.map(token => (
                 <Box
@@ -235,127 +245,137 @@ export const SelectTokenModal: React.FC<ISelectTokenModal> = ({
                 </Box>
               ))}
             </Grid>
-          </Grid>
-          <Grid container>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={hideUnknown}
-                  onChange={e => {
-                    setHideUnknown(e.target.checked)
-                    onHideUnknownTokensChange(e.target.checked)
-                  }}
-                  name='hideUnknown'
-                />
-              }
-              label='Hide unknown tokens'
-            />
-          </Grid>
-          <Box className={classes.tokenList}>
-            {!filteredTokens.length && (
-              <Grid className={classes.noTokenFoundContainer}>
-                <img className={classes.img} src={icons.empty} alt='Not connected' />
-                <Typography className={classes.noTokenFoundPlaceholder}>
-                  No token found...
-                </Typography>
-                <Typography className={classes.noTokenFoundPlaceholder}>
-                  Add your token by pressing the button!
-                </Typography>
-                <Button
-                  className={classes.addTokenButton}
-                  onClick={() => setIsAddOpen(true)}
-                  variant='contained'>
-                  Add a token
-                </Button>
-              </Grid>
-            )}
-            <List
-              height={400}
-              width={360}
-              itemSize={66}
-              itemCount={filteredTokens.length}
-              outerElementType={CustomScrollbarsVirtualList}
-              outerRef={outerRef}>
-              {({ index, style }: { index: number; style: React.CSSProperties }) => {
-                const token = filteredTokens[index]
-                const tokenBalance = printBigint(token.balance, token.decimals)
 
-                return (
-                  <Grid
-                    className={classes.tokenItem}
-                    container
-                    style={{
-                      ...style,
-                      width: 'calc(100% - 50px)'
+            <Grid container>
+              <FormControlLabel
+                className={classes.checkboxContainer}
+                control={
+                  <Checkbox
+                    checked={hideUnknown}
+                    onChange={e => {
+                      setHideUnknown(e.target.checked)
+                      onHideUnknownTokensChange(e.target.checked)
                     }}
-                    alignItems='center'
-                    wrap='nowrap'
-                    onClick={() => {
-                      onSelect(token.assetAddress)
-                      setValue('')
-                      handleClose()
-                    }}>
-                    <Box className={classes.imageContainer}>
-                      <img
-                        className={classes.tokenIcon}
-                        src={token.logoURI}
-                        loading='lazy'
-                        alt={token.name + 'logo'}
-                      />
-                      {token.isUnknown && (
-                        <img className={classes.warningIcon} src={icons.warningIcon} />
-                      )}
-                    </Box>
-                    <Grid container className={classes.tokenContainer}>
+                    name='hideUnknown'
+                  />
+                }
+                label='Hide unknown tokens'
+              />
+            </Grid>
+
+            <Box className={classes.tokenList}>
+              {!filteredTokens.length && (
+                <Grid className={classes.noTokenFoundContainer}>
+                  <div className={classes.noTokenFoundIconWrapper}>{<MagnifyingGlass />}</div>
+
+                  <Typography className={classes.noTokenFoundTitle}>
+                    No token found...
+                  </Typography>
+
+                  <Typography className={classes.noTokenFoundDesc}>
+                    Add your token by pressing the button!
+                  </Typography>
+
+                  <Button
+                    className={getButtonClasses({
+                      size: 'lg',
+                      variant: 'primary',
+                      layout: 'text-only'
+                    }, classes.addTokenButton)}
+                    onClick={() => setIsAddOpen(true)}
+                    variant='contained'>
+                    Add a token
+                  </Button>
+                </Grid>
+              )}
+              <List
+                height={400}
+                width={360}
+                itemSize={44}
+                itemCount={filteredTokens.length}
+                outerElementType={CustomScrollbarsVirtualList}
+                outerRef={outerRef}>
+                {({ index, style }: { index: number; style: React.CSSProperties }) => {
+                  const token = filteredTokens[index]
+                  const tokenBalance = printBigint(token.balance, token.decimals)
+
+                  return (
+                    <Grid
+                      className={classes.tokenItem}
+                      container
+                      style={{
+                        ...style,
+                        // width: 'calc(100% - 50px)'
+                      }}
+                      alignItems='center'
+                      wrap='nowrap'
+                      onClick={() => {
+                        onSelect(token.assetAddress)
+                        setValue('')
+                        handleClose()
+                      }}>
+                      <Box className={classes.imageContainer}>
+                        <img
+                          className={classes.tokenIcon}
+                          src={token.logoURI}
+                          loading='lazy'
+                          alt={token.name + 'logo'}
+                        />
+                        {token.isUnknown && (
+                          <img className={classes.warningIcon} src={icons.warningIcon} />
+                        )}
+                      </Box>
+                      <Grid container className={classes.tokenContainer}>
+                        <Grid
+                          container
+                          direction='row'
+                          columnGap='6px'
+                          alignItems='center'
+                          wrap='nowrap'>
+                          <Typography className={classes.tokenName}>
+                            {token.symbol ? token.symbol : 'Unknown'}{' '}
+                          </Typography>
+                          {/* <Grid className={classes.tokenAddress} container direction='column'>
+                            <a
+                              href={`https://ascan.alephzero.org/testnet/account/${token.assetAddress}`}
+                              target='_blank'
+                              rel='noopener noreferrer'
+                              onClick={event => {
+                                event.stopPropagation()
+                              }}>
+                              <Typography>
+                                {token.assetAddress.slice(0, 4) +
+                                  '...' +
+                                  token.assetAddress.slice(-5, -1)}
+                              </Typography>
+                              <img width={8} height={8} src={icons.newTab} alt={'Token address'} />
+                            </a>
+                          </Grid> */}
+                        </Grid>
+
+                        <Typography className={classes.tokenDescription}>
+                          {token.name ? token.name.slice(0, isXs ? 20 : 30) : 'Unknown'}
+                          {token.name.length > (isXs ? 20 : 30) ? '...' : ''}
+                        </Typography>
+                      </Grid>
                       <Grid
                         container
-                        direction='row'
-                        columnGap='6px'
-                        alignItems='center'
-                        wrap='nowrap'>
-                        <Typography className={classes.tokenName}>
-                          {token.symbol ? token.symbol : 'Unknown'}{' '}
-                        </Typography>
-                        {/* <Grid className={classes.tokenAddress} container direction='column'>
-                          <a
-                            href={`https://ascan.alephzero.org/testnet/account/${token.assetAddress}`}
-                            target='_blank'
-                            rel='noopener noreferrer'
-                            onClick={event => {
-                              event.stopPropagation()
-                            }}>
-                            <Typography>
-                              {token.assetAddress.slice(0, 4) +
-                                '...' +
-                                token.assetAddress.slice(-5, -1)}
-                            </Typography>
-                            <img width={8} height={8} src={icons.newTab} alt={'Token address'} />
-                          </a>
-                        </Grid> */}
+                        justifyContent='flex-end'
+                        wrap='wrap'
+                        className={classes.tokenBalanceStatus}>
+                        {!hideBalances && Number(tokenBalance) > 0 ? (
+                          <>
+                            <Typography>Balance:</Typography>
+                            <Typography>&nbsp; {formatNumber(tokenBalance)}</Typography>
+                          </>
+                        ) : null}
                       </Grid>
-
-                      <Typography className={classes.tokenDescrpiption}>
-                        {token.name ? token.name.slice(0, isXs ? 20 : 30) : 'Unknown'}
-                        {token.name.length > (isXs ? 20 : 30) ? '...' : ''}
-                      </Typography>
                     </Grid>
-                    <Grid
-                      container
-                      justifyContent='flex-end'
-                      wrap='wrap'
-                      className={classes.tokenBalanceStatus}>
-                      {!hideBalances && Number(tokenBalance) > 0 ? (
-                        <>
-                          <Typography>Balance:</Typography>
-                          <Typography>&nbsp; {formatNumber(tokenBalance)}</Typography>
-                        </>
-                      ) : null}
-                    </Grid>
-                  </Grid>
-                )
-              }}
-            </List>
-          </Box>
+                  )
+                }}
+              </List>
+            </Box>
+          </div>
         </Grid>
       </Popover>
       <AddTokenModal
