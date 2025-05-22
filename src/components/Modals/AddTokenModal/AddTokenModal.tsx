@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import useStyles from './style'
 import { Button, Grid, Input, Popover, Typography } from '@mui/material'
 import { decodeAddress, HexString } from '@gear-js/api'
+import { getButtonClasses } from '@utils/uiUtils'
 
 export interface IProps {
   open: boolean
@@ -35,7 +36,7 @@ export const AddTokenModal: React.FC<IProps> = ({ open, handleClose, addToken })
             {'\u2715'}
           </Button>
         </Grid>
-        <Grid container direction='row' justifyContent='space-between' wrap='nowrap'>
+        <Grid container direction='row' justifyContent='space-between' wrap='nowrap' className={classes.inputArea}>
           <Input
             classes={{ input: classes.input }}
             placeholder='Token address'
@@ -44,7 +45,14 @@ export const AddTokenModal: React.FC<IProps> = ({ open, handleClose, addToken })
             disableUnderline
           />
           <Button
-            className={classes.add}
+            className={getButtonClasses(
+              {
+                variant: 'primary',
+                layout: 'text-only',
+                size: 'sm'
+              },
+              classes.add
+            )}
             onClick={() => {
               if (address !== null) {
                 addToken(address)

@@ -1,20 +1,9 @@
 import { Theme } from '@mui/material'
-import { colors, typography } from '@static/theme'
+import { koniColors, koniTypography } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
 
 const useStyles = makeStyles()((theme: Theme) => {
   return {
-    root: {
-      background: colors.invariant.component,
-      width: 480,
-      borderRadius: 24,
-      padding: '20px 24px',
-      maxWidth: '100%',
-
-      [theme.breakpoints.down('sm')]: {
-        padding: '20px 16px '
-      }
-    },
     popover: {
       marginTop: 'max(calc(50vh - 350px), 20px)',
       marginLeft: 'calc(50vw - 241px)',
@@ -28,60 +17,73 @@ const useStyles = makeStyles()((theme: Theme) => {
       background: 'transparent',
       boxShadow: 'none'
     },
+
+    root: {
+      padding: 24,
+      backgroundColor: koniColors.palette['violet-1'],
+      border: `2px solid ${koniColors.fadedLight['o-100']}`,
+      borderRadius: 16,
+      width: 480,
+      maxWidth: '100%',
+
+      [theme.breakpoints.down('sm')]: {}
+    },
+
+    // header
+
     upperRow: {
       flexWrap: 'nowrap',
-      marginBottom: 20,
+      marginBottom: 24,
+      color: koniColors.fadedDark['o-100'],
+
       '& p': {
-        ...typography.heading4,
-        color: colors.white.main
+        ...koniTypography.heading6
       }
     },
-    title: {
-      ...typography.heading4,
-      color: colors.white.main
-    },
+
     close: {
       minWidth: 0,
-      maxHeight: 20,
       maxWidth: 16,
       fontSize: 20,
+      padding: 0,
       background: 'none',
-      color: colors.white.main,
+      color: koniColors.fadedDark['o-100'],
       '&:hover': {
         background: 'none !important'
       }
     },
+
+    inputArea: {
+      backgroundColor: koniColors.background['light-1'],
+      borderRadius: 16,
+      padding: 12,
+      alignItems: 'center',
+
+      '.MuiInput-root': {
+        flex: 1
+      }
+    },
+
     input: {
-      backgroundColor: colors.invariant.newDark,
+      backgroundColor: koniColors.fadedDark['o-5'],
       width: '100%',
-      color: colors.white.main,
-      borderRadius: 20,
-      padding: '12px 10px',
-      ...typography.heading4,
-      fontWeight: 400,
-      marginRight: 16,
+      height: 46,
+      color: koniColors.fadedDark['o-85'],
+      borderRadius: 12,
+      paddingInline: 16,
+      paddingBlock: 0,
+      ...koniTypography.body3,
+      marginRight: 8,
+
       '&::placeholder': {
-        color: colors.invariant.light,
-        ...typography.heading4,
-        fontWeight: 400
+        color: koniColors.fadedDark['o-65'],
+        ...koniTypography.body3
       },
       '&:focus': {
         outline: 'none'
       }
     },
-    add: {
-      minWidth: 82,
-      background: colors.invariant.greenLinearGradient,
-      ...typography.heading4,
-      color: colors.invariant.black,
-      textTransform: 'none',
-      borderRadius: 18,
-
-      '&:disabled': {
-        background: colors.invariant.light,
-        color: colors.invariant.black
-      }
-    }
+    add: {}
   }
 })
 
