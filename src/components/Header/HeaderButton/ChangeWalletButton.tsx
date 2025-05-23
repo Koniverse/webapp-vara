@@ -70,8 +70,8 @@ export const ChangeWalletButton: React.FC<IProps> = ({
       <Button
         id='connect-wallet-button'
         className={classNames(
+          connected ? classes.headerButtonConnected : classes.headerButtonConnect,
           className,
-          connected ? classes.headerButtonConnected : classes.headerButtonConnect
         )}
         variant='contained'
         classes={{

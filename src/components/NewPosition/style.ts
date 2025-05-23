@@ -1,16 +1,15 @@
-import { colors, typography } from '@static/theme'
+import { colors, koniColors, koniTypography, typography } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
 
 const useStyles = makeStyles()(theme => {
   return {
+    // back
+
     wrapper: {
       width: 952,
       maxWidth: '100%'
     },
-    headerContainer: {
-      columnGap: 24,
-      height: 46
-    },
+
     back: {
       height: 24,
       marginBottom: 18,
@@ -34,14 +33,36 @@ const useStyles = makeStyles()(theme => {
       WebkitPaddingBefore: '2px',
       ...typography.body2
     },
-    title: {
-      color: colors.white.main,
-      ...typography.heading4,
 
-      [theme.breakpoints.down('sm')]: {
-        fontSize: 18
+    //
+
+    headerContainer: {
+      columnGap: 24,
+      alignItems: 'flex-end',
+    },
+
+    titleContainer: {
+      maxWidth: 464,
+      marginBottom: 12,
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      flexGrow: 1,
+      [theme.breakpoints.down('md')]: {
+        maxWidth: 'none'
       }
     },
+
+    title: {
+      color: koniColors.background['light-1'],
+      ...koniTypography.heading6,
+
+      [theme.breakpoints.down('sm')]: {
+
+      }
+    },
+
     row: {
       minWidth: 464,
       minHeight: 540,
@@ -71,35 +92,24 @@ const useStyles = makeStyles()(theme => {
       }
     },
     settingsIconBtn: {
-      width: 20,
-      height: 20,
-      padding: 0,
-      margin: 0,
-      marginLeft: 10,
+      marginLeft: 8,
       minWidth: 'auto',
-      background: 'none',
+
+      svg: {
+        color: koniColors.background['light-1'],
+      },
+
       '&:hover': {
-        backgroundColor: 'none'
+
       }
     },
-    settingsIcon: {
-      width: 20,
-      height: 20,
-      cursor: 'pointer',
-      transition: 'filter 100ms',
-      '&:hover': {
-        filter: 'brightness(1.5)',
-        '@media (hover: none)': {
-          filter: 'none'
-        }
-      }
-    },
+
     options: {
       width: 'calc(50% - 12px)',
-      marginBottom: 18,
-      height: 28,
+      marginBottom: 12,
       display: 'flex',
       flexWrap: 'nowrap',
+      alignItems: 'flex-end',
       justifyContent: 'space-between',
 
       [theme.breakpoints.down('md')]: {
@@ -111,18 +121,7 @@ const useStyles = makeStyles()(theme => {
       display: 'flex',
       justifyContent: 'flex-end'
     },
-    titleContainer: {
-      maxWidth: 464,
-      marginBottom: 18,
-      display: 'flex',
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      flexGrow: 1,
-      [theme.breakpoints.down('md')]: {
-        maxWidth: 'none'
-      }
-    },
+
     optionsWrapper: {
       display: 'flex',
       alignItems: 'center',

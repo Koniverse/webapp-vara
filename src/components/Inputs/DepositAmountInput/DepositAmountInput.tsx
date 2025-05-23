@@ -102,10 +102,24 @@ export const DepositAmountInput: React.FC<IProps> = ({
           direction='row'
           wrap='nowrap'
           className={classes.inputContainer}>
+          <Input
+            className={classes.input}
+            classes={{ input: classes.innerInput }}
+            inputRef={inputRef}
+            value={value}
+            disableUnderline={true}
+            placeholder={placeholder}
+            onChange={allowOnlyDigitsAndTrimUnnecessaryZeros}
+            onBlur={onBlur}
+            disabled={disabled}
+            inputProps={{
+              inputMode: 'decimal'
+            }}
+          />
+
           <Grid
             className={classes.currency}
             container
-            justifyContent='center'
             alignItems='center'
             wrap='nowrap'>
             {currency !== null ? (
@@ -122,20 +136,6 @@ export const DepositAmountInput: React.FC<IProps> = ({
               <Typography className={classes.noCurrencyText}>-</Typography>
             )}
           </Grid>
-          <Input
-            className={classes.input}
-            classes={{ input: classes.innerInput }}
-            inputRef={inputRef}
-            value={value}
-            disableUnderline={true}
-            placeholder={placeholder}
-            onChange={allowOnlyDigitsAndTrimUnnecessaryZeros}
-            onBlur={onBlur}
-            disabled={disabled}
-            inputProps={{
-              inputMode: 'decimal'
-            }}
-          />
         </Grid>
 
         <Grid
@@ -143,33 +143,8 @@ export const DepositAmountInput: React.FC<IProps> = ({
           justifyContent='space-between'
           alignItems='center'
           direction='row'
-          wrap='nowrap'>
-          <Grid
-            className={classes.balance}
-            container
-            alignItems='center'
-            wrap='nowrap'
-            onClick={walletUninitialized ? () => {} : onMaxClick}>
-            <Typography className={classes.caption2}>
-              Balance:{' '}
-              {walletUninitialized ? (
-                <>-</>
-              ) : isBalanceLoading ? (
-                <img src={loadingAnimation} className={classes.loadingBalance} alt='loading' />
-              ) : (
-                <>{formatNumber(balanceValue || 0)}</>
-              )}{' '}
-              {currency}
-            </Typography>
-            <Button
-              className={
-                currency && !walletUninitialized
-                  ? classes.maxButton
-                  : `${classes.maxButton} ${classes.maxButtonNotActive}`
-              }>
-              Max
-            </Button>
-          </Grid>
+          wrap='nowrap'
+          className={classes.balanceArea}>
           <Grid className={classes.percentages} container alignItems='center' wrap='nowrap'>
             {currency && !walletUninitialized ? (
               priceLoading ? (
@@ -184,7 +159,9 @@ export const DepositAmountInput: React.FC<IProps> = ({
                     tooltip: classes.tooltip
                   }}>
                   <Typography className={classes.estimatedBalance}>
-                    ~${formatNumber(usdBalance.toFixed(2))}
+                    <span className={'__symbol'}>{`~ $ `}</span>
+
+                    {formatNumber(usdBalance.toFixed(2))}
                   </Typography>
                 </Tooltip>
               ) : (
@@ -202,6 +179,32 @@ export const DepositAmountInput: React.FC<IProps> = ({
                 </Tooltip>
               )
             ) : null}
+          </Grid>
+          <Grid
+            className={classes.balance}
+            alignItems='center'
+            wrap='nowrap'
+            >
+            <Typography className={classes.caption2}>
+              Balance:{' '}
+              {walletUninitialized ? (
+                <>-</>
+              ) : isBalanceLoading ? (
+                <img src={loadingAnimation} className={classes.loadingBalance} alt='loading' />
+              ) : (
+                <>{formatNumber(balanceValue || 0)}</>
+              )}{' '}
+              {currency}
+            </Typography>
+            <Button
+              onClick={walletUninitialized ? () => {} : onMaxClick}
+              className={
+                currency && !walletUninitialized
+                  ? classes.maxButton
+                  : `${classes.maxButton} ${classes.maxButtonNotActive}`
+              }>
+              Max
+            </Button>
           </Grid>
         </Grid>
       </div>

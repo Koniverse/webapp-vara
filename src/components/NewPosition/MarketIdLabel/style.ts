@@ -1,30 +1,27 @@
-import { colors } from '@static/theme'
+import { koniColors, koniTypography } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
 
 export const useLabelStyles = makeStyles()(() => {
   return {
     marketId: {
       fontFamily: 'Bricolage Grotesque',
-      fontSize: 16,
-      fontWeight: 400,
-      lineHeight: '20px',
-      letterSpacing: '-0.03px',
-      textAlign: 'right',
-      color: `${colors.invariant.textGrey} !important`,
-      paddingRight: 7,
+      ...koniTypography.heading8,
+      color: `${koniColors.fadedLight['o-65']} !important`,
+      whiteSpace: 'nowrap',
+      overflow: 'hidden',
       display: 'flex',
       alignItems: 'center',
       gap: 4
     },
+
+    marketIdText: {
+      flexShrink: 1
+    },
+
     clipboardIcon: {
       width: 18,
       cursor: 'pointer',
-      '&:hover': {
-        filter: 'brightness(1.4)',
-        '@media (hover: none)': {
-          filter: 'brightness(1)'
-        }
-      }
+      '&:hover': {}
     }
   }
 })

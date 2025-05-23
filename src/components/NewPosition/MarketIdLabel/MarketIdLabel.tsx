@@ -1,9 +1,9 @@
 import { Typography } from '@mui/material'
 import React from 'react'
 import { useLabelStyles } from './style'
-import FileCopyOutlinedIcon from '@mui/icons-material/FileCopyOutlined'
 import { VariantType } from 'notistack'
 import { TooltipHover } from '@components/TooltipHover/TooltipHover'
+import { Copy } from '@phosphor-icons/react'
 
 export interface IProps {
   displayLength: number
@@ -33,10 +33,12 @@ export const MarketIdLabel: React.FC<IProps> = ({
 
   return (
     <Typography className={classes.marketId} style={style}>
-      Market ID: {marketId.slice(0, displayLength)}...
-      {marketId.slice(marketId.length - displayLength, marketId.length)}{' '}
+      <span className={classes.marketIdText}>
+        Market ID: {marketId.slice(0, displayLength)}...
+        {marketId.slice(marketId.length - displayLength, marketId.length)}{' '}
+      </span>
       <TooltipHover text='Copy'>
-        <FileCopyOutlinedIcon className={classes.clipboardIcon} onClick={copyToClipboard} />
+        <Copy className={classes.clipboardIcon} onClick={copyToClipboard} />
       </TooltipHover>
     </Typography>
   )

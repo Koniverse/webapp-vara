@@ -1,8 +1,7 @@
 import AnimatedButton, { ProgressState } from '@components/AnimatedButton/AnimatedButton'
 import DepositAmountInput from '@components/Inputs/DepositAmountInput/DepositAmountInput'
 import Select from '@components/Inputs/Select/Select'
-import { Grid, Typography } from '@mui/material'
-import SwapList from '@static/svg/swap-list.svg'
+import { Button, Grid, Typography } from '@mui/material'
 import {
   ALL_FEE_TIERS_DATA,
   EXTRA_BALANCE_TO_DEPOSIT_VARA,
@@ -27,6 +26,8 @@ import { Network } from '@invariant-labs/vara-sdk'
 import { Status } from '@store/reducers/wallet'
 import ChangeWalletButton from '@components/Header/HeaderButton/ChangeWalletButton'
 import { decodeAddress, HexString } from '@gear-js/api'
+import { getButtonClasses } from '@utils/uiUtils.ts'
+import { ArrowsLeftRight } from '@phosphor-icons/react'
 
 export interface InputState {
   value: string
@@ -267,7 +268,7 @@ export const DepositSelector: React.FC<IDepositSelector> = ({
     <Grid container direction='column' className={classNames(classes.wrapper, className)}>
       <Typography className={classes.sectionTitle}>Tokens</Typography>
 
-      <Grid container className={classes.sectionWrapper} style={{ marginBottom: 40 }}>
+      <Grid container className={classNames(classes.sectionWrapper, classes.tokenArea)}>
         <Grid container className={classes.selects} direction='row' justifyContent='space-between'>
           <Grid className={classes.selectWrapper}>
             <Select
@@ -292,10 +293,13 @@ export const DepositSelector: React.FC<IDepositSelector> = ({
           </Grid>
 
           <TooltipHover text='Reverse tokens'>
-            <img
-              className={classes.arrows}
-              src={SwapList}
-              alt='Arrow'
+            <Button
+              className={getButtonClasses({
+                size: 'sm',
+                layout: 'icon-only',
+                variant: 'ghost',
+              }, classes.arrows)}
+              startIcon={<ArrowsLeftRight />}
               onClick={() => {
                 if (ticksLoading) {
                   return
@@ -352,7 +356,7 @@ export const DepositSelector: React.FC<IDepositSelector> = ({
       </Grid>
 
       <Typography className={classes.sectionTitle}>Deposit Amount</Typography>
-      <Grid container className={classes.sectionWrapper}>
+      <Grid container className={classNames(classes.sectionWrapper, classes.depositAmountArea)}>
         <DepositAmountInput
           tokenPrice={tokenAPrice}
           currency={tokenA !== null ? tokens[tokenA].symbol : null}
@@ -371,9 +375,6 @@ export const DepositSelector: React.FC<IDepositSelector> = ({
           balanceValue={
             tokenA !== null ? printBigint(tokens[tokenA].balance, tokens[tokenA].decimals) : ''
           }
-          style={{
-            marginBottom: 10
-          }}
           onBlur={() => {
             if (tokenA !== null && tokenB !== null && tokenAInputState.value.length === 0) {
               tokenAInputState.setValue('0.0')
@@ -385,6 +386,8 @@ export const DepositSelector: React.FC<IDepositSelector> = ({
           isBalanceLoading={isBalanceLoading}
           walletUninitialized={walletStatus !== Status.Initialized}
         />
+
+        <div className={classes.amountInputSeparator}></div>
 
         <DepositAmountInput
           tokenPrice={tokenBPrice}
@@ -422,7 +425,12 @@ export const DepositSelector: React.FC<IDepositSelector> = ({
           onConnect={onConnectWallet}
           connected={false}
           onDisconnect={onDisconnectWallet}
-          className={classes.connectWalletButton}
+          className={getButtonClasses({
+            size: 'lg',
+            variant: 'primary',
+            layout: 'text-only'
+            },
+            classes.connectWalletButton)}
         />
       ) : getButtonMessage() === 'Insufficient AZERO' ? (
         <TooltipHover

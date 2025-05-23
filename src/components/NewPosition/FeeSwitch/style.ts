@@ -1,20 +1,10 @@
-import { colors, typography } from '@static/theme'
+import { koniColors, koniTypography } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
 
 export const useStyles = makeStyles()(() => {
   return {
     wrapper: {
       width: '100%',
-      borderRadius: 13,
-      backgroundColor: colors.invariant.componentBcg,
-      marginBottom: 8
-    },
-    bestText: {
-      color: colors.invariant.green,
-      position: 'absolute',
-      ...typography.caption1,
-      textAlign: 'center',
-      top: 40
     }
   }
 })
@@ -23,27 +13,36 @@ export const useTabsStyles = makeStyles()(() => {
   return {
     root: {
       overflow: 'visible',
-      height: 36,
-      minHeight: 36,
-      margin: '4px 4px',
-      borderRadius: 10
+      minHeight: 40,
+      position: 'relative',
     },
     indicator: {
-      height: 36,
-      borderRadius: 10,
-      backgroundColor: colors.invariant.light,
-      top: 0
+      display: 'none'
     },
     flexContainer: {
       justifyContent: 'space-between'
     },
     scrollButtons: {
+      position: 'absolute',
+      zIndex: 10,
+      top: 0,
+      bottom: 0,
+      left: 0,
       width: 24,
-      '& svg': {
-        fill: colors.invariant.light
+      backgroundColor: koniColors.fadedLight['o-85'],
+      color: koniColors.fadedDark['o-65'],
+
+      '&:last-of-type': {
+        left: 'auto',
+        right: 0,
       },
-      '&:hover svg': {
-        fill: colors.invariant.text
+
+      '.MuiTouchRipple-root': {
+        display: 'none'
+      },
+
+      '&:hover': {
+        color: koniColors.fadedDark['o-85'],
       }
     }
   }
@@ -54,25 +53,21 @@ export const useSingleTabStyles = makeStyles()(() => {
     root: {
       zIndex: 1,
       textTransform: 'none',
-      ...typography.body3,
-      height: 36,
-      minHeight: 36,
-      color: colors.invariant.light,
+      ...koniTypography.heading8,
+      height: 40,
+      minHeight: 40,
+      borderRadius: 8,
+      color: koniColors.background['dark-1'],
+      backgroundColor: koniColors.fadedDark['o-5'],
       paddingInline: 0,
-      minWidth: 65,
-      width: 65,
-      marginRight: '7px',
+      minWidth: 80,
+      width: 80,
+      marginRight: 8,
       position: 'relative',
       overflow: 'visible',
 
       '&:hover': {
-        color: colors.invariant.lightHover,
-        backgroundColor: colors.invariant.light,
-        height: 36,
-        borderRadius: 10,
-        '@media (hover: none)': {
-          color: colors.invariant.light
-        }
+        backgroundColor: koniColors.fadedDark['o-10'],
       },
 
       '&:last-of-type': {
@@ -80,21 +75,23 @@ export const useSingleTabStyles = makeStyles()(() => {
       }
     },
     best: {
-      color: colors.invariant.green,
-      border: `2px solid ${colors.invariant.green}`,
-      borderRadius: 10,
-
-      '&:hover': {
-        color: colors.invariant.green
-      }
+      // color: colors.invariant.green,
+      // border: `2px solid ${colors.invariant.green}`,
+      // borderRadius: 10,
+      //
+      // '&:hover': {
+      //   color: colors.invariant.green
+      // }
     },
     selected: {
-      ...typography.heading4,
-      color: colors.white.main + ' !important',
-      transition: 'color 300ms',
+      backgroundColor: koniColors.palette['violet-4'],
+
+      '&.Mui-selected': {
+        color: koniColors.background['dark-1'],
+      },
 
       '&:hover': {
-        color: colors.white.main
+        backgroundColor: koniColors.palette['violet-4'],
       }
     }
   }

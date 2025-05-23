@@ -8,6 +8,13 @@ export const leftContentContainerStyle: CSSObject  = {
   boxShadow: `-8px 8px 0 0 ${koniColors.palette['violet-4']}`,
 }
 
+export const rightContentContainerStyle: CSSObject  = {
+  backgroundColor: koniColors.palette['violet-1'],
+  border: `3px solid ${koniColors.fadedDark['o-85']}`,
+  borderRadius: 24,
+  boxShadow: `8px 8px 0 0 ${koniColors.palette['violet-4']}`,
+}
+
 export const popoverLayoutStyle: CSSObject  = {
   backgroundColor: koniColors.palette['violet-1'],
   border: `2px solid ${koniColors.fadedLight['o-100']}`,

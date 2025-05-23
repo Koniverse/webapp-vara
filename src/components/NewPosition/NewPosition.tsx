@@ -5,7 +5,6 @@ import { getMaxTick, getMinTick, Network } from '@invariant-labs/vara-sdk'
 import { PERCENTAGE_DENOMINATOR } from '@invariant-labs/vara-sdk/target/consts'
 import { Box, Button, Grid, Hidden, Typography } from '@mui/material'
 import backIcon from '@static/svg/back-arrow.svg'
-import settingIcon from '@static/svg/settings.svg'
 import { ALL_FEE_TIERS_DATA, PositionTokenBlock, REFRESHER_INTERVAL } from '@store/consts/static'
 import {
   addressToTicker,
@@ -18,9 +17,9 @@ import {
   trimLeadingZeros,
   validConcentrationMidPriceTick
 } from '@utils/utils'
-import { PlotTickData, InitMidPrice } from '@store/reducers/positions'
+import { InitMidPrice, PlotTickData } from '@store/reducers/positions'
 import { SwapToken } from '@store/selectors/wallet'
-import { blurContent, unblurContent } from '@utils/uiUtils'
+import { blurContent, getButtonClasses, unblurContent } from '@utils/uiUtils'
 import { VariantType } from 'notistack'
 import React, { useEffect, useMemo, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
@@ -34,6 +33,8 @@ import { BestTier, PositionOpeningMethod, TokenPriceData } from '@store/consts/t
 import { getConcentrationArray, HexString } from '@invariant-labs/vara-sdk/target/utils'
 import { TooltipHover } from '@components/TooltipHover/TooltipHover'
 import { Status } from '@store/reducers/wallet'
+import { GearSix } from '@phosphor-icons/react'
+import classNames from 'classnames'
 
 export interface INewPosition {
   initialTokenFrom: string
@@ -533,10 +534,14 @@ export const NewPosition: React.FC<INewPosition> = ({
                 <TooltipHover text='Settings'>
                   <Button
                     onClick={handleClickSettings}
-                    className={classes.settingsIconBtn}
-                    disableRipple>
-                    <img src={settingIcon} className={classes.settingsIcon} alt='settings' />
-                  </Button>
+                    className={classNames(getButtonClasses({
+                      size: 'sm',
+                      variant: 'ghost',
+                      layout: 'icon-only'
+                    }, classes.settingsIconBtn))}
+                    startIcon={<GearSix />}
+                    disableRipple
+                  />
                 </TooltipHover>
               )}
             </Grid>

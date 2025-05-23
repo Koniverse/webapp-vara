@@ -78,19 +78,18 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     alignItems: 'center'
   },
   noData: {
-    color: colors.invariant.warning,
-    ...typography.caption2,
+    color: koniColors.semantic['warning'],
+    ...koniTypography.body4,
     display: 'flex',
     flexDirection: 'row',
     cursor: 'default',
-    paddingBottom: 10
   },
   noDataIcon: {
     marginRight: 5,
     height: 9.5,
     width: 9.5,
-    border: '1px solid #EFD063',
-    color: colors.invariant.warning,
+    border: `1px solid ${koniColors.semantic['warning']}`,
+    color: koniColors.semantic['warning'],
     borderRadius: '50%',
     fontSize: 8,
     lineHeight: '10px',

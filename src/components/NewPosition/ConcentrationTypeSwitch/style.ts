@@ -1,56 +1,51 @@
-import { colors, typography } from '@static/theme'
+import { koniColors, koniTypography } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
 
-export const useTabsStyles = makeStyles<{ value: number }>()((_theme, { value }) => ({
+export const useTabsStyles = makeStyles<{ value: number }>()((_theme) => ({
   root: {
     overflow: 'visible',
-    height: 28,
-    minHeight: 28,
-    borderRadius: 9,
-    width: 200,
-    backgroundColor: colors.invariant.black
+    height: 40,
+    minHeight: 40,
+    borderRadius: 100,
+    backgroundColor: koniColors.fadedLight['o-6'],
+    padding: 4,
+    boxSizing: 'border-box',
   },
   indicator: {
-    height: 28,
-    borderRadius: 9,
-    background:
-      value === 0 ? colors.invariant.greenLinearGradient : colors.invariant.pinkLinearGradient
+    display: 'none'
   },
   scrollable: {
     overflow: 'hidden'
   },
   flexContainer: {
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    gap: 8
   }
 }))
 
 export const useSingleTabStyles = makeStyles()(() => {
   return {
     root: {
-      textTransform: 'none',
-      zIndex: 1,
-      height: 28,
-      minHeight: 28,
-      paddingInline: 0,
-      minWidth: 80,
-      width: 100,
-      ...typography.caption2,
-      color: colors.invariant.light,
-      transition: 'color 300ms',
+      borderRadius: 28,
+      height: 32,
+      minHeight: 32,
+      paddingInline: 12,
+      paddingBlock: 0,
+      ...koniTypography.heading9,
+      color: koniColors.fadedLight['o-85'],
 
       '&:hover': {
-        color: colors.invariant.lightHover,
-        '@media (hover: none)': {
-          color: colors.invariant.light
-        }
+
       }
     },
     selected: {
-      ...typography.caption1,
-      color: colors.invariant.black + ' !important',
+      '&.Mui-selected': {
+        backgroundColor: koniColors.palette['violet-4'],
+        color: koniColors.fadedDark['o-100'],
+      },
 
       '&:hover': {
-        color: colors.invariant.black
+
       }
     }
   }

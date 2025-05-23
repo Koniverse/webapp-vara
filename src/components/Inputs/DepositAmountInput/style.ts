@@ -1,36 +1,25 @@
 import { Theme } from '@mui/material'
-import { colors, typography } from '@static/theme'
+import { colors, koniColors, koniTypography, typography } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
 
-const caption2styles = {
-  ...typography.caption2,
-  color: colors.invariant.lightHover,
-  overflow: 'hidden',
-  whiteSpace: 'nowrap',
-  textOverflow: 'ellipsis',
-  display: 'flex',
-  alignItems: 'center',
-
-  paddingBlock: 6,
-  flexShrink: 1,
-  marginRight: 6
-}
-export const useStyles = makeStyles<{ isSelected: boolean }>()((theme: Theme, { isSelected }) => ({
+export const useStyles = makeStyles<{ isSelected: boolean }>()((theme: Theme) => ({
   wrapper: {
     position: 'relative',
-    marginBottom: 16,
 
     [theme.breakpoints.down('md')]: {
       minWidth: 0
     }
   },
+
   root: {
     width: '100%',
-    backgroundColor: colors.invariant.componentBcg,
-    borderRadius: 20,
-    padding: '6px 12px',
-    ...typography.heading2
+    paddingInline: 20,
+    paddingTop: 16,
+    paddingBottom: 12
   },
+
+  // input
+
   inputContainer: {
     marginBottom: 6,
 
@@ -39,76 +28,56 @@ export const useStyles = makeStyles<{ isSelected: boolean }>()((theme: Theme, { 
     }
   },
   input: {
-    color: colors.invariant.light,
-    ...typography.heading2,
     width: '100%',
-    textAlign: 'right',
-    transition: 'all .4s',
-    '& ::placeholder': {
-      textAlign: 'right'
-    }
+    marginRight: 8
   },
   innerInput: {
-    textAlign: 'right',
-    color: colors.white.main,
+    padding: 0,
+    height: 42,
+    ...koniTypography.heading5,
+    color: koniColors.fadedDark['o-85'],
+
     '& ::placeholder': {
-      textAlign: 'right'
+      color: koniColors.fadedDark['o-45'],
     }
   },
+
+  // currency
+
   currency: {
-    height: 36,
-    minWidth: 85,
+    height: 48,
+    minWidth: 92,
+    paddingLeft: 8,
+    paddingRight: 8,
     width: 'fit-content',
     flexShrink: 0,
-    borderRadius: 11,
-    backgroundColor: colors.invariant.light,
-    padding: '6px 12px 6px 12px',
+    borderRadius: 32,
+    backgroundColor: koniColors.fadedDark['o-5'],
     cursor: 'default',
+    ...koniTypography.heading8,
+    color: koniColors.fadedDark['o-85'],
 
     [theme.breakpoints.down('md')]: {
-      height: 36,
-      minWidth: 85
+
     }
   },
-  percentages: {
-    flexShrink: 0,
-    width: 'fit-content',
-    justifyContent: 'end',
-    height: 17
-  },
-  percentage: {
-    ...typography.tiny1,
-    borderRadius: 5,
-    paddingInline: 5,
-    marginRight: 3,
-    height: 16,
-    lineHeight: '16px',
-    display: 'flex',
-    flexShrink: 0,
-    marginTop: 1
-  },
-  percentagePositive: {
-    color: colors.invariant.green,
-    backgroundColor: `${colors.invariant.green}40`
-  },
-  percentageNegative: {
-    color: colors.invariant.Error,
-    backgroundColor: `${colors.invariant.Error}40`
-  },
+
   imageContainer: {
-    width: 20,
-    height: 20,
-    marginRight: 8,
+    width: 32,
+    height: 32,
+    marginRight: 4,
     position: 'relative',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center'
   },
+
   currencyIcon: {
-    width: 20,
-    height: 20,
+    width: 32,
+    height: 32,
     borderRadius: '100%'
   },
+
   warningIcon: {
     position: 'absolute',
     width: 12,
@@ -116,73 +85,87 @@ export const useStyles = makeStyles<{ isSelected: boolean }>()((theme: Theme, { 
     bottom: -6,
     right: -6
   },
-  currencySymbol: {
-    ...typography.body3,
-    color: colors.white.main
-  },
-  noCurrencyText: {
-    ...typography.body3,
-    color: colors.white.main,
-    cursor: 'default',
-    transform: 'scaleX(2)'
-  },
-  balance: {
-    height: 17,
-    cursor: isSelected ? 'pointer' : '',
-    flexShrink: 1,
-    marginRight: 10
-  },
-  caption2: {
-    ...caption2styles,
 
-    '&:hover': {
-      color: isSelected ? colors.white.main : '',
-      '@media (hover: none)': {
-        color: colors.invariant.lightHover
-      }
+  currencySymbol: {
+
+  },
+
+  noCurrencyText: {
+    flex: 1,
+    textAlign: 'center',
+  },
+
+  balanceArea: {
+    paddingTop: 4,
+    paddingBottom: 4,
+  },
+
+  percentages: {
+    flexShrink: 0,
+    width: 'fit-content',
+    justifyContent: 'end',
+  },
+
+  balance: {
+    display: 'flex',
+    alignItems: 'center',
+    flexShrink: 1,
+  },
+
+  estimatedBalance: {
+    ...koniTypography.body4,
+    color: koniColors.fadedDark['o-85'],
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
+
+    '.__symbol': {
+      color: koniColors.fadedDark['o-45'],
     }
   },
-  estimatedBalance: {
-    ...caption2styles
+
+  caption2: {
+    ...koniTypography.body4,
+    color: koniColors.fadedDark['o-85'],
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
+    display: 'flex',
+    alignItems: 'center',
   },
+
   maxButton: {
-    color: colors.invariant.componentBcg,
-    ...typography.tiny2,
-    borderRadius: 4,
-    width: 26,
-    minWidth: 26,
-    height: 14,
-    textTransform: 'none',
-    marginLeft: 4,
-    background: ' rgba(46, 224, 154, 0.8)',
-    lineHeight: '14px',
+    marginLeft: 8,
+    ...koniTypography.body4,
+    paddingLeft: 8,
+    paddingRight: 8,
+    paddingTop: 0,
+    borderRadius: 50,
+    paddingBottom: 0,
+    color: koniColors.fadedDark['o-85'],
+    backgroundColor: koniColors.fadedDark['o-10'],
+    boxShadow: 'none',
 
     '&:hover': {
-      background: 'none',
-      backgroundColor: colors.invariant.green,
-      boxShadow: '0px 0px 20px -10px white',
-      '@media (hover: none)': {
-        background: ' rgba(46, 224, 154, 0.8)',
-        boxShadow: 'none'
-      }
+      boxShadow: 'none',
+      backgroundColor: koniColors.fadedDark['o-10'],
     },
     [theme.breakpoints.down('md')]: {
-      width: 26,
-      minWidth: 26,
-      height: 14,
-      marginTop: 2
+      // width: 26,
+      // minWidth: 26,
+      // height: 14,
+      // marginTop: 2
     }
   },
   maxButtonNotActive: {
-    backgroundColor: colors.invariant.light,
+
     '&:hover': {
-      backgroundColor: colors.invariant.light,
       cursor: 'default'
     }
   },
   noData: {
-    color: colors.invariant.warning,
-    ...typography.caption2,
+    color: koniColors.semantic['warning'],
+    ...koniTypography.body4,
     cursor: 'default',
     display: 'flex',
     flexDirection: 'row'
@@ -191,8 +174,8 @@ export const useStyles = makeStyles<{ isSelected: boolean }>()((theme: Theme, { 
     marginRight: 5,
     height: 9.5,
     width: 9.5,
-    border: '1px solid #EFD063',
-    color: colors.invariant.warning,
+    border: `1px solid ${koniColors.semantic['warning']}`,
+    color: koniColors.semantic['warning'],
     borderRadius: '50%',
     fontSize: 8,
     lineHeight: '10px',
