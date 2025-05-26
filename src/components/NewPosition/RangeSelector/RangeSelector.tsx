@@ -18,6 +18,8 @@ import React, { useEffect, useRef, useState } from 'react'
 import ConcentrationSlider from '../ConcentrationSlider/ConcentrationSlider'
 import useStyles from './style'
 import { PositionOpeningMethod } from '@store/consts/types'
+import { getButtonClasses } from '@utils/uiUtils.ts'
+import { Info } from '@phosphor-icons/react'
 export interface IRangeSelector {
   data: PlotTickData[]
   midPrice: TickPlotPositionData
@@ -456,11 +458,15 @@ export const RangeSelector: React.FC<IRangeSelector> = ({
                 tooltip: classes.liquidityTooltip
               }}>
               <Typography className={classes.activeLiquidity}>
-                Active liquidity <span className={classes.activeLiquidityIcon}>i</span>
+                Active liquidity
+
+                <span className={classes.activeLiquidityIcon}>
+                  <Info />
+                </span>
               </Typography>
             </Tooltip>
             <Grid>
-              <Typography className={classes.currentPrice}>Current price ━━━</Typography>
+              <Typography className={classes.currentPriceLegend}>Current price ━━━</Typography>
             </Grid>
           </Grid>
         </Grid>
@@ -614,11 +620,21 @@ export const RangeSelector: React.FC<IRangeSelector> = ({
           </Grid>
         ) : (
           <Grid container className={classes.buttons} justifyContent='center' alignItems='center'>
-            <Button className={classes.button} onClick={resetPlot}>
+            <Button
+              className={getButtonClasses({
+                size: 'lg',
+                layout: 'text-only',
+                variant: 'secondary-light'
+              }, classes.button)}
+              onClick={resetPlot}>
               Reset range
             </Button>
             <Button
-              className={classes.button}
+              className={getButtonClasses({
+                size: 'lg',
+                layout: 'text-only',
+                variant: 'secondary-light'
+              }, classes.button)}
               onClick={() => {
                 const left = isXtoY ? getMinTick(tickSpacing) : getMaxTick(tickSpacing)
                 const right = isXtoY ? getMaxTick(tickSpacing) : getMinTick(tickSpacing)

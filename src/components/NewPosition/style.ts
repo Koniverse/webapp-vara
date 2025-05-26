@@ -6,7 +6,7 @@ const useStyles = makeStyles()(theme => {
     // back
 
     wrapper: {
-      width: 952,
+      width: 1156,
       maxWidth: '100%'
     },
 

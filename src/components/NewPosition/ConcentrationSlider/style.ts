@@ -1,14 +1,15 @@
-import { colors, typography } from '@static/theme'
+import { colors, koniColors, koniTypography } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
 
 export const useThumbStyles = makeStyles()(() => {
   return {
     outerCircle: {
-      background: colors.invariant.pinkLinearGradient,
-      width: 28,
-      height: 28,
+      width: 24,
+      height: 24,
       borderRadius: '100%',
-      padding: 6,
+      border: '2px solid',
+      borderColor: koniColors.palette['violet-7'],
+      backgroundColor: koniColors.background['light-1'],
       boxSizing: 'border-box'
     },
     innerCircle: {
@@ -24,9 +25,13 @@ export const useSliderStyles = makeStyles<{ valuesLength: number; disabledRange:
   (theme, { disabledRange, valuesLength }) => ({
     root: {
       width: '100%',
-      paddingBlock: 13,
+      paddingBlock: 8,
+      height: 8,
+      opacity: disabledRange ? 0.4 : 1,
+      marginBottom: 24,
+
       [theme.breakpoints.down('sm')]: {
-        marginInline: '16px'
+        // marginInline: '16px'
       }
     },
     thumb: {
@@ -35,15 +40,8 @@ export const useSliderStyles = makeStyles<{ valuesLength: number; disabledRange:
       boxShadow: 'none !important'
     },
     rail: {
-      background:
-        disabledRange > 0
-          ? `linear-gradient(90deg, ${colors.invariant.lightGrey} 0%, ${
-              colors.invariant.lightGrey
-            } ${disabledRange}%, ${colors.invariant.green} ${disabledRange + 1}%, ${
-              colors.invariant.green
-            } 100%)`
-          : colors.invariant.green,
-      height: 6,
+      background: koniColors.palette['violet-5'],
+      height: 8,
       opacity: 1
     },
     track: {
@@ -51,10 +49,9 @@ export const useSliderStyles = makeStyles<{ valuesLength: number; disabledRange:
       height: 6
     },
     markLabel: {
-      color: colors.invariant.text,
-      ...typography.body1,
-      marginTop: 10,
-      top: 26,
+      color: koniColors.fadedDark['o-85'],
+      ...koniTypography.body2,
+      top: 24,
 
       '&[data-index="0"]': {
         transform: 'translateX(-30%)'
@@ -66,41 +63,44 @@ export const useSliderStyles = makeStyles<{ valuesLength: number; disabledRange:
     },
     mark: {
       display: 'none',
-
-      [`&[data-index="${valuesLength - 1}"], &[data-index="0"]`]: {
-        display: 'block',
-        width: 14,
-        height: 14,
-        borderRadius: '100%',
-        transform: 'translate(-6px, -6px)'
-      },
-
-      '&[data-index="0"]': {
-        background: disabledRange > 0 ? colors.invariant.lightGrey : colors.invariant.green
-      },
-
-      [`&[data-index="${valuesLength - 1}"]`]: {
-        background: colors.invariant.green
-      }
+      //
+      // [`&[data-index="${valuesLength - 1}"], &[data-index="0"]`]: {
+      //   display: 'block',
+      //   width: 14,
+      //   height: 14,
+      //   borderRadius: '100%',
+      //   transform: 'translate(-6px, -6px)'
+      // },
+      //
+      // '&[data-index="0"]': {
+      //   background: disabledRange > 0 ? colors.invariant.lightGrey : colors.invariant.green
+      // },
+      //
+      // [`&[data-index="${valuesLength - 1}"]`]: {
+      //   background: colors.invariant.green
+      // }
     },
 
     valueLabel: {
-      padding: '2px 15px',
+      padding: '8px 15px' as any,
       width: 300,
       height: 17,
       position: 'absolute',
       margin: 0,
-      top: -8,
+      top: -4,
       borderRadius: 7,
-      background: colors.invariant.light,
+      boxShadow: '0 4px 6px -2px rgba(16, 24, 40, 0.03)',
+      background: koniColors.background['light-1'],
+      border: '1px solid',
+      borderColor: koniColors.fadedDark['o-5'],
       maxWidth: '100%',
 
       '& span': {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        color: colors.invariant.text,
-        ...typography.caption1,
+        color: koniColors.fadedDark['o-85'],
+        ...koniTypography.body4,
         minWidth: 28
       },
       '&::before': {

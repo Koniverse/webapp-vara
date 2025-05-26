@@ -19,6 +19,8 @@ import { PositionOpeningMethod } from '@store/consts/types'
 import ConcentrationSlider from '../ConcentrationSlider/ConcentrationSlider'
 import { MINIMAL_POOL_INIT_PRICE } from '@store/consts/static'
 import AnimatedNumber from '@components/AnimatedNumber/AnimatedNumber'
+import { getButtonClasses } from '@utils/uiUtils.ts'
+import { Info } from '@phosphor-icons/react'
 
 export interface IPoolInit {
   tokenASymbol: string
@@ -277,39 +279,47 @@ export const PoolInit: React.FC<IPoolInit> = ({
       <Grid className={classes.topInnerWrapper}>
         <Typography className={classes.header}>Starting price</Typography>
         <Grid className={classes.infoWrapper}>
+          <div className={classes.infoIcon}>
+            <Info weight={'fill'} />
+          </div>
+
           <Typography className={classes.info}>
             This pool does not exist yet. To create it, select the fee tier, initial price, and
             enter the amount of tokens. The estimated cost of creating a pool is 0.3 VARA.
           </Typography>
         </Grid>
 
-        <SimpleInput
-          setValue={setMidPriceInput}
-          value={midPriceInput}
-          decimal={isXtoY ? xDecimal : yDecimal}
-          className={classes.midPrice}
-          placeholder='0.0'
-          onBlur={e => {
-            setMidPriceInput(validateMidPriceInput(e.target.value || '0'))
-          }}
-        />
+        <div className={classes.midPriceInputArea}>
+          <SimpleInput
+            setValue={setMidPriceInput}
+            value={midPriceInput}
+            decimal={isXtoY ? xDecimal : yDecimal}
+            className={classes.midPrice}
+            placeholder='0.0'
+            onBlur={e => {
+              setMidPriceInput(validateMidPriceInput(e.target.value || '0'))
+            }}
+          />
 
-        <Grid
-          className={classes.priceWrapper}
-          container
-          justifyContent='space-between'
-          alignItems='center'>
-          <Typography className={classes.priceLabel}>{tokenASymbol} starting price: </Typography>
-          <Typography className={classes.priceValue}>
-            <span>~</span>
-            <AnimatedNumber start={animatedStartingPrice} finish={price} />
-            <span> </span>
-            {tokenBSymbol}
-          </Typography>
-        </Grid>
+          <Grid
+            className={classes.priceWrapper}
+            container
+            justifyContent='space-between'
+            alignItems='center'>
+            <Typography className={classes.priceLabel}>{tokenASymbol} starting price: </Typography>
+            <Typography className={classes.priceValue}>
+              <span>~</span>
+              <AnimatedNumber start={animatedStartingPrice} finish={price} />
+              <span> </span>
+              {tokenBSymbol}
+            </Typography>
+          </Grid>
+        </div>
       </Grid>
+
       <Grid className={classes.bottomInnerWrapper}>
         <Typography className={classes.subheader}>Set price range</Typography>
+
         <Grid container className={classes.inputs}>
           <RangeInput
             disabled={positionOpeningMethod === 'concentration'}
@@ -346,6 +356,7 @@ export const PoolInit: React.FC<IPoolInit> = ({
             diffLabel='Min - Current'
             percentDiff={((+leftInput - price) / price) * 100}
           />
+
           <RangeInput
             disabled={positionOpeningMethod === 'concentration'}
             className={classes.input}
@@ -408,11 +419,21 @@ export const PoolInit: React.FC<IPoolInit> = ({
           </Grid>
         ) : (
           <Grid container className={classes.buttons} justifyContent='center' alignItems='center'>
-            <Button className={classes.button} onClick={resetRange}>
+            <Button
+              className={getButtonClasses({
+                size: 'lg',
+                layout: 'text-only',
+                variant: 'secondary-light'
+              }, classes.button)}
+              onClick={resetRange}>
               Reset range
             </Button>
             <Button
-              className={classes.button}
+              className={getButtonClasses({
+                size: 'lg',
+                layout: 'text-only',
+                variant: 'secondary-light'
+              }, classes.button)}
               onClick={() => {
                 changeRangeHandler(isXtoY ? minTick : maxTick, isXtoY ? maxTick : minTick)
               }}>

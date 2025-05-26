@@ -4,7 +4,7 @@ import { Layer, ResponsiveLine } from '@nivo/line'
 import loader from '@static/gif/loader.gif'
 import ZoomInIcon from '@static/svg/zoom-in-icon.svg'
 import ZoomOutIcon from '@static/svg/zoom-out-icon.svg'
-import { colors, theme } from '@static/theme'
+import { colors, koniColors, theme } from '@static/theme'
 import { formatNumber, nearestTickIndex } from '@utils/utils'
 import { PlotTickData } from '@store/reducers/positions'
 import classNames from 'classnames'
@@ -281,7 +281,7 @@ export const PriceRangePlot: React.FC<IPriceRangePlot> = ({
           filter='url(#shadow-global-price)'
           opacity='0.3'
         />
-        <rect x={19} y={20} width='3' height={innerHeight} fill={colors.invariant.yellow} />
+        <rect x={19} y={20} width='3' height={innerHeight} fill={koniColors.palette['violet-6']} />
       </svg>
     )
   }
@@ -432,7 +432,7 @@ export const PriceRangePlot: React.FC<IPriceRangePlot> = ({
         axisLeft={null}
         axisBottom={{
           tickSize: 0,
-          tickPadding: 0,
+          tickPadding: 6,
           tickRotation: 0,
           tickValues: 5,
           format: value => formatNumber(value.toString())

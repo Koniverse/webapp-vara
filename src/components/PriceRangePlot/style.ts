@@ -9,8 +9,10 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     position: 'relative',
     '& g > text': {
       stroke: 'none',
-      fill: '#A9B6BF!important',
+      fontSize: '10px !important',
+      fill: 'rgba(21, 24, 35, 0.65) !important',
       fontFamily: 'Bricolage Grotesque !important',
+      fontWeight: 500,
 
       [theme.breakpoints.down('md')]: {
         fontSize: '8px!important'

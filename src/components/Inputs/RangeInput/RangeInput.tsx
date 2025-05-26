@@ -1,12 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react'
-import AddIcon from '@mui/icons-material/Add'
-import RemoveIcon from '@mui/icons-material/Remove'
 import useStyles from './style'
-import { colors } from '@static/theme'
+import { koniColors } from '@static/theme'
 import { Button, Grid, Input, Typography } from '@mui/material'
 import { formatNumbers, showPrefix } from '@utils/utils'
 import { FormatNumberThreshold } from '@store/consts/types'
 import AnimatedNumber from '@components/AnimatedNumber/AnimatedNumber'
+import classNames from 'classnames'
+import { Minus, Plus } from '@phosphor-icons/react'
+import { getButtonClasses } from '@utils/uiUtils.ts'
 
 export interface IRangeInput {
   label: string
@@ -115,7 +116,7 @@ export const RangeInput: React.FC<IRangeInput> = ({
   ]
 
   return (
-    <Grid className={className} style={style} container direction='column' alignItems='center'>
+    <Grid className={classNames(classes.container, className)} style={style} container direction='column' alignItems='center'>
       <Grid
         className={classes.data}
         container
@@ -128,15 +129,24 @@ export const RangeInput: React.FC<IRangeInput> = ({
         </Typography>
       </Grid>
       <Grid
-        className={classes.controls}
+        className={classNames(classes.controls, {
+          '-disabled': disabled,
+        })}
         container
         direction='row'
         alignItems='center'
         wrap='nowrap'>
         {disabled ? null : (
-          <Button className={classes.button} onClick={decreaseValue} disableRipple>
-            <RemoveIcon className={classes.buttonIcon} />
-          </Button>
+          <Button
+            className={getButtonClasses({
+              size: 'sm',
+              layout: 'icon-only',
+              variant: 'primary'
+            }, classes.button)}
+            onClick={decreaseValue}
+            startIcon={<Minus />}
+            disableRipple
+          />
         )}
         <Input
           className={classes.value}
@@ -152,9 +162,16 @@ export const RangeInput: React.FC<IRangeInput> = ({
           }}
         />
         {disabled ? null : (
-          <Button className={classes.button} onClick={increaseValue} disableRipple>
-            <AddIcon className={classes.buttonIcon} />
-          </Button>
+          <Button
+            className={getButtonClasses({
+              size: 'sm',
+              layout: 'icon-only',
+              variant: 'primary'
+            }, classes.button)}
+            onClick={increaseValue}
+            startIcon={<Plus />}
+            disableRipple
+          />
         )}
       </Grid>
       <Grid
@@ -169,7 +186,7 @@ export const RangeInput: React.FC<IRangeInput> = ({
         <Typography
           className={classes.diff}
           style={{
-            color: percentDiff >= 0 ? colors.invariant.green : colors.invariant.Error
+            color: percentDiff >= 0 ? koniColors.palette['lightGreen-8'] : koniColors.semantic.error
           }}>
           {percentDiff >= 0 ? '+' : ''}
           {percentDiff ? (

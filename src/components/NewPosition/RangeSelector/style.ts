@@ -1,48 +1,54 @@
-import { colors, typography } from '@static/theme'
+import { colors, koniColors, koniTypography, typography } from '@static/theme'
+import { rightContentContainerStyle } from '@styles'
 import { makeStyles } from 'tss-react/mui'
 
 const useStyles = makeStyles()(theme => {
   return {
     wrapper: {
-      borderRadius: 10,
-      backgroundColor: colors.invariant.component,
-      padding: '16px 24px 16px 24px',
+      ...rightContentContainerStyle,
       flex: '1 1 0%',
+      paddingBlock: 40,
+      paddingInline: 32,
       position: 'relative',
 
       [theme.breakpoints.down('sm')]: {
-        padding: '16px 8px  24px 8px '
+
       }
     },
     headerContainer: {
       marginBottom: 12
     },
     header: {
-      ...typography.heading4,
-      color: colors.white.main
+      ...koniTypography.heading6,
+      paddingInline: 8,
+      paddingBlock: 4,
+      color: koniColors.fadedDark['o-100'],
     },
-    innerWrapper: {
-      borderRadius: 8,
-      backgroundColor: colors.invariant.component,
-      width: '100%',
-      position: 'relative',
-      gap: 16
-    },
+
     topInnerWrapper: {
       minHeight: 300,
       maxWidth: '100%'
+    },
+
+    innerWrapper: {
+      borderRadius: 8,
+      width: '100%',
+      position: 'relative',
     },
     plot: {
       width: '100%',
       height: 185
     },
     subheader: {
-      ...typography.heading4,
-      color: colors.white.main
+      ...koniTypography.heading6,
+      paddingInline: 16,
+      paddingBlock: 4,
+      marginBottom: 12,
+      color: koniColors.fadedDark['o-100'],
     },
     inputs: {
       flexDirection: 'row',
-      gap: 16
+      gap: 12
     },
     input: {
       flex: '1 1 0%',
@@ -80,20 +86,21 @@ const useStyles = makeStyles()(theme => {
     },
     blocker: {
       position: 'absolute',
-      background: 'red',
       top: 0,
       right: 0,
       zIndex: 11,
       width: '100%',
       height: '100%',
-      backgroundColor: 'rgba(11, 12, 13, 0.8)',
-      borderRadius: 11,
+      backgroundColor: koniColors.fadedLight['o-65'],
+      backdropFilter: 'blur(8px)',
+      backfaceVisibility: 'hidden',
+      borderRadius: 24,
       [theme.breakpoints.down('md')]: {
-        right: 0,
-        zIndex: 11,
-        width: '100%',
-        borderRadius: 9,
-        textAlign: 'center'
+        // right: 0,
+        // zIndex: 11,
+        // width: '100%',
+        // borderRadius: 9,
+        // textAlign: 'center'
       }
     },
 
@@ -102,20 +109,20 @@ const useStyles = makeStyles()(theme => {
       alignItems: 'center',
       justifyContent: 'center',
       height: '100%',
-      ...typography.heading4,
-      color: colors.invariant.lightHover,
+      ...koniTypography.heading7,
+      color: koniColors.fadedDark['o-100'],
       zIndex: 99
     },
     buttons: {
-      marginTop: 4,
+      marginTop: 24,
       width: '100%',
-      height: 70,
       flexDirection: 'row',
-      gap: 16,
+      gap: 12,
       alignItems: 'center'
     },
     sliderWrapper: {
-      paddingTop: 24,
+      paddingTop: 56,
+      marginBottom: -24,
       paddingInline: 8,
       position: 'relative',
 
@@ -159,29 +166,19 @@ const useStyles = makeStyles()(theme => {
       marginBottom: 16
     },
     activeLiquidity: {
-      height: 24,
-      color: colors.invariant.text,
-      ...typography.caption2,
+      ...koniTypography.body5,
+      color: koniColors.fadedDark['o-85'],
       display: 'flex',
       flexDirection: 'row',
+      justifyContent: 'flex-end',
       alignItems: 'center',
-      cursor: 'default'
+      cursor: 'default',
+      gap: 2
     },
     activeLiquidityIcon: {
-      marginLeft: 5,
-      height: 14,
-      width: 14,
-      border: '1px solid #FFFFFF',
-      color: colors.invariant.text,
-      borderRadius: '50%',
-      fontSize: 8,
-      lineHeight: '10px',
-      fontWeight: 400,
-      textAlign: 'center',
-      boxSizing: 'border-box',
-      paddingTop: 3,
-      cursor: 'default',
-      userSelect: 'none'
+      display: 'block',
+      fontSize: 12,
+      height: 12,
     },
     liquidityTooltip: {
       background: colors.invariant.component,
@@ -215,15 +212,18 @@ const useStyles = makeStyles()(theme => {
       marginLeft: 16
     },
     currentPrice: {
-      display: 'inline-block',
-      color: colors.invariant.yellow,
-      ...typography.caption2,
+      ...koniTypography.body3,
+      color: koniColors.palette['violet-6'],
+      paddingInline: 8
+    },
+    currentPriceLegend: {
+      ...koniTypography.body5,
+      color: koniColors.palette['violet-6'],
       textAlign: 'right'
     },
     checkboxLabel: {
-      color: colors.invariant.textGrey,
-      fontSize: 14,
-      fontWeight: 'normal'
+      color: koniColors.fadedDark['o-85'],
+      ...koniTypography.body3
     },
     activeLiquidityContainer: {
       width: 'auto'

@@ -19,7 +19,6 @@ function ThumbComponent(props: ThumbComponentProps) {
     <SliderThumb {...other} aria-label='slider thumb'>
       {children}
       <Grid className={classes.outerCircle}>
-        <Grid className={classes.innerCircle} />
       </Grid>
     </SliderThumb>
   )

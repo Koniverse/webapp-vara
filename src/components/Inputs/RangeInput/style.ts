@@ -1,57 +1,106 @@
 import { Theme } from '@mui/material'
-import { colors, typography } from '@static/theme'
+import { colors, koniColors, koniTypography } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
 
 export const useStyles = makeStyles()((theme: Theme) => ({
+  container: {
+    borderRadius: 16,
+    backgroundColor: koniColors.background['light-1'],
+    padding: 12
+  },
+
   data: {
-    height: 36,
-    paddingInline: 8,
+    height: 46,
+    paddingInline: 12,
     flexWrap: 'nowrap',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
-    backgroundColor: colors.invariant.light,
-    borderRadius: 11,
+    backgroundColor: koniColors.fadedDark['o-5'],
+    borderRadius: 12,
 
     [theme.breakpoints.down('md')]: {
-      height: 36
+
     }
   },
   label: {
-    color: colors.white.main,
+    ...koniTypography.heading9,
+    color: koniColors.fadedDark['o-85'],
     whiteSpace: 'nowrap',
-    marginRight: 16,
-    ...typography.body1,
+    marginRight: 8,
 
     [theme.breakpoints.down('md')]: {
-      ...typography.body1
+
     },
     [theme.breakpoints.down('sm')]: {
-      ...typography.caption3
+
     }
   },
   tokens: {
-    color: colors.invariant.lightHover,
-    ...typography.body2,
+    color: koniColors.fadedDark['o-45'],
+    ...koniTypography.heading9,
     textOverflow: 'ellipsis',
     overflow: 'hidden',
     whiteSpace: 'nowrap',
 
     [theme.breakpoints.down('md')]: {
-      marginInline: 'auto',
-      ...typography.body2
+
     },
     [theme.breakpoints.down('sm')]: {
-      ...typography.caption3
+
     }
   },
   controls: {
-    backgroundColor: colors.invariant.componentBcg,
-    borderRadius: 10,
+    backgroundColor: koniColors.fadedDark['o-5'],
+    height: 46,
+    borderRadius: 23,
+    paddingInline: 3,
+
+    input: {
+      height: 46,
+      paddingInline: 4,
+      paddingBlock: 0
+    },
+
+    '&.-disabled': {
+      borderRadius: 12,
+      paddingInline: 0,
+
+      input: {
+        paddingInline: 16,
+      },
+    },
+
     '& input.Mui-disabled': {
-      WebkitTextFillColor: colors.white.main + '!important'
+      WebkitTextFillColor: koniColors.fadedDark['o-100'] + '!important'
     }
   },
+
+  value: {
+    ...koniTypography.heading8,
+    color: koniColors.fadedDark['o-100'],
+    backgroundColor: 'transparent',
+    height: 46,
+    paddingInline: 0,
+    flex: '1 1 0%',
+
+    '& input': {
+      textAlign: 'center'
+    },
+
+    '& input:disabled': {
+
+    },
+
+    [theme.breakpoints.down('md')]: {
+
+    },
+
+    [theme.breakpoints.down('sm')]: {
+
+    }
+  },
+
   button: {
     minWidth: 36,
     width: 36,
@@ -70,62 +119,35 @@ export const useStyles = makeStyles()((theme: Theme) => ({
       }
     }
   },
+
   buttonIcon: {
     width: 22,
     height: 'auto',
     fill: colors.invariant.dark
   },
-  value: {
-    color: colors.white.main,
-    ...typography.body3,
-    lineHeight: 24,
-    backgroundColor: colors.invariant.componentBcg,
-    height: 36,
-    paddingInline: 5,
-    borderRadius: 10,
-    flex: '1 1 0%',
 
-    '& input': {
-      textAlign: 'center'
-    },
-
-    '& input:disabled': {
-      color: colors.white.main
-    },
-
-    [theme.breakpoints.down('md')]: {
-      height: 36
-    },
-    [theme.breakpoints.down('sm')]: {
-      ...typography.caption2
-    }
-  },
   diffWrapper: {
-    borderRadius: 11,
-    height: 36,
-    backgroundColor: colors.invariant.black
+    borderRadius: 12,
+    height: 46,
+    paddingInline: 12,
+    backgroundColor: koniColors.fadedDark['o-5'],
   },
+
   diffLabelWrapper: {
-    borderRadius: 11,
-    height: 36,
-    flex: '0 0 auto',
-    backgroundColor: colors.invariant.light,
-    display: 'flex',
-    alignItems: 'center',
-    paddingInline: 6
+    marginRight: 8,
   },
+
   diffLabel: {
-    ...typography.caption2,
-    color: colors.invariant.text,
+    ...koniTypography.heading9,
+    color: koniColors.fadedDark['o-85'],
     textOverflow: 'ellipsis',
     overflow: 'hidden',
     whiteSpace: 'nowrap'
   },
+
   diff: {
-    ...typography.body1,
-    padding: 3,
-    borderRadius: 5,
-    marginInline: 'auto',
+    ...koniTypography.heading9,
+    marginLeft: 'auto',
     overflowX: 'auto',
     overflowY: 'hidden',
     scrollbarWidth: 'none',

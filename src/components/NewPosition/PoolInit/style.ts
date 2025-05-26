@@ -1,23 +1,31 @@
-import { colors, typography } from '@static/theme'
+import { colors, koniColors, koniTypography, typography } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
+import { rightContentContainerStyle } from '@styles'
 
 const useStyles = makeStyles()(theme => {
   return {
     wrapper: {
-      borderRadius: 10,
-      backgroundColor: colors.invariant.component,
-      padding: '16px 24px 16px 24px',
+      ...rightContentContainerStyle,
       flex: '1 1 0%',
+      paddingBlock: 40,
+      paddingInline: 32,
       [theme.breakpoints.down('sm')]: {
-        padding: '16px 8px  16px 8px'
+
       }
     },
     header: {
-      ...typography.heading4,
-      marginBottom: 24,
-      color: colors.white.main,
-      height: 24
+      ...koniTypography.heading6,
+      paddingInline: 16,
+      paddingBlock: 4,
+      marginBottom: 12,
+      color: koniColors.fadedDark['o-100'],
     },
+
+    topInnerWrapper: {
+      maxWidth: '100%',
+      marginBottom: 20,
+    },
+
     innerWrapper: {
       borderRadius: 8,
       backgroundColor: colors.invariant.component,
@@ -25,22 +33,50 @@ const useStyles = makeStyles()(theme => {
       position: 'relative',
       gap: 4
     },
-    topInnerWrapper: {
-      minHeight: 300,
-      maxWidth: '100%'
+
+    // midPriceInputArea
+
+    midPriceInputArea: {
+      backgroundColor: koniColors.background['light-1'],
+      borderRadius: 16,
+      padding: 12
     },
+
+    midPrice: {
+      marginBottom: 8
+    },
+
+    priceWrapper: {
+
+    },
+
+    priceLabel: {
+      ...koniTypography.body3,
+      color: koniColors.fadedDark['o-85'],
+    },
+
+    priceValue: {
+      ...koniTypography.body3,
+      color: koniColors.fadedDark['o-85'],
+    },
+
     bottomInnerWrapper: {
       display: 'flex',
-      flexDirection: 'column',
-      gap: 16
+      flexDirection: 'column'
     },
+
+    //
+
     subheader: {
-      ...typography.heading4,
-      color: colors.white.main
+      ...koniTypography.heading6,
+      paddingInline: 16,
+      paddingBlock: 4,
+      marginBottom: 12,
+      color: koniColors.fadedDark['o-100'],
     },
     inputs: {
       flexDirection: 'row',
-      gap: 16
+      gap: 12
     },
     input: {
       flex: '1 1 0%',
@@ -77,45 +113,45 @@ const useStyles = makeStyles()(theme => {
       }
     },
     buttons: {
-      marginTop: 4,
+      marginTop: 24,
       width: '100%',
-      height: 70,
       flexDirection: 'row',
-      gap: 16,
+      gap: 12,
       alignItems: 'center'
     },
+
     infoWrapper: {
-      borderRadius: 19,
-      padding: 16,
-      background:
-        'linear-gradient(138deg, rgba(110,88,146,1) 0%, rgba(58,69,101,0.9108018207282913) 47%, rgba(53,99,112,1) 100%)',
-      marginBottom: 16
+      borderRadius: 16,
+      padding: `16px 12px`,
+      background: koniColors.background['light-1'],
+      marginBottom: 12,
+      border: `1px solid ${koniColors.semantic.info}`,
+      display: 'flex',
+      gap: 8,
+      alignItems: 'center'
     },
+
+    infoIcon: {
+      fontSize: 20,
+      backgroundColor: koniColors.semantic.info,
+      color: koniColors.fadedDark['o-100'],
+      borderRadius: '50%',
+      width: 32,
+      minWidth: 32,
+      height: 32,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+
     info: {
-      color: colors.white.main,
-      ...typography.body2,
-      lineHeight: '22px'
+      ...koniTypography.body3,
+      color: koniColors.fadedDark['o-65'],
     },
-    midPrice: {
-      marginBottom: 8
-    },
-    priceWrapper: {
-      backgroundColor: colors.invariant.light,
-      paddingInline: 12,
-      paddingBlock: 10,
-      borderRadius: 13,
-      marginBottom: 18
-    },
-    priceLabel: {
-      ...typography.body2,
-      color: colors.invariant.textGrey
-    },
-    priceValue: {
-      ...typography.body1,
-      color: colors.white.main
-    },
+
     sliderWrapper: {
-      paddingTop: 24,
+      paddingTop: 56,
+      marginBottom: -24,
       paddingInline: 8,
       position: 'relative',
 

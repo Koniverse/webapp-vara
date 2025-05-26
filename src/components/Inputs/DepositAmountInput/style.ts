@@ -191,8 +191,9 @@ export const useStyles = makeStyles<{ isSelected: boolean }>()((theme: Theme) =>
     zIndex: 11,
     width: '100%',
     height: '100%',
-    backgroundColor: 'rgba(11, 12, 13, 0.88)',
-    filter: 'blur(4px) brightness(0.4)'
+    backgroundColor: koniColors.fadedLight['o-65'],
+    backfaceVisibility: 'hidden',
+    backdropFilter: 'blur(8px)',
   },
   blockedInfoWrapper: {
     position: 'absolute',
@@ -202,8 +203,8 @@ export const useStyles = makeStyles<{ isSelected: boolean }>()((theme: Theme) =>
     height: '100%'
   },
   blockedInfo: {
-    ...typography.body2,
-    color: colors.invariant.lightHover
+    ...koniTypography.heading7,
+    color: koniColors.fadedDark['o-100'],
   },
   loading: {
     width: 15,
