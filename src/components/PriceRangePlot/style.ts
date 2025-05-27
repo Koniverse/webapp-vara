@@ -1,5 +1,5 @@
 import { Theme } from '@mui/material'
-import { colors, typography } from '@static/theme'
+import { colors, koniColors, koniTypography, typography } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
 
 export const useStyles = makeStyles()((theme: Theme) => ({
@@ -72,31 +72,21 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     margin: 'auto'
   },
   errorText: {
-    color: colors.white.main,
-    ...typography.heading4
+    color: koniColors.fadedDark['o-100'],
+    ...koniTypography.heading7
   },
   reloadButton: {
-    width: 130,
-    height: 40,
-    borderRadius: 14,
-    background: colors.invariant.pinkLinearGradientOpacity,
-    color: colors.invariant.dark,
-    ...typography.body1,
-    marginTop: 24,
-    textTransform: 'none',
-
-    '&:hover': {
-      background: colors.invariant.pinkLinearGradient
-    }
+    marginTop: 12,
   },
   cover: {
-    width: 'calc(100% + 10px)',
-    height: 'calc(100% + 10px)',
-    background: '#01051499',
+    width: '100%',
+    height: '100%',
+    backgroundColor: koniColors.fadedLight['o-65'],
+    backdropFilter: 'blur(8px)',
+    backfaceVisibility: 'hidden',
     position: 'absolute',
     zIndex: 11,
-    borderRadius: 10,
-    backdropFilter: 'blur(16px)'
+    borderRadius: 16,
   },
   loader: {
     height: 100,

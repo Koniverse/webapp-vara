@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import React, { useCallback, useMemo, useRef } from 'react'
 import Brush from './Brush/Brush'
 import useStyles from './style'
+import { getButtonClasses } from '@utils/uiUtils.ts'
 
 export type TickPlotPositionData = Omit<PlotTickData, 'y'>
 
@@ -373,7 +374,12 @@ export const PriceRangePlot: React.FC<IPriceRangePlot> = ({
         <Grid container className={classes.cover}>
           <Grid className={classes.errorWrapper} container direction='column' alignItems='center'>
             <Typography className={classes.errorText}>Unable to load liquidity chart</Typography>
-            <Button className={classes.reloadButton} onClick={reloadHandler}>
+            <Button className={getButtonClasses({
+                size: 'sm',
+                layout: 'text-only',
+                variant: 'primary'
+              }, classes.reloadButton)}
+              onClick={reloadHandler}>
               Reload chart
             </Button>
           </Grid>

@@ -1,6 +1,198 @@
 import { Theme } from '@mui/material'
-import { colors, typography } from '@static/theme'
+import { colors, koniColors, koniTypography, typography } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
+import { leftContentContainerStyle } from '@styles'
+
+export const useBoxInfoStyles = makeStyles()((theme: Theme) => ({
+  boxInfo: {
+    position: 'relative',
+  },
+
+  title: {
+    ...koniTypography.heading6,
+    color: koniColors.fadedDark['o-100'],
+    paddingInline: 16,
+    paddingBlock: 4,
+    marginBottom: 12
+  },
+
+  violetButton: {
+    width: '100%',
+    marginTop: 24,
+
+    [theme.breakpoints.down('sm')]: {
+
+    }
+  },
+
+  tokenGrid: {
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: koniColors.background['light-1'],
+    borderRadius: 16,
+  },
+
+  cover: {
+    width: '100%',
+    height: '100%',
+    backgroundColor: koniColors.fadedLight['o-65'],
+    backfaceVisibility: 'hidden',
+    backdropFilter: 'blur(8px)',
+    position: 'absolute',
+    borderRadius: 16,
+    zIndex: 1
+  },
+
+  loader: {
+    height: 50,
+    width: 50,
+    margin: 'auto'
+  },
+
+  tokenArea: {
+    flexDirection: 'row',
+    width: '100%',
+    justifyContent: 'space-between',
+    paddingInline: 20,
+    paddingBlock: 8,
+  },
+
+  tokenAreaUpperPart: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+
+  tokenValue: {
+    overflowX: 'auto',
+    overflowY: 'hidden',
+    display: 'block',
+    whiteSpace: 'nowrap',
+    alignSelf: 'center',
+
+    '&::-webkit-scrollbar': {
+      display: 'none',
+      scrollbarWidth: 'none',
+      msOverflowStyle: 'none'
+    },
+    ...koniTypography.heading5,
+    color: koniColors.fadedDark['o-85'],
+    marginRight: 8,
+    textOverflow: 'ellipsis',
+  },
+
+  tokenAreaLowerPart: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingBlock: 4,
+    marginTop: 4
+  },
+
+  tokenUSDValueWrapper: {
+
+  },
+
+  token: {
+    backgroundColor: koniColors.fadedDark['o-5'],
+    padding: 8,
+    paddingLeft: 6,
+    borderRadius: 32,
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    minWidth: 'fit-content'
+  },
+
+  iconSmall: {
+    width: 32,
+    height: 32,
+    marginRight: 4,
+    borderRadius: '100%'
+  },
+
+  tokenName: {
+    color: koniColors.fadedDark['o-85'],
+    ...koniTypography.heading8,
+  },
+
+  tokenBalance: {
+    color: koniColors.fadedDark['o-85'],
+    ...koniTypography.body4,
+    display: 'flex',
+    alignItems: 'center',
+    cursor: 'pointer',
+    flexShrink: 1,
+  },
+
+  loadingBalance: {
+    padding: '0 10px 0 20px',
+    width: 15,
+    height: 15
+  },
+
+  tooltip: {
+    color: colors.invariant.textGrey,
+    ...typography.caption4,
+    lineHeight: '24px',
+    background: colors.black.full,
+    borderRadius: 12
+  },
+
+  tokenUSDValue: {
+    ...koniTypography.body4,
+    color: koniColors.fadedDark['o-85'],
+    marginRight: 8,
+
+    '.__symbol': {
+      color: koniColors.fadedDark['o-45'],
+    },
+  },
+
+  separator: {
+    position: 'relative',
+    width: '100%',
+    paddingInline: 24,
+    paddingBlock: 16,
+
+    '&:before': {
+      content: '""',
+      height: 1,
+      display: 'block',
+      backgroundColor: koniColors.fadedDark['o-10'],
+    }
+  },
+
+  arrowsIcon: {
+    width: 50,
+    height: 40,
+    borderRadius: 32,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    top: 16,
+    left: 0,
+    right: 0,
+    marginTop: -20,
+    marginRight: 'auto',
+    marginLeft: 'auto',
+    cursor: 'pointer',
+    color: koniColors.fadedDark['o-100'],
+    backgroundColor: koniColors.palette['lime-6'],
+
+    svg: {
+      height: 24,
+      width: 24,
+    },
+
+    '&:hover': {
+
+    }
+  },
+}));
 
 export const useStyles = makeStyles()((theme: Theme) => ({
   root: {
@@ -13,46 +205,69 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     display: 'flex',
     alignItems: 'center'
   },
-  icon: {
-    width: 35,
-    borderRadius: '100%',
 
-    [theme.breakpoints.down('sm')]: {
-      width: 22
-    }
+  swappableToken: {
+    backgroundColor: koniColors.fadedLight['o-6'],
+    borderRadius: 32,
+    paddingLeft: 6,
+    paddingRight: 8,
+    display: 'flex',
+    alignItems: 'center',
+    height: 40,
+    gap: 4
   },
-  arrowIcon: {
+
+  icon: {
     width: 32,
-    marginRight: 4,
-    marginLeft: 4,
     height: 32,
     borderRadius: '100%',
-    padding: 4,
 
     [theme.breakpoints.down('sm')]: {
-      width: 15,
-      marginRight: 2,
-      marginLeft: 2
-    },
-    '&:hover': {
-      cursor: 'pointer',
-      filter: 'brightness(2)',
-      '@media (hover: none)': {
-        filter: 'none'
-      }
+      // width: 22
     }
   },
-  text: {
-    ...typography.body1,
-    color: colors.invariant.lightGrey,
-    backgroundColor: colors.invariant.component,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 12,
-    height: 36,
-    width: '100%'
+
+  name: {
+    ...koniTypography.heading8,
+    color: koniColors.fadedLight['o-100'],
+    textWrap: 'nowrap',
+    [theme.breakpoints.down('sm')]: {
+    }
   },
+
+  arrowIcon: {
+    marginLeft: 4,
+    marginRight: 4,
+
+    '.MuiButton-startIcon svg': {
+      color: koniColors.fadedLight['o-100'],
+    },
+
+    [theme.breakpoints.down('sm')]: {
+
+    },
+    '&:hover': {
+
+    }
+  },
+
+  feeText: {
+    height: 40,
+    borderRadius: 100,
+    backgroundColor: koniColors.fadedLight['o-6'],
+    color: koniColors.palette['green-6'],
+    display: 'flex',
+    alignItems: 'center',
+    paddingInline: 12,
+
+    [theme.breakpoints.down('md')]: {
+
+    },
+    [theme.breakpoints.down('md')]: {
+
+    }
+  },
+
   rangeGrid: {
     display: 'flex',
     flexDirection: 'row'
@@ -69,10 +284,9 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    columnGap: 10,
-    flexBasis: '41%',
+    columnGap: 8,
     justifyContent: 'space-between',
-    flexGrow: 0.6,
+
     [theme.breakpoints.down('md')]: {
       justifyContent: 'flex-end',
       flexBasis: 'auto',
@@ -85,207 +299,34 @@ export const useStyles = makeStyles()((theme: Theme) => ({
       marginTop: 16
     }
   },
-  feeText: {
-    paddingInline: 6,
-    minWidth: 66,
 
-    [theme.breakpoints.down('md')]: {
-      minWidth: 84,
-      marginLeft: 16
-    },
-    [theme.breakpoints.down('md')]: {
-      minWidth: 84,
-      marginInline: 12
-    }
+  tooltip: {
+    color: colors.invariant.textGrey,
+    ...typography.caption4,
+    lineHeight: '24px',
+    background: colors.black.full,
+    borderRadius: 12
   },
-  closedText: {
-    width: 100,
-    paddingRight: 0
-  },
-  namesGrid: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingLeft: 4,
-    '& #pause': {
-      padding: ' 0px 3px'
-    },
 
-    [theme.breakpoints.down('sm')]: {
-      paddingLeft: 4
-    }
-  },
-  name: {
-    ...typography.heading3,
-    color: colors.invariant.text,
-    textWrap: 'nowrap',
-    fontSize: 22,
-    [theme.breakpoints.down('sm')]: {
-      ...typography.heading4
-    }
-  },
+  // bottomGrid
+
   bottomGrid: {
-    background: colors.invariant.component,
-    marginTop: 20,
-    padding: 24,
-    borderRadius: 24,
+    ...leftContentContainerStyle,
+    marginTop: 12,
+    padding: '40px 32px' as any,
     flexGrow: 1,
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-between',
+    gap: 20,
+
     [theme.breakpoints.down('sm')]: {
       padding: '16px 8px  16px 8px '
     }
   },
-  iconSmall: {
-    width: 20,
-    height: 20,
-    marginRight: 8,
-    borderRadius: '100%'
-  },
-  boxInfo: {
-    borderRadius: 16,
-    position: 'relative',
-    '&:not(:last-child)': {
-      marginBottom: 26
-    }
-  },
-  title: {
-    ...typography.heading4,
-    color: colors.invariant.text
-  },
-  titleValue: {
-    ...typography.heading3,
-    color: colors.invariant.text,
-    fontFamily: 'Bricolage Grotesque'
-  },
-  violetButton: {
-    background: colors.invariant.pinkLinearGradientOpacity,
-    borderRadius: 11,
-    textTransform: 'none',
-    color: colors.invariant.dark,
-    width: 116,
-    height: 32,
-    ...typography.body1,
-    '&:hover': {
-      background: colors.invariant.pinkLinearGradient,
-      boxShadow: '0px 0px 16px rgba(46, 224, 154, 0.35)',
-      '@media (hover: none)': {
-        background: colors.invariant.pinkLinearGradientOpacity,
-        boxShadow: 'none'
-      }
-    },
-    '&:disabled': {
-      background: colors.invariant.light,
-      color: colors.invariant.dark
-    },
 
-    [theme.breakpoints.down('sm')]: {
-      ...typography.body1,
-      maxHeight: 28,
-      minWidth: 105
-    }
-  },
-  tokenGrid: {
-    position: 'relative',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingTop: 14,
-    '&:not(:last-child)': {
-      paddingTop: 24
-    }
-  },
-  tokenArea: {
-    backgroundColor: colors.invariant.dark,
-    borderRadius: 16,
-    flexDirection: 'row',
-    width: '100%',
-    justifyContent: 'space-between',
-    padding: 12,
-    '&:not(:last-child)': {
-      marginBottom: 8
-    }
-  },
-  tokenAreaUpperPart: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
-  tokenAreaLowerPart: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingTop: 16
-  },
-  token: {
-    backgroundColor: colors.invariant.light,
-    borderRadius: 12,
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: '8px 13px',
-    minWidth: 'fit-content'
-  },
-  tokenName: {
-    color: colors.white.main,
-    ...typography.heading4,
-    fontWeight: 400
-  },
-  tokenValue: {
-    overflowX: 'auto',
-    overflowY: 'hidden',
-    display: 'block',
-    whiteSpace: 'nowrap',
-    color: colors.invariant.lightGrey,
-    alignSelf: 'center',
-
-    '&::-webkit-scrollbar': {
-      display: 'none',
-      scrollbarWidth: 'none',
-      msOverflowStyle: 'none'
-    },
-    ...typography.heading2
-  },
-  tokenBalance: {
-    color: '#A9B6BF',
-    ...typography.caption2,
-    display: 'flex',
-    alignItems: 'center',
-    cursor: 'pointer',
-    flexShrink: 1,
-    marginRight: 10
-  },
-  tokenUSDValue: {
-    color: '#A9B6BF',
-    ...typography.caption2
-  },
   closeButton: {
-    color: colors.invariant.dark,
-    background: colors.invariant.greenLinearGradientOpacity,
-    height: 36,
-    width: 110,
-    textTransform: 'none',
-    transition: '300ms',
-    paddingInline: 0,
-    borderRadius: 12,
-    textWrap: 'nowrap',
-    ...typography.body1,
-
-    '&:hover': {
-      background: colors.invariant.greenLinearGradient,
-      boxShadow: '0px 0px 16px rgba(46, 224, 154, 0.35)',
-      '@media (hover: none)': {
-        background: colors.invariant.greenLinearGradientOpacity,
-        boxShadow: 'none'
-      }
-    },
-
     [theme.breakpoints.down('sm')]: {
-      width: '50%',
-      ...typography.caption1,
-      height: 40
+
     }
   },
   button: {
@@ -319,70 +360,9 @@ export const useStyles = makeStyles()((theme: Theme) => ({
       WebkitPaddingBefore: 0
     }
   },
-  buttons: {
-    width: ' 100%',
-    display: 'flex',
-    flexDirection: 'column',
-    flexWrap: 'wrap'
-  },
-  iconText: {
-    paddingRight: 10,
-    paddingBottom: 3,
-    width: 19,
-    height: 19
-  },
-  arrowsIcon: {
-    width: 32,
-    height: 32,
-    position: 'absolute',
-    top: 'calc(50% - 8px)',
-    left: 'calc(50% - 16px)',
-    cursor: 'pointer',
 
-    '&:hover': {
-      filter: 'brightness(2)',
-      '@media (hover: none)': {
-        filter: 'none'
-      }
-    }
-  },
-  cover: {
-    width: '100%',
-    height: 'calc(100% - 12px)',
-    background: `${colors.invariant.black}dd`,
-    position: 'absolute',
-    borderRadius: 10,
-    zIndex: 1
-  },
-  loader: {
-    height: 50,
-    width: 50,
-    margin: 'auto'
-  },
-  loadingBalance: {
-    padding: '0 10px 0 20px',
-    width: 15,
-    height: 15
-  },
   active: {
-    color: colors.invariant.green,
-    outline: `1px solid ${colors.invariant.green}`
-  },
-  tooltip: {
-    color: colors.invariant.textGrey,
-    ...typography.caption4,
-    lineHeight: '24px',
-    background: colors.black.full,
-    borderRadius: 12
-  },
-  arrows: {
-    width: 32,
-    cursor: 'pointer',
 
-    '&:hover': {
-      filter: 'brightness(2)'
-    }
-  }
+  },
 }))
 
-export default useStyles

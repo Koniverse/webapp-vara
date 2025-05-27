@@ -1,10 +1,10 @@
 import { Theme } from '@mui/material'
-import { colors, typography } from '@static/theme'
+import { typography } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
 
 export const useStyles = makeStyles()((theme: Theme) => ({
   wrapperContainer: {
-    width: 1004,
+    width: 1084,
     flexDirection: 'row',
     maxWidth: '100%',
 
@@ -13,8 +13,8 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     }
   },
   positionDetails: {
-    width: 517,
-    marginRight: 24,
+    width: 526,
+    marginRight: 32,
 
     [theme.breakpoints.down('lg')]: {
       width: '100%'
@@ -25,7 +25,7 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     }
   },
   right: {
-    width: 517,
+    width: 526,
     [theme.breakpoints.down('lg')]: {
       width: '100%'
     }
@@ -53,25 +53,7 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     ...typography.body2
   },
   button: {
-    color: colors.invariant.black,
-    ...typography.body1,
-    textTransform: 'none',
-    background: colors.invariant.pinkLinearGradientOpacity,
-    borderRadius: 14,
-    height: 40,
-    width: 130,
-    paddingRight: 9,
-    paddingLeft: 9,
-    letterSpacing: -0.03,
 
-    '&:hover': {
-      background: colors.invariant.pinkLinearGradient,
-      boxShadow: `0 0 16px ${colors.invariant.pink}`,
-      '@media (hover: none)': {
-        background: colors.invariant.pinkLinearGradientOpacity,
-        boxShadow: 'none'
-      }
-    }
   },
   buttonStartIcon: {
     marginRight: 0
@@ -87,7 +69,7 @@ export const useStyles = makeStyles()((theme: Theme) => ({
   },
   positionPlotWrapper: {
     width: '100%',
-    marginTop: 30,
+    marginTop: 56,
 
     [theme.breakpoints.down('md')]: {
       marginTop: 0
@@ -100,7 +82,7 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     }
   },
   rightHeaderWrapper: {
-    marginBottom: 20,
+    marginBottom: 12,
     [theme.breakpoints.down('sm')]: {
       marginBottom: 0
     }

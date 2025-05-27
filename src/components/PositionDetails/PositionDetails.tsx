@@ -17,6 +17,8 @@ import { useStyles } from './style'
 import { TokenPriceData } from '@store/consts/types'
 import { TooltipHover } from '@components/TooltipHover/TooltipHover'
 import { Network } from '@invariant-labs/vara-sdk'
+import { getButtonClasses } from '@utils/uiUtils.ts'
+import { Plus } from '@phosphor-icons/react'
 
 interface IProps {
   tokenXAddress: string
@@ -165,12 +167,16 @@ const PositionDetails: React.FC<IProps> = ({
             alignItems='center'
             flexDirection='row-reverse'
             className={classes.rightHeaderWrapper}
-            mt='22px'
             wrap='nowrap'>
             <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
               <Button
-                className={classes.button}
+                className={getButtonClasses({
+                  size: 'sm',
+                  variant: 'primary',
+                  layout: 'text-only'
+                }, classes.button)}
                 variant='contained'
+                startIcon={<Plus />}
                 onClick={() => {
                   const parsedFee = parseFeeToPathFee(fee)
                   const address1 = addressToTicker(network, tokenXAddress.toString())
@@ -178,7 +184,7 @@ const PositionDetails: React.FC<IProps> = ({
 
                   navigate(`/newPosition/${address1}/${address2}/${parsedFee}`)
                 }}>
-                <span className={classes.buttonText}>+ Add Position</span>
+                Add Position
               </Button>
             </Box>
             <Hidden mdDown>

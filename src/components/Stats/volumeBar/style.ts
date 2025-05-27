@@ -1,12 +1,11 @@
-import { colors, typography, theme } from '@static/theme'
+import { koniColors, koniTypography, theme, typography } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
 
 export const useStyles = makeStyles()(() => ({
   container: {
-    maxWidth: 1072,
     width: '100%',
-    backgroundColor: colors.invariant.component,
-    borderRadius: 22,
+    backgroundColor: koniColors.background['light-1'],
+    borderRadius: 16,
     padding: 20,
     display: 'flex',
     whiteSpace: 'nowrap',
@@ -31,23 +30,21 @@ export const useStyles = makeStyles()(() => ({
   },
 
   tokenHeader: {
-    ...typography.heading4,
-    color: colors.invariant.textGrey
+    ...koniTypography.heading8,
+    color: koniColors.fadedDark['o-65']
   },
 
   tokenContent: {
-    ...typography.heading4,
-    color: colors.white.main,
+    ...koniTypography.heading8,
+    color: koniColors.fadedDark['o-100'],
     padding: '0 0 0 5px'
   },
 
   tokenLow: {
-    color: colors.invariant.Error,
-    fontWeight: 400
+    color: koniColors.palette['lightGreen-7']
   },
 
   tokenUp: {
-    color: colors.invariant.green,
-    fontWeight: 400
+    color: koniColors.semantic.error
   }
 }))

@@ -1,17 +1,17 @@
 import ClosePositionWarning from '@components/Modals/ClosePositionWarning/ClosePositionWarning'
 import { Button, Grid, Hidden, Tooltip, Typography } from '@mui/material'
-import { blurContent, unblurContent } from '@utils/uiUtils'
+import { blurContent, getButtonClasses, unblurContent } from '@utils/uiUtils'
 import classNames from 'classnames'
 import React, { useState } from 'react'
 import { BoxInfo } from './BoxInfo'
 import { ILiquidityToken } from './consts'
-import useStyles from './style'
+import { useStyles } from './style'
 import { useNavigate } from 'react-router-dom'
 import { TokenPriceData } from '@store/consts/types'
 import { addressToTicker } from '@utils/utils'
 import { TooltipHover } from '@components/TooltipHover/TooltipHover'
-import icons from '@static/icons'
 import { Network } from '@invariant-labs/vara-sdk'
+import { ArrowsLeftRight } from '@phosphor-icons/react'
 
 interface IProp {
   fee: number
@@ -72,29 +72,42 @@ const SinglePositionInfo: React.FC<IProp> = ({
       />
       <Grid className={classes.header}>
         <Grid className={classes.iconsGrid}>
-          <img
-            className={classes.icon}
-            src={xToY ? tokenX.icon : tokenY.icon}
-            alt={xToY ? tokenX.name : tokenY.name}
-          />
-          <TooltipHover text='Reverse tokens'>
+          <div className={classes.swappableToken}>
             <img
-              className={classes.arrowIcon}
-              src={icons.swapListIcon}
-              alt='Reverse tokens'
-              onClick={swapHandler}
+              className={classes.icon}
+              src={xToY ? tokenX.icon : tokenY.icon}
+              alt={xToY ? tokenX.name : tokenY.name}
             />
-          </TooltipHover>
-          <img
-            className={classes.icon}
-            src={xToY ? tokenY.icon : tokenX.icon}
-            alt={xToY ? tokenY.name : tokenX.name}
-          />
-          <Grid className={classes.namesGrid}>
+
             <Typography className={classes.name}>
-              {xToY ? tokenX.name : tokenY.name} - {xToY ? tokenY.name : tokenX.name}
+              {xToY ? tokenX.name : tokenY.name}
             </Typography>
-          </Grid>
+          </div>
+
+          <TooltipHover text='Reverse tokens'>
+            <Button
+              onClick={swapHandler}
+              startIcon={<ArrowsLeftRight />}
+              className={getButtonClasses({
+                size: 'xs',
+                variant: 'ghost',
+                layout: 'icon-only'
+              }, classes.arrowIcon)}>
+            </Button>
+          </TooltipHover>
+
+          <div className={classes.swappableToken}>
+            <img
+              className={classes.icon}
+              src={xToY ? tokenY.icon : tokenX.icon}
+              alt={xToY ? tokenY.name : tokenX.name}
+            />
+
+            <Typography className={classes.name}>
+              {xToY ? tokenY.name : tokenX.name}
+            </Typography>
+          </div>
+
           <Grid className={classes.rangeGrid} sx={{ display: { xs: 'flex', md: 'none' } }}>
             <Tooltip
               title={
@@ -116,7 +129,6 @@ const SinglePositionInfo: React.FC<IProp> = ({
               }}>
               <Typography
                 className={classNames(
-                  classes.text,
                   classes.feeText,
                   isActive ? classes.active : null
                 )}>
@@ -148,7 +160,6 @@ const SinglePositionInfo: React.FC<IProp> = ({
               }}>
               <Typography
                 className={classNames(
-                  classes.text,
                   classes.feeText,
                   isActive ? classes.active : null
                 )}>
@@ -163,7 +174,11 @@ const SinglePositionInfo: React.FC<IProp> = ({
                 : ''
             }>
             <Button
-              className={classes.closeButton}
+              className={getButtonClasses({
+                size: 'sm',
+                variant: 'secondary-light',
+                layout: 'text-only'
+              }, classes.closeButton)}
               variant='contained'
               onClick={() => {
                 if (!userHasStakes) {
@@ -191,6 +206,7 @@ const SinglePositionInfo: React.FC<IProp> = ({
           </Hidden>
         </Grid>
       </Grid>
+
       <Grid className={classes.bottomGrid}>
         <BoxInfo
           title={'Liquidity'}

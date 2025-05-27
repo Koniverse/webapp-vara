@@ -33,12 +33,12 @@ export const Refresher = ({ currentIndex, maxIndex, onClick }: Props) => {
   return (
     <Box width={20} height={20}>
       <svg className={classes.ring} width='20' height='20' onClick={onClick}>
-        <circle stroke='#3A466B' strokeWidth='2' fill='transparent' r='8' cx='10' cy='10' />
+        <circle stroke='rgba(255, 255, 255, 0.2)' strokeWidth='2' fill='transparent' r='8' cx='10' cy='10' />
         <circle
           className={classes.innerCircle}
           strokeDasharray='0'
           strokeDashoffset='0'
-          stroke='#EF84F5'
+          stroke='#9F95F6'
           strokeWidth='2'
           fill='transparent'
           r='8'

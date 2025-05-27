@@ -1,13 +1,13 @@
 import { Theme } from '@mui/material'
-import { colors, typography } from '@static/theme'
+import { colors, koniColors, koniTypography, typography } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
+import { rightContentContainerStyle } from '@styles'
 
 export const useStyles = makeStyles()((theme: Theme) => ({
   root: {
+    ...rightContentContainerStyle,
     width: '100%',
-    backgroundColor: colors.invariant.component,
-    padding: 24,
-    paddingTop: 18,
+    padding: '40px 32px' as any,
     borderRadius: 24,
     [theme.breakpoints.down('sm')]: {
       padding: '24px 8px'
@@ -17,97 +17,104 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     ...typography.heading4,
     color: '#FFFFFF'
   },
+
   header: {
-    paddingBottom: 30
+    padding: '4px 16px' as any,
+    color: koniColors.fadedDark['o-100'],
+    ...koniTypography.heading6
   },
+
   plotWrapper: {
     paddingBottom: 29
   },
+
   minMaxInfo: {
     display: 'grid',
     gridTemplateColumns: '1fr 1fr',
-    gridGap: '15px',
-    paddingBottom: 16,
+    columnGap: 12,
+    paddingBottom: 12,
+  },
 
-    [theme.breakpoints.down('sm')]: {
-      gridTemplateColumns: '1fr',
-      gridGap: '8px'
-    }
-  },
   currentPriceContainer: {
-    backgroundColor: '#111931',
-    borderRadius: 11
+    backgroundColor: koniColors.background['light-1'],
+    borderRadius: 16,
+    padding: 12
   },
+
+  currentPriceContainerTopPart: {
+    backgroundColor: koniColors.fadedDark['o-5'],
+    borderRadius: 12,
+    display: 'flex',
+    alignItems: 'center',
+    gap: 8,
+    height: 46,
+    justifyContent: 'space-between',
+    paddingInline: 12,
+    whiteSpace: 'nowrap',
+  },
+
   currentPriceLabel: {
-    backgroundColor: colors.invariant.light,
-    color: colors.invariant.lightGrey,
-    textAlign: 'center',
-    borderRadius: '11px!important',
-    '& p': {
-      ...typography.body2,
-      textTransform: 'uppercase',
-      lineHeight: '35px',
-      [theme.breakpoints.only('md')]: {
-        ...typography.caption2,
-        lineHeight: '35px'
-      }
-    }
+    textTransform: 'capitalize',
+    color: koniColors.fadedDark['o-85'],
+    ...koniTypography.heading9,
   },
-  currentPriceAmonut: {
-    backgroundColor: colors.invariant.dark,
-    textAlign: 'center',
-    borderRadius: '11px!important',
-    '& span': {
-      color: colors.invariant.text,
-      ...typography.body1,
-      lineHeight: '35px',
-      paddingRight: 5
-    },
-    '& p': {
-      color: '#A9B6BF',
-      ...typography.body1,
-      [theme.breakpoints.only('md')]: {
-        ...typography.caption1,
-        lineHeight: '35px'
-      }
-    }
+
+  currentPriceSwapTokenInfo: {
+    color: koniColors.fadedDark['o-45'],
+    ...koniTypography.body4,
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    flex: 1,
+    textAlign: 'right',
   },
+
+  currentPriceContainerBottomPart: {
+    marginTop: 12,
+    backgroundColor: koniColors.fadedDark['o-5'],
+    display: 'flex',
+    justifyContent: 'center',
+    paddingInline: 12,
+    borderRadius: 24,
+    height: 48,
+    alignItems: 'center'
+  },
+
+  currentPriceAmount: {
+    ...koniTypography.heading8,
+    color: koniColors.fadedDark['o-100'],
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+  },
+
   plot: {
     width: '100%',
     height: 255,
-    backgroundColor: colors.invariant.component,
-    borderRadius: 10,
 
     [theme.breakpoints.down('sm')]: {
       height: 253
     }
   },
+
   infoRow: {
     marginBottom: 16
   },
+
   activeLiquidity: {
-    color: colors.invariant.text,
-    ...typography.caption2,
+    ...koniTypography.body5,
+    color: koniColors.fadedDark['o-85'],
     display: 'flex',
     flexDirection: 'row',
+    justifyContent: 'flex-end',
     alignItems: 'center',
-    cursor: 'default'
-  },
-  activeLiquidityIcon: {
-    marginLeft: 5,
-    height: 14,
-    width: 14,
-    border: '1px solid #FFFFFF',
-    color: colors.invariant.text,
-    borderRadius: '50%',
-    fontSize: 8,
-    lineHeight: '10px',
-    fontWeight: 400,
-    textAlign: 'center',
-    boxSizing: 'border-box',
-    paddingTop: 3,
     cursor: 'default',
-    userSelect: 'none'
+    gap: 2
+  },
+
+  activeLiquidityIcon: {
+    display: 'block',
+    fontSize: 12,
+    height: 12,
   },
   liquidityTooltip: {
     background: colors.invariant.component,
@@ -140,9 +147,9 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     height: 60,
     marginLeft: 16
   },
-  currentPrice: {
-    color: colors.invariant.yellow,
-    ...typography.caption2,
+  currentPriceLegend: {
+    ...koniTypography.body5,
+    color: koniColors.palette['violet-6'],
     textAlign: 'right'
   }
 }))

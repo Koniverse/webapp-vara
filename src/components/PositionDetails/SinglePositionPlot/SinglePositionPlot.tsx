@@ -1,7 +1,7 @@
 import LiquidationRangeInfo from '@components/PositionDetails/LiquidationRangeInfo/LiquidationRangeInfo'
 import PriceRangePlot from '@components/PriceRangePlot/PriceRangePlot'
 import { getMinTick } from '@invariant-labs/vara-sdk'
-import { Card, Grid, Tooltip, Typography } from '@mui/material'
+import { Grid, Tooltip, Typography } from '@mui/material'
 import activeLiquidity from '@static/svg/activeLiquidity.svg'
 import {
   calcPriceByTickIndex,
@@ -13,6 +13,7 @@ import { PlotTickData, TickPlotPositionData } from '@store/reducers/positions'
 import React, { useEffect, useState } from 'react'
 import { ILiquidityToken } from '../SinglePositionInfo/consts'
 import useStyles from './style'
+import { Info } from '@phosphor-icons/react'
 
 export interface ISinglePositionPlot {
   data: PlotTickData[]
@@ -175,10 +176,14 @@ const SinglePositionPlot: React.FC<ISinglePositionPlot> = ({
               tooltip: classes.liquidityTooltip
             }}>
             <Typography className={classes.activeLiquidity}>
-              Active liquidity <span className={classes.activeLiquidityIcon}>i</span>
+              Active liquidity
+
+              <span className={classes.activeLiquidityIcon}>
+                <Info />
+              </span>
             </Typography>
           </Tooltip>
-          <Typography className={classes.currentPrice}>Current price ━━━</Typography>
+          <Typography className={classes.currentPriceLegend}>Current price ━━━</Typography>
         </Grid>
       </Grid>
       <Grid className={classes.plotWrapper}>
@@ -217,17 +222,21 @@ const SinglePositionPlot: React.FC<ISinglePositionPlot> = ({
           tokenY={xToY ? tokenY.name : tokenX.name}
         />
       </Grid>
-      <Grid className={classes.currentPriceContainer}>
-        <Card className={classes.currentPriceLabel}>
-          <Typography component='p'>current price</Typography>
-        </Card>
-        <Card className={classes.currentPriceAmonut}>
-          <Typography component='p'>
-            <Typography component='span'>{numberToString(currentPrice)}</Typography>
+
+      <div className={classes.currentPriceContainer}>
+        <div className={classes.currentPriceContainerTopPart}>
+          <Typography component='p' className={classes.currentPriceLabel}>current price</Typography>
+          <Typography component='p' className={classes.currentPriceSwapTokenInfo}>
             {xToY ? tokenY.name : tokenX.name} per {xToY ? tokenX.name : tokenY.name}
           </Typography>
-        </Card>
-      </Grid>
+        </div>
+
+        <div className={classes.currentPriceContainerBottomPart}>
+          <Typography component='span' className={classes.currentPriceAmount}>
+            {numberToString(currentPrice)}
+          </Typography>
+        </div>
+      </div>
     </Grid>
   )
 }
