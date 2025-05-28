@@ -27,13 +27,11 @@ const NewPositionPage: React.FC<IProps> = () => {
 
   return (
     <Grid container className={classes.container}>
-      <Grid item>
-        <NewPositionWrapper
-          initialTokenFrom={initialTokenFrom}
-          initialTokenTo={initialTokenTo}
-          initialFee={initialFee}
-        />
-      </Grid>
+      <NewPositionWrapper
+        initialTokenFrom={initialTokenFrom}
+        initialTokenTo={initialTokenTo}
+        initialFee={initialFee}
+      />
     </Grid>
   )
 }

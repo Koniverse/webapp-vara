@@ -4,7 +4,6 @@ import Refresher from '@components/Refresher/Refresher'
 import { getMaxTick, getMinTick, Network } from '@invariant-labs/vara-sdk'
 import { PERCENTAGE_DENOMINATOR } from '@invariant-labs/vara-sdk/target/consts'
 import { Box, Button, Grid, Hidden, Typography } from '@mui/material'
-import backIcon from '@static/svg/back-arrow.svg'
 import { ALL_FEE_TIERS_DATA, PositionTokenBlock, REFRESHER_INTERVAL } from '@store/consts/static'
 import {
   addressToTicker,
@@ -33,7 +32,7 @@ import { BestTier, PositionOpeningMethod, TokenPriceData } from '@store/consts/t
 import { getConcentrationArray, HexString } from '@invariant-labs/vara-sdk/target/utils'
 import { TooltipHover } from '@components/TooltipHover/TooltipHover'
 import { Status } from '@store/reducers/wallet'
-import { GearSix } from '@phosphor-icons/react'
+import { ArrowLeft, GearSix } from '@phosphor-icons/react'
 import classNames from 'classnames'
 
 export interface INewPosition {
@@ -473,318 +472,323 @@ export const NewPosition: React.FC<INewPosition> = ({
   )
 
   return (
-    <Grid container className={classes.wrapper} direction='column'>
-      <Link to='/liquidity' style={{ textDecoration: 'none', maxWidth: 'fit-content' }}>
-        <Grid className={classes.back} container item alignItems='center'>
-          <img className={classes.backIcon} src={backIcon} alt='back' />
-          <Typography className={classes.backText}>Positions</Typography>
-        </Grid>
-      </Link>
+    <div className={classNames(classes.mainContainer)}>
+      <div className={classes.backWrapper}>
+        <Link to='/liquidity' style={{ textDecoration: 'none', maxWidth: 'fit-content', display: 'block' }}>
+          <Grid className={classes.back} container item alignItems='center'>
+            <ArrowLeft className={classes.backIcon} />
 
-      <Grid
-        container
-        justifyContent='space-between'
-        alignItems='center'
-        className={classes.headerContainer}>
-        <Box className={classes.titleContainer}>
-          <Typography className={classes.title}>Add new position</Typography>
-          {poolKey !== '' && tokenA !== tokenB && (
-            <TooltipHover text='Refresh'>
-              <Box>
-                <Refresher
-                  currentIndex={refresherTime}
-                  maxIndex={REFRESHER_INTERVAL}
-                  onClick={() => {
-                    onRefresh()
-                    setRefresherTime(REFRESHER_INTERVAL)
-                  }}
-                />
-              </Box>
-            </TooltipHover>
-          )}
-        </Box>
-        {tokenA !== null && tokenB !== null && (
-          <Grid container item alignItems='center' className={classes.options}>
-            {poolKey !== '' ? (
-              <MarketIdLabel
-                displayLength={4}
-                marketId={poolKey}
-                copyPoolAddressHandler={copyPoolAddressHandler}
-              />
-            ) : null}
-            <Grid className={classes.optionsWrapper}>
-              <Hidden mdDown>
-                {tokenA !== null && tokenB !== null && (
-                  <ConcentrationTypeSwitch
-                    onSwitch={val => {
-                      if (val) {
-                        setPositionOpeningMethod('concentration')
-                        onPositionOpeningMethodChange('concentration')
-                      } else {
-                        setPositionOpeningMethod('range')
-                        onPositionOpeningMethodChange('range')
-                      }
+            <Typography className={classes.backText}>Positions</Typography>
+          </Grid>
+        </Link>
+      </div>
+
+      <Grid container className={classes.wrapper} direction='column'>
+        <Grid
+          container
+          justifyContent='space-between'
+          alignItems='center'
+          className={classes.headerContainer}>
+          <Box className={classes.titleContainer}>
+            <Typography className={classes.title}>Add new position</Typography>
+            {poolKey !== '' && tokenA !== tokenB && (
+              <TooltipHover text='Refresh'>
+                <Box>
+                  <Refresher
+                    currentIndex={refresherTime}
+                    maxIndex={REFRESHER_INTERVAL}
+                    onClick={() => {
+                      onRefresh()
+                      setRefresherTime(REFRESHER_INTERVAL)
                     }}
-                    className={classes.switch}
-                    currentValue={positionOpeningMethod === 'concentration' ? 0 : 1}
                   />
+                </Box>
+              </TooltipHover>
+            )}
+          </Box>
+          {tokenA !== null && tokenB !== null && (
+            <Grid container item alignItems='center' className={classes.options}>
+              {poolKey !== '' ? (
+                <MarketIdLabel
+                  displayLength={4}
+                  marketId={poolKey}
+                  copyPoolAddressHandler={copyPoolAddressHandler}
+                />
+              ) : null}
+              <Grid className={classes.optionsWrapper}>
+                <Hidden mdDown>
+                  {tokenA !== null && tokenB !== null && (
+                    <ConcentrationTypeSwitch
+                      onSwitch={val => {
+                        if (val) {
+                          setPositionOpeningMethod('concentration')
+                          onPositionOpeningMethodChange('concentration')
+                        } else {
+                          setPositionOpeningMethod('range')
+                          onPositionOpeningMethodChange('range')
+                        }
+                      }}
+                      className={classes.switch}
+                      currentValue={positionOpeningMethod === 'concentration' ? 0 : 1}
+                    />
+                  )}
+                </Hidden>
+                {poolKey !== '' && (
+                  <TooltipHover text='Settings'>
+                    <Button
+                      onClick={handleClickSettings}
+                      className={classNames(getButtonClasses({
+                        size: 'sm',
+                        variant: 'ghost',
+                        layout: 'icon-only'
+                      }, classes.settingsIconBtn))}
+                      startIcon={<GearSix />}
+                      disableRipple
+                    />
+                  </TooltipHover>
                 )}
-              </Hidden>
+              </Grid>
+            </Grid>
+          )}
+        </Grid>
+
+        <Slippage
+          open={settings}
+          setSlippage={setSlippage}
+          handleClose={handleCloseSettings}
+          anchorEl={anchorEl}
+          initialSlippage={initialSlippage}
+          infoText='Slippage tolerance is a pricing difference between the price at the confirmation time and the actual price of the transaction users are willing to accept when initializing position.'
+          headerText='Position Settings'
+        />
+
+        <Grid container className={classes.row} alignItems='stretch'>
+          <DepositSelector
+            initialTokenFrom={initialTokenFrom}
+            initialTokenTo={initialTokenTo}
+            initialFee={initialFee}
+            className={classes.deposit}
+            tokens={tokens}
+            setPositionTokens={(address1, address2, fee) => {
+              setTokenA(address1)
+              setTokenB(address2)
+              onChangePositionTokens(address1, address2, fee)
+
+              if (!isLoadingTokens) {
+                updatePath(address1, address2, fee)
+              }
+            }}
+            onAddLiquidity={() => {
+              if (tokenA !== null && tokenB !== null) {
+                const tokenADecimals = tokens[tokenA].decimals
+                const tokenBDecimals = tokens[tokenB].decimals
+
+                addLiquidityHandler(
+                  leftRange,
+                  rightRange,
+                  isXtoY
+                    ? convertBalanceToBigint(tokenADeposit, tokenADecimals)
+                    : convertBalanceToBigint(tokenBDeposit, tokenBDecimals),
+                  isXtoY
+                    ? convertBalanceToBigint(tokenBDeposit, tokenBDecimals)
+                    : convertBalanceToBigint(tokenADeposit, tokenADecimals),
+                  BigInt(+slippTolerance * Number(PERCENTAGE_DENOMINATOR)) / 100n
+                )
+              }
+            }}
+            tokenAInputState={{
+              value:
+                tokenA !== null &&
+                tokenB !== null &&
+                !isWaitingForNewPool &&
+                blockedToken === PositionTokenBlock.A
+                  ? '0'
+                  : tokenADeposit,
+              setValue: value => {
+                if (tokenA === null) {
+                  return
+                }
+
+                setTokenADeposit(value)
+                setTokenBDeposit(
+                  getOtherTokenAmount(
+                    convertBalanceToBigint(value, tokens[tokenA].decimals),
+                    Number(leftRange),
+                    Number(rightRange),
+                    true
+                  )
+                )
+              },
+              blocked:
+                tokenA !== null &&
+                tokenB !== null &&
+                !isWaitingForNewPool &&
+                blockedToken === PositionTokenBlock.A,
+
+              blockerInfo: 'Range only for single-asset deposit.',
+              decimalsLimit: tokenA !== null ? Number(tokens[tokenA].decimals) : 0
+            }}
+            tokenBInputState={{
+              value:
+                tokenA !== null &&
+                tokenB !== null &&
+                !isWaitingForNewPool &&
+                blockedToken === PositionTokenBlock.B
+                  ? '0'
+                  : tokenBDeposit,
+              setValue: value => {
+                if (tokenB === null) {
+                  return
+                }
+                setTokenBDeposit(value)
+                setTokenADeposit(
+                  getOtherTokenAmount(
+                    convertBalanceToBigint(value, Number(tokens[tokenB].decimals)),
+                    Number(leftRange),
+                    Number(rightRange),
+                    false
+                  )
+                )
+              },
+              blocked:
+                tokenA !== null &&
+                tokenB !== null &&
+                !isWaitingForNewPool &&
+                blockedToken === PositionTokenBlock.B,
+              blockerInfo: 'Range only for single-asset deposit.',
+              decimalsLimit: tokenB !== null ? Number(tokens[tokenB].decimals) : 0
+            }}
+            feeTiers={feeTiers.map(tier => tier.feeValue)}
+            progress={progress}
+            onReverseTokens={() => {
+              if (tokenA === null || tokenB === null) {
+                return
+              }
+              setShouldReversePlot(true)
+              const pom = tokenA
+              setTokenA(tokenB)
+              setTokenB(pom)
+              onChangePositionTokens(tokenB, tokenA, currentFeeIndex)
+
+              if (!isLoadingTokens) {
+                updatePath(tokenB, tokenA, currentFeeIndex)
+              }
+            }}
+            poolIndex={poolIndex}
+            bestTierIndex={bestTierIndex}
+            handleAddToken={handleAddToken}
+            commonTokens={commonTokens}
+            initialHideUnknownTokensValue={initialHideUnknownTokensValue}
+            onHideUnknownTokensChange={onHideUnknownTokensChange}
+            priceA={tokenAPriceData?.price}
+            priceB={tokenBPriceData?.price}
+            priceALoading={priceALoading}
+            priceBLoading={priceBLoading}
+            feeTierIndex={currentFeeIndex}
+            concentrationArray={concentrationArray}
+            concentrationIndex={concentrationIndex}
+            minimumSliderIndex={minimumSliderIndex}
+            positionOpeningMethod={positionOpeningMethod}
+            isBalanceLoading={isBalanceLoading}
+            isGetLiquidityError={isGetLiquidityError}
+            ticksLoading={ticksLoading}
+            network={network}
+            varaBalance={varaBalance}
+            walletStatus={walletStatus}
+            onConnectWallet={onConnectWallet}
+            onDisconnectWallet={onDisconnectWallet}
+          />
+          <Hidden mdUp>
+            <Grid container justifyContent='end' mb={2}>
               {poolKey !== '' && (
-                <TooltipHover text='Settings'>
-                  <Button
-                    onClick={handleClickSettings}
-                    className={classNames(getButtonClasses({
-                      size: 'sm',
-                      variant: 'ghost',
-                      layout: 'icon-only'
-                    }, classes.settingsIconBtn))}
-                    startIcon={<GearSix />}
-                    disableRipple
-                  />
-                </TooltipHover>
+                <ConcentrationTypeSwitch
+                  onSwitch={val => {
+                    if (val) {
+                      setPositionOpeningMethod('concentration')
+                      onPositionOpeningMethodChange('concentration')
+                    } else {
+                      setPositionOpeningMethod('range')
+                      onPositionOpeningMethodChange('range')
+                    }
+                  }}
+                  className={classes.switch}
+                  currentValue={positionOpeningMethod === 'concentration' ? 0 : 1}
+                />
               )}
             </Grid>
-          </Grid>
-        )}
-      </Grid>
-
-      <Slippage
-        open={settings}
-        setSlippage={setSlippage}
-        handleClose={handleCloseSettings}
-        anchorEl={anchorEl}
-        initialSlippage={initialSlippage}
-        infoText='Slippage tolerance is a pricing difference between the price at the confirmation time and the actual price of the transaction users are willing to accept when initializing position.'
-        headerText='Position Settings'
-      />
-
-      <Grid container className={classes.row} alignItems='stretch'>
-        <DepositSelector
-          initialTokenFrom={initialTokenFrom}
-          initialTokenTo={initialTokenTo}
-          initialFee={initialFee}
-          className={classes.deposit}
-          tokens={tokens}
-          setPositionTokens={(address1, address2, fee) => {
-            setTokenA(address1)
-            setTokenB(address2)
-            onChangePositionTokens(address1, address2, fee)
-
-            if (!isLoadingTokens) {
-              updatePath(address1, address2, fee)
-            }
-          }}
-          onAddLiquidity={() => {
-            if (tokenA !== null && tokenB !== null) {
-              const tokenADecimals = tokens[tokenA].decimals
-              const tokenBDecimals = tokens[tokenB].decimals
-
-              addLiquidityHandler(
-                leftRange,
-                rightRange,
-                isXtoY
-                  ? convertBalanceToBigint(tokenADeposit, tokenADecimals)
-                  : convertBalanceToBigint(tokenBDeposit, tokenBDecimals),
-                isXtoY
-                  ? convertBalanceToBigint(tokenBDeposit, tokenBDecimals)
-                  : convertBalanceToBigint(tokenADeposit, tokenADecimals),
-                BigInt(+slippTolerance * Number(PERCENTAGE_DENOMINATOR)) / 100n
-              )
-            }
-          }}
-          tokenAInputState={{
-            value:
-              tokenA !== null &&
-              tokenB !== null &&
-              !isWaitingForNewPool &&
-              blockedToken === PositionTokenBlock.A
-                ? '0'
-                : tokenADeposit,
-            setValue: value => {
-              if (tokenA === null) {
-                return
+          </Hidden>
+          {isCurrentPoolExisting ||
+          tokenA === null ||
+          tokenB === null ||
+          tokenA === tokenB ||
+          isWaitingForNewPool ? (
+            <RangeSelector
+              poolIndex={poolIndex}
+              onChangeRange={onChangeRange}
+              blocked={
+                tokenA === null ||
+                tokenB === null ||
+                tokenA === tokenB ||
+                data.length === 0 ||
+                isWaitingForNewPool
               }
-
-              setTokenADeposit(value)
-              setTokenBDeposit(
-                getOtherTokenAmount(
-                  convertBalanceToBigint(value, tokens[tokenA].decimals),
-                  Number(leftRange),
-                  Number(rightRange),
-                  true
-                )
-              )
-            },
-            blocked:
-              tokenA !== null &&
-              tokenB !== null &&
-              !isWaitingForNewPool &&
-              blockedToken === PositionTokenBlock.A,
-
-            blockerInfo: 'Range only for single-asset deposit.',
-            decimalsLimit: tokenA !== null ? Number(tokens[tokenA].decimals) : 0
-          }}
-          tokenBInputState={{
-            value:
-              tokenA !== null &&
-              tokenB !== null &&
-              !isWaitingForNewPool &&
-              blockedToken === PositionTokenBlock.B
-                ? '0'
-                : tokenBDeposit,
-            setValue: value => {
-              if (tokenB === null) {
-                return
-              }
-              setTokenBDeposit(value)
-              setTokenADeposit(
-                getOtherTokenAmount(
-                  convertBalanceToBigint(value, Number(tokens[tokenB].decimals)),
-                  Number(leftRange),
-                  Number(rightRange),
-                  false
-                )
-              )
-            },
-            blocked:
-              tokenA !== null &&
-              tokenB !== null &&
-              !isWaitingForNewPool &&
-              blockedToken === PositionTokenBlock.B,
-            blockerInfo: 'Range only for single-asset deposit.',
-            decimalsLimit: tokenB !== null ? Number(tokens[tokenB].decimals) : 0
-          }}
-          feeTiers={feeTiers.map(tier => tier.feeValue)}
-          progress={progress}
-          onReverseTokens={() => {
-            if (tokenA === null || tokenB === null) {
-              return
-            }
-            setShouldReversePlot(true)
-            const pom = tokenA
-            setTokenA(tokenB)
-            setTokenB(pom)
-            onChangePositionTokens(tokenB, tokenA, currentFeeIndex)
-
-            if (!isLoadingTokens) {
-              updatePath(tokenB, tokenA, currentFeeIndex)
-            }
-          }}
-          poolIndex={poolIndex}
-          bestTierIndex={bestTierIndex}
-          handleAddToken={handleAddToken}
-          commonTokens={commonTokens}
-          initialHideUnknownTokensValue={initialHideUnknownTokensValue}
-          onHideUnknownTokensChange={onHideUnknownTokensChange}
-          priceA={tokenAPriceData?.price}
-          priceB={tokenBPriceData?.price}
-          priceALoading={priceALoading}
-          priceBLoading={priceBLoading}
-          feeTierIndex={currentFeeIndex}
-          concentrationArray={concentrationArray}
-          concentrationIndex={concentrationIndex}
-          minimumSliderIndex={minimumSliderIndex}
-          positionOpeningMethod={positionOpeningMethod}
-          isBalanceLoading={isBalanceLoading}
-          isGetLiquidityError={isGetLiquidityError}
-          ticksLoading={ticksLoading}
-          network={network}
-          varaBalance={varaBalance}
-          walletStatus={walletStatus}
-          onConnectWallet={onConnectWallet}
-          onDisconnectWallet={onDisconnectWallet}
-        />
-        <Hidden mdUp>
-          <Grid container justifyContent='end' mb={2}>
-            {poolKey !== '' && (
-              <ConcentrationTypeSwitch
-                onSwitch={val => {
-                  if (val) {
-                    setPositionOpeningMethod('concentration')
-                    onPositionOpeningMethodChange('concentration')
-                  } else {
-                    setPositionOpeningMethod('range')
-                    onPositionOpeningMethodChange('range')
-                  }
-                }}
-                className={classes.switch}
-                currentValue={positionOpeningMethod === 'concentration' ? 0 : 1}
-              />
-            )}
-          </Grid>
-        </Hidden>
-        {isCurrentPoolExisting ||
-        tokenA === null ||
-        tokenB === null ||
-        tokenA === tokenB ||
-        isWaitingForNewPool ? (
-          <RangeSelector
-            poolIndex={poolIndex}
-            onChangeRange={onChangeRange}
-            blocked={
-              tokenA === null ||
+              blockerInfo={setRangeBlockerInfo()}
+              {...(tokenA === null ||
               tokenB === null ||
-              tokenA === tokenB ||
+              !isCurrentPoolExisting ||
               data.length === 0 ||
               isWaitingForNewPool
-            }
-            blockerInfo={setRangeBlockerInfo()}
-            {...(tokenA === null ||
-            tokenB === null ||
-            !isCurrentPoolExisting ||
-            data.length === 0 ||
-            isWaitingForNewPool
-              ? noRangePlaceholderProps
-              : {
-                  data,
-                  midPrice,
-                  tokenASymbol: tokens[tokenA].symbol,
-                  tokenBSymbol: tokens[tokenB].symbol
-                })}
-            ticksLoading={ticksLoading}
-            isXtoY={isXtoY}
-            tickSpacing={tickSpacing}
-            xDecimal={xDecimal}
-            yDecimal={yDecimal}
-            currentPairReversed={currentPairReversed}
-            positionOpeningMethod={positionOpeningMethod}
-            hasTicksError={hasTicksError}
-            reloadHandler={reloadHandler}
-            concentrationArray={concentrationArray}
-            setConcentrationIndex={setConcentrationIndex}
-            concentrationIndex={concentrationIndex}
-            minimumSliderIndex={minimumSliderIndex}
-            getTicksInsideRange={getTicksInsideRange}
-            poolKey={poolKey}
-            shouldReversePlot={shouldReversePlot}
-            setShouldReversePlot={setShouldReversePlot}
-            shouldNotUpdatePriceRange={shouldNotUpdatePriceRange}
-            unblockUpdatePriceRange={unblockUpdatePriceRange}
-            onlyUserPositions={onlyUserPositions}
-            setOnlyUserPositions={setOnlyUserPositions}
-          />
-        ) : (
-          <PoolInit
-            onChangeRange={onChangeRange}
-            isXtoY={isXtoY}
-            tickSpacing={tickSpacing}
-            xDecimal={xDecimal}
-            yDecimal={yDecimal}
-            tokenASymbol={tokenA !== null && tokens[tokenA] ? tokens[tokenA].symbol : 'ABC'}
-            tokenBSymbol={tokenB !== null && tokens[tokenB] ? tokens[tokenB].symbol : 'XYZ'}
-            midPriceIndex={midPrice.index}
-            onChangeMidPrice={onChangeMidPrice}
-            currentPairReversed={currentPairReversed}
-            positionOpeningMethod={positionOpeningMethod}
-            concentrationArray={concentrationArray}
-            concentrationIndex={concentrationIndex}
-            setConcentrationIndex={setConcentrationIndex}
-            minimumSliderIndex={minimumSliderIndex}
-          />
-        )}
+                ? noRangePlaceholderProps
+                : {
+                    data,
+                    midPrice,
+                    tokenASymbol: tokens[tokenA].symbol,
+                    tokenBSymbol: tokens[tokenB].symbol
+                  })}
+              ticksLoading={ticksLoading}
+              isXtoY={isXtoY}
+              tickSpacing={tickSpacing}
+              xDecimal={xDecimal}
+              yDecimal={yDecimal}
+              currentPairReversed={currentPairReversed}
+              positionOpeningMethod={positionOpeningMethod}
+              hasTicksError={hasTicksError}
+              reloadHandler={reloadHandler}
+              concentrationArray={concentrationArray}
+              setConcentrationIndex={setConcentrationIndex}
+              concentrationIndex={concentrationIndex}
+              minimumSliderIndex={minimumSliderIndex}
+              getTicksInsideRange={getTicksInsideRange}
+              poolKey={poolKey}
+              shouldReversePlot={shouldReversePlot}
+              setShouldReversePlot={setShouldReversePlot}
+              shouldNotUpdatePriceRange={shouldNotUpdatePriceRange}
+              unblockUpdatePriceRange={unblockUpdatePriceRange}
+              onlyUserPositions={onlyUserPositions}
+              setOnlyUserPositions={setOnlyUserPositions}
+            />
+          ) : (
+            <PoolInit
+              onChangeRange={onChangeRange}
+              isXtoY={isXtoY}
+              tickSpacing={tickSpacing}
+              xDecimal={xDecimal}
+              yDecimal={yDecimal}
+              tokenASymbol={tokenA !== null && tokens[tokenA] ? tokens[tokenA].symbol : 'ABC'}
+              tokenBSymbol={tokenB !== null && tokens[tokenB] ? tokens[tokenB].symbol : 'XYZ'}
+              midPriceIndex={midPrice.index}
+              onChangeMidPrice={onChangeMidPrice}
+              currentPairReversed={currentPairReversed}
+              positionOpeningMethod={positionOpeningMethod}
+              concentrationArray={concentrationArray}
+              concentrationIndex={concentrationIndex}
+              setConcentrationIndex={setConcentrationIndex}
+              minimumSliderIndex={minimumSliderIndex}
+            />
+          )}
+        </Grid>
       </Grid>
-    </Grid>
+    </div>
   )
 }
 

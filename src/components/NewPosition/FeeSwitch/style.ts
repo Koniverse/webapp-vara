@@ -61,6 +61,7 @@ export const useSingleTabStyles = makeStyles()(() => {
       backgroundColor: koniColors.fadedDark['o-5'],
       paddingInline: 0,
       minWidth: 80,
+      flex: 1,
       width: 80,
       marginRight: 8,
       position: 'relative',

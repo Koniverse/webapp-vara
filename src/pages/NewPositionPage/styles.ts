@@ -5,23 +5,21 @@ const useStyles = makeStyles()(() => {
   return {
     container: {
       display: 'flex',
-      justifyContent: 'center',
       backgroundColor: 'transparent',
-      paddingInline: 200,
-      marginTop: 45,
-      minHeight: '70vh',
+      // paddingInline: 200,
+      marginTop: 40,
 
-      [theme.breakpoints.down('lg')]: {
-        paddingInline: 40
-      },
-
+      // [theme.breakpoints.down('lg')]: {
+      //   paddingInline: 40
+      // },
+      //
       [theme.breakpoints.down('md')]: {
-        paddingInline: 90
+        marginTop: 16,
       },
-
-      [theme.breakpoints.down('sm')]: {
-        paddingInline: 8
-      }
+      //
+      // [theme.breakpoints.down('sm')]: {
+      //   paddingInline: 8
+      // }
     }
   }
 })

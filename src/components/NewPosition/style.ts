@@ -1,48 +1,76 @@
-import { colors, koniColors, koniTypography, typography } from '@static/theme'
+import { koniColors, koniTypography } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
 
 const useStyles = makeStyles()(theme => {
   return {
-    // back
+    mainContainer: {
+      width: '100%',
+
+      [theme.breakpoints.down('xl')]: {
+        paddingInline: 32
+      },
+
+      [theme.breakpoints.down('lg')]: {
+        paddingInline: 24
+      },
+
+      [theme.breakpoints.down('md')]: {
+        paddingInline: 16
+      }
+    },
 
     wrapper: {
       width: 1156,
-      maxWidth: '100%'
+      maxWidth: '100%',
+      marginLeft: 'auto',
+      marginRight: 'auto'
+    },
+
+    // back
+
+    backWrapper: {
+      maxWidth: '100%',
+      width: 1620,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      marginBottom: 36,
+
+      [theme.breakpoints.down('xl')]: {
+        width: '100%',
+      },
     },
 
     back: {
-      height: 24,
-      marginBottom: 18,
       width: 'fit-content',
-      transition: 'filter 300ms',
-
-      '&:hover': {
-        filter: 'brightness(2)',
-        '@media (hover: none)': {
-          filter: 'none'
-        }
-      }
+      // transition: 'filter 300ms',
+      //
+      // '&:hover': {
+      //   filter: 'brightness(2)',
+      //   '@media (hover: none)': {
+      //     filter: 'none'
+      //   }
+      // }
     },
     backIcon: {
-      width: 22,
-      height: 24,
-      marginRight: 12
+      width: 20,
+      height: 20,
+      marginRight: 8,
+      color: koniColors.fadedLight['o-100']
     },
+
     backText: {
-      color: colors.invariant.lightHover,
-      WebkitPaddingBefore: '2px',
-      ...typography.body2
+      color: koniColors.fadedLight['o-100'],
+      ...koniTypography.body2
     },
 
     //
 
     headerContainer: {
       columnGap: 24,
-      alignItems: 'flex-end',
+      alignItems: 'flex-end'
     },
 
     titleContainer: {
-      maxWidth: 464,
       marginBottom: 12,
       display: 'flex',
       flexDirection: 'row',
@@ -58,9 +86,7 @@ const useStyles = makeStyles()(theme => {
       color: koniColors.background['light-1'],
       ...koniTypography.heading6,
 
-      [theme.breakpoints.down('sm')]: {
-
-      }
+      [theme.breakpoints.down('sm')]: {}
     },
 
     row: {
@@ -96,12 +122,10 @@ const useStyles = makeStyles()(theme => {
       minWidth: 'auto',
 
       svg: {
-        color: koniColors.background['light-1'],
+        color: koniColors.background['light-1']
       },
 
-      '&:hover': {
-
-      }
+      '&:hover': {}
     },
 
     options: {
