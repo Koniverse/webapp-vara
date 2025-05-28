@@ -11,7 +11,11 @@ export const SwapPage: React.FC = () => {
 
   return (
     <div className={classes.container}>
-      <WrappedSwap initialTokenFrom={initialTokenFrom} initialTokenTo={initialTokenTo} />
+      <WrappedSwap
+        initialTokenFrom={initialTokenFrom}
+        initialTokenTo={initialTokenTo}
+        className={classes.wrappedSwap}
+      />
     </div>
   )
 }

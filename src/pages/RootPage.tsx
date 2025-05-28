@@ -2,7 +2,6 @@ import React, { useEffect, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useLocation, Outlet } from 'react-router-dom'
 import EventsHandlers from '@containers/EventHandlers/index'
-import FooterWrapper from '@containers/FooterWrapper'
 import HeaderWrapper from '@containers/HeaderWrapper/HeaderWrapper'
 import { Grid } from '@mui/material'
 import { Status, actions as varaConnectionActions } from '@store/reducers/connection'
@@ -42,7 +41,7 @@ const RootPage: React.FC = React.memo(() => {
           <Grid className={classes.body}>
             <Outlet />
           </Grid>
-          <FooterWrapper />
+          {/*<FooterWrapper />*/}
         </Grid>
       </div>
     </>

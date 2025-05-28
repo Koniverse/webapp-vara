@@ -156,7 +156,7 @@ const PoolListItem: React.FC<IProps> = ({
             <Box className={classNames(classes.action, '__col __col-action')}>
               <TooltipHover text='Exchange'>
                 <button className={getButtonClasses({
-                  size: 'xs',
+                  size: 'xxs',
                   layout: 'icon-only',
                   variant: 'primary'
                 }, classes.actionButton)} onClick={handleOpenSwap}>
@@ -165,7 +165,7 @@ const PoolListItem: React.FC<IProps> = ({
               </TooltipHover>
               <TooltipHover text='Add position'>
                 <button className={getButtonClasses({
-                  size: 'xs',
+                  size: 'xxs',
                   layout: 'icon-only',
                   variant: 'primary'
                 }, classes.actionButton)} onClick={handleOpenPosition}>

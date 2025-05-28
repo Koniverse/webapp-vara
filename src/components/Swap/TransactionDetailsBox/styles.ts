@@ -1,4 +1,4 @@
-import { koniColors, koniTypography } from '@static/theme'
+import { koniColors, koniTypography, theme } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
 
 export const useStyles = makeStyles<{ open: boolean }>()((_theme, { open }) => ({
@@ -9,11 +9,15 @@ export const useStyles = makeStyles<{ open: boolean }>()((_theme, { open }) => (
     overflow: 'hidden',
     transition: 'max-height 300ms',
     maxHeight: open ? 152 : 0,
-    marginBottom: open ? 12 : 0
+    marginBottom: open ? 12 : 0,
   },
   innerWrapper: {
     padding: '16px 24px',
-    minHeight: 132
+    minHeight: 132,
+
+    [theme.breakpoints.down('md')]: {
+      padding: '8px 12px',
+    }
   },
   row: {
     alignItems: 'center',
@@ -21,6 +25,12 @@ export const useStyles = makeStyles<{ open: boolean }>()((_theme, { open }) => (
 
     '&:not(:last-child)': {
       marginBottom: 12
+    },
+
+    [theme.breakpoints.down('md')]: {
+      '&:not(:last-child)': {
+        marginBottom: 8
+      },
     }
   },
   label: {
@@ -30,7 +40,11 @@ export const useStyles = makeStyles<{ open: boolean }>()((_theme, { open }) => (
   },
   value: {
     ...koniTypography.heading8,
-    color: koniColors.fadedDark['o-100']
+    color: koniColors.fadedDark['o-100'],
+
+    [theme.breakpoints.down('md')]: {
+      ...koniTypography.heading9,
+    }
   },
   loadingContainer: {
     width: 20,

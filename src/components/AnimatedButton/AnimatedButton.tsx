@@ -5,7 +5,6 @@ import successGif from '@static/gif/successAnimation.gif'
 import classNames from 'classnames'
 import React from 'react'
 import useStyles from './style'
-import { getButtonClasses } from '@utils/uiUtils.ts'
 
 export type ProgressState =
   | 'progress'
@@ -70,11 +69,6 @@ const AnimatedButton: React.FC<Props> = ({
       disabled={disabled}
       variant='contained'
       className={classNames(
-        getButtonClasses({
-          size: 'lg',
-          layout: 'text-only',
-          variant: 'primary'
-        }),
         classes.button,
         progress === 'progress' ||
           progress === 'approvedWithSuccess' ||

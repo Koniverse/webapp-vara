@@ -1,7 +1,7 @@
 import AnimatedButton, { ProgressState } from '@components/AnimatedButton/AnimatedButton'
 import DepositAmountInput from '@components/Inputs/DepositAmountInput/DepositAmountInput'
 import Select from '@components/Inputs/Select/Select'
-import { Button, Grid, Typography } from '@mui/material'
+import { Button, Grid, Typography, useMediaQuery } from '@mui/material'
 import {
   ALL_FEE_TIERS_DATA,
   EXTRA_BALANCE_TO_DEPOSIT_VARA,
@@ -28,6 +28,7 @@ import ChangeWalletButton from '@components/Header/HeaderButton/ChangeWalletButt
 import { decodeAddress, HexString } from '@gear-js/api'
 import { getButtonClasses } from '@utils/uiUtils.ts'
 import { ArrowsLeftRight } from '@phosphor-icons/react'
+import { theme } from '@static/theme'
 
 export interface InputState {
   value: string
@@ -122,6 +123,7 @@ export const DepositSelector: React.FC<IDepositSelector> = ({
   const [tokenB, setTokenB] = useState<HexString | null>(null)
   const [tokenAPrice, setTokenAPrice] = useState<number | undefined>(undefined)
   const [tokenBPrice, setTokenBPrice] = useState<number | undefined>(undefined)
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
 
   useEffect(() => {
     if (!tokenAPrice) {
@@ -439,6 +441,11 @@ export const DepositSelector: React.FC<IDepositSelector> = ({
           <div>
             <AnimatedButton
               className={classNames(
+                getButtonClasses({
+                  size: isMobile ? 'md' : 'lg',
+                  layout: 'text-only',
+                  variant: 'primary'
+                }),
                 classes.addButton,
                 progress === 'none' ? classes.hoverButton : undefined
               )}
@@ -456,6 +463,11 @@ export const DepositSelector: React.FC<IDepositSelector> = ({
       ) : (
         <AnimatedButton
           className={classNames(
+            getButtonClasses({
+              size: isMobile ? 'md' : 'lg',
+              layout: 'text-only',
+              variant: 'primary'
+            }),
             classes.addButton,
             progress === 'none' ? classes.hoverButton : undefined
           )}

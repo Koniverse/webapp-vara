@@ -89,7 +89,7 @@ const SinglePositionInfo: React.FC<IProp> = ({
               onClick={swapHandler}
               startIcon={<ArrowsLeftRight />}
               className={getButtonClasses({
-                size: 'xs',
+                size: 'xxs',
                 variant: 'ghost',
                 layout: 'icon-only'
               }, classes.arrowIcon)}>

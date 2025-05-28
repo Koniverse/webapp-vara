@@ -1,14 +1,18 @@
 import { Theme } from '@mui/material'
 import { colors, koniColors, koniTypography } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
+import { contentContainerMobileStyle, leftContentContainerStyle } from '@styles'
 
 export const useStyles = makeStyles()((theme: Theme) => ({
   swapWrapper: {
+    ...leftContentContainerStyle,
     padding: '40px 32px' as any,
 
-    // [theme.breakpoints.down('sm')]: {
-    //   padding: '0 8px'
-    // }
+    [theme.breakpoints.down('md')]: {
+      ...contentContainerMobileStyle,
+      padding: 16,
+      paddingBottom: 24
+    }
   },
   header: {
     maxWidth: '100%',
@@ -24,6 +28,14 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     '& h1': {
       ...koniTypography.heading4,
       color: koniColors.fadedDark['o-100']
+    },
+
+    [theme.breakpoints.down('md')]: {
+      paddingBottom: 16,
+
+      '& h1': {
+        ...koniTypography.heading7
+      }
     }
   },
   transactionDetailsButton: {
@@ -38,10 +50,6 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     justifyContent: 'center',
     cursor: 'pointer',
 
-    // [theme.breakpoints.down('sm')]: {
-    //   flexGrow: 1
-    // }
-
     '&:not(.-disabled):hover': {
       // backgroundColor: koniColors.fadedDark['o-10'],
     },
@@ -49,6 +57,23 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     '&.-disabled': {
       opacity: 0.4,
       cursor: 'not-allowed'
+    },
+
+    [theme.breakpoints.down('md')]: {
+      height: 36,
+      paddingLeft: 12,
+      paddingRight: 12,
+    }
+  },
+
+  transactionDetailsHeader: {
+    ...koniTypography.body3,
+    whiteSpace: 'nowrap',
+    pointerEvents: 'none',
+    color: koniColors.fadedDark['o-85'],
+
+    [theme.breakpoints.down('md')]: {
+      ...koniTypography.body4,
     }
   },
 
@@ -88,32 +113,31 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     gap: 8
   },
 
-  refreshIconBtn: {
-
-  },
-  settingsIconBtn: {
-
-  },
+  refreshIconBtn: {},
+  settingsIconBtn: {},
   slippage: {
     position: 'absolute'
   },
-  root: {
-
-  },
+  root: {},
 
   inputArea: {
     paddingTop: 16,
     paddingBottom: 16,
     backgroundColor: koniColors.background['light-1'],
-    borderRadius: 16
+    borderRadius: 16,
+
+    [theme.breakpoints.down('md')]: {
+      paddingTop: 8,
+      paddingBottom: 8,
+    }
   },
 
   connectWalletButton: {
-    width: '100%',
+    width: '100%'
   },
   tokenComponentTextContainer: {
-    paddingTop: 8,
-    paddingBottom: 8,
+    paddingTop: 4,
+    paddingBottom: 4,
     display: 'flex',
     justifyContent: 'center',
     position: 'relative',
@@ -128,7 +152,7 @@ export const useStyles = makeStyles()((theme: Theme) => ({
       top: 0,
       bottom: 0,
       margin: 'auto',
-      backgroundColor: koniColors.background.divider,
+      backgroundColor: koniColors.background.divider
     }
   },
   amountInput: {
@@ -138,7 +162,7 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     animation: 'slide-down 300ms linear',
 
     [theme.breakpoints.down('sm')]: {
-      animation: 'slide-down-xs 300ms linear'
+      // animation: 'slide-down-xs 300ms linear'
     }
   },
 
@@ -156,6 +180,11 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     backgroundColor: koniColors.palette['lime-6'],
     borderRadius: 32,
     cursor: 'pointer',
+
+    [theme.breakpoints.down('sm')]: {
+      height: 28,
+      width: 40
+    }
   },
 
   swapArrows: {
@@ -164,7 +193,11 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     transition: '.4s all',
 
     svg: {
-      display: 'block',
+      display: 'block'
+    },
+
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 16,
     }
   },
 
@@ -179,32 +212,28 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     cursor: 'default',
     filter: 'brightness(0.9)',
     width: '100%',
-    [theme.breakpoints.down('sm')]: {
-      flexDirection: 'column-reverse',
-      gap: 4
+    [theme.breakpoints.down('md')]: {
+      marginBlock: 12,
+      flexDirection: 'column',
+      gap: 8
     }
   },
   transactionDetailsInner: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    [theme.breakpoints.down('sm')]: {
-      width: '100%'
-    }
-  },
 
-  transactionDetailsHeader: {
-    ...koniTypography.body3,
-    whiteSpace: 'nowrap',
-    pointerEvents: 'none',
-    color: koniColors.fadedDark['o-85'],
+    [theme.breakpoints.down('md')]: {
+      width: '100%',
+      justifyContent: 'space-between',
+    }
   },
 
   exchangeRateWrapper: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       width: '100%'
     },
 
@@ -219,7 +248,7 @@ export const useStyles = makeStyles()((theme: Theme) => ({
   },
 
   exchangeRoot: {
-    position: 'relative',
+    position: 'relative'
     // background: colors.invariant.newDark,
     // borderRadius: 20
   },
@@ -265,9 +294,7 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     gap: 8,
     flexWrap: 'wrap'
   },
-  slippageButton: {
-
-  },
+  slippageButton: {},
   slippageAmount: {
     color: koniColors.palette['lightGreen-7']
   },
@@ -278,7 +305,15 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     paddingRight: 20,
     paddingTop: 6,
     paddingBottom: 6,
-    marginBottom: 8
+    marginBottom: 8,
+
+    [theme.breakpoints.down('md')]: {
+      ...koniTypography.body3,
+      paddingInline: 12,
+      marginBottom: 4,
+      paddingTop: 2,
+      paddingBottom: 2,
+    }
   },
   unknownWarningContainer: {
     marginTop: 12,

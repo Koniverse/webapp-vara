@@ -9,12 +9,16 @@ export const useStyles = makeStyles()((theme: Theme) => ({
   },
 
   amountInput: {
+    ...koniTypography.heading5,
     color: koniColors.fadedDark['o-85'],
     borderRadius: 20,
     textAlign: 'left',
-    fontSize: 32,
     width: '100%',
     transition: 'all .4s',
+
+    [theme.breakpoints.down('md')]: {
+      ...koniTypography.heading6,
+    }
   },
   input: {
     height: 42,
@@ -27,17 +31,11 @@ export const useStyles = makeStyles()((theme: Theme) => ({
   maxButton: {
     marginLeft: 8,
 
-    '&:hover': {
-
-    },
-    [theme.breakpoints.down('md')]: {
-
-    }
+    '&:hover': {},
+    [theme.breakpoints.down('md')]: {}
   },
   maxButtonNotActive: {
-
     '&:hover': {
-
       cursor: 'default'
     }
   },
@@ -46,13 +44,11 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     width: 'min-content'
   },
 
-  label: {
-
-  },
+  label: {},
   balanceContainer: {
     display: 'flex',
     alignItems: 'center',
-    flexShrink: 1,
+    flexShrink: 1
   },
   showMaxButton: {
     cursor: 'pointer'
@@ -75,14 +71,19 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     marginBottom: 8,
     display: 'flex',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
+
+    [theme.breakpoints.down('md')]: {
+      paddingInline: 12,
+      marginBottom: 4
+    }
   },
   noData: {
     color: koniColors.semantic['warning'],
     ...koniTypography.body4,
     display: 'flex',
     flexDirection: 'row',
-    cursor: 'default',
+    cursor: 'default'
   },
   noDataIcon: {
     marginRight: 5,
@@ -147,13 +148,16 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     textOverflow: 'ellipsis',
 
     '.__symbol': {
-      color: koniColors.fadedDark['o-45'],
+      color: koniColors.fadedDark['o-45']
     }
   },
   bottom: {
     paddingTop: 4,
     paddingBottom: 4,
-    paddingInline: 20
+    paddingInline: 20,
+    [theme.breakpoints.down('md')]: {
+      paddingInline: 12
+    }
   },
   blur: {
     width: 120,

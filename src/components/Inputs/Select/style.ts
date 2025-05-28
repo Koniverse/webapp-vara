@@ -37,13 +37,33 @@ export const useStyles = makeStyles()((theme: Theme) => {
         boxShadow: 'none',
       },
 
-      [theme.breakpoints.down('sm')]: {
-        minWidth: 'auto'
+      [theme.breakpoints.down('md')]: {
+        height: 40,
+        paddingRight: 6,
+        paddingLeft: 12,
+
+        '.MuiButton-startIcon': {
+          marginLeft: -6,
+        },
+
+        '.MuiButton-endIcon': {
+          width: 24,
+          height: 24,
+
+          'svg': {
+            width: 12,
+            height: 12,
+          },
+        },
       }
     },
     tokenName: {
       ...koniTypography.heading8,
-      marginRight: 4
+      marginRight: 4,
+
+      [theme.breakpoints.down('md')]: {
+        ...koniTypography.heading9,
+      }
     },
     imageContainer: {
       position: 'relative'
@@ -52,7 +72,12 @@ export const useStyles = makeStyles()((theme: Theme) => {
       display: 'block',
       width: 32,
       height: 32,
-      borderRadius: '100%'
+      borderRadius: '100%',
+
+      [theme.breakpoints.down('md')]: {
+        width: 24,
+        height: 24,
+      }
     },
     warningIcon: {
       position: 'absolute',

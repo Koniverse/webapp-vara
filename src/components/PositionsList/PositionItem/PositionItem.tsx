@@ -143,7 +143,7 @@ export const PositionItem: React.FC<IPositionItem> = ({
               }}
               startIcon={<ArrowsLeftRight />}
               className={getButtonClasses({
-                size: 'xs',
+                size: 'xxs',
                 variant: 'ghost',
                 layout: 'icon-only'
               }, classes.arrows)}>
@@ -214,7 +214,7 @@ export const PositionItem: React.FC<IPositionItem> = ({
       <Box className={classNames('__col __col-action')}>
         <TooltipHover text='View detail'>
           <button className={getButtonClasses({
-            size: 'xs',
+            size: 'xxs',
             layout: 'icon-only',
             variant: 'primary'
           }, classes.actionButton)} onClick={handleViewDetail}>

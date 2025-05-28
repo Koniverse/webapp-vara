@@ -8,7 +8,11 @@ export const useStyles = makeStyles()(() => ({
     justifyContent: 'center',
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
-    overflow: 'hidden'
+    overflow: 'hidden',
+
+    [theme.breakpoints.down('md')]: {
+      ...koniTypography.body4,
+    }
   },
   loadingContainer: {
     width: 20,
@@ -38,9 +42,10 @@ export const useStyles = makeStyles()(() => ({
       //   borderColor: colors.invariant.light
       // }
     },
-    [theme.breakpoints.down('sm')]: {
-      // width: '100%',
-      // flex: 1
+    [theme.breakpoints.down('md')]: {
+      height: 36,
+      paddingLeft: 12,
+      paddingRight: 12,
     }
   }
 }))

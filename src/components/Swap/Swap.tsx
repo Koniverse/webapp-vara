@@ -5,7 +5,7 @@ import Slippage from '@components/Modals/Slippage/Slippage'
 import Refresher from '@components/Refresher/Refresher'
 import { HexString, Network, PoolKey, Price } from '@invariant-labs/vara-sdk'
 import { PERCENTAGE_DENOMINATOR } from '@invariant-labs/vara-sdk/target/consts'
-import { Box, Button, Grid, Typography } from '@mui/material'
+import { Box, Button, Grid, Typography, useMediaQuery } from '@mui/material'
 import {
   DEFAULT_TOKEN_DECIMAL,
   EXTRA_BALANCE_TO_DEPOSIT_VARA,
@@ -39,6 +39,7 @@ import { useNavigate } from 'react-router-dom'
 import { TooltipHover } from '@components/TooltipHover/TooltipHover'
 import { decodeAddress } from '@gear-js/api'
 import { ArrowsCounterClockwise, ArrowsDownUp, GearSix } from '@phosphor-icons/react'
+import { theme } from '@static/theme'
 
 export interface Pools {
   tokenX: string
@@ -62,6 +63,7 @@ export interface Pools {
 
 export interface ISwap {
   isFetchingNewPool: boolean
+  className?: string
   onRefresh: (tokenFromAddress: HexString | null, tokenToAddress: HexString | null) => void
   walletStatus: Status
   swapData: SwapData
@@ -105,6 +107,7 @@ export interface ISwap {
 
 export const Swap: React.FC<ISwap> = ({
   isFetchingNewPool,
+  className,
   onRefresh,
   walletStatus,
   tokens,
@@ -166,6 +169,8 @@ export const Swap: React.FC<ISwap> = ({
   const timeoutRef = useRef<number>(0)
 
   const navigate = useNavigate()
+
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
 
   useEffect(() => {
     navigate(
@@ -453,7 +458,7 @@ export const Swap: React.FC<ISwap> = ({
   }, [tokenFrom, tokenTo])
 
   return (
-    <div className={classes.swapWrapper}>
+    <div className={classNames(classes.swapWrapper, className)}>
       <Grid container className={classes.header}>
         <Typography component='h1'>Swap</Typography>
 
@@ -466,7 +471,7 @@ export const Swap: React.FC<ISwap> = ({
                   {
                     variant: 'secondary-light',
                     layout: 'icon-only',
-                    size: 'sm'
+                    size: isMobile ? 'xs' : 'sm'
                   },
                   classes.refreshIconBtn
                 )}
@@ -489,7 +494,7 @@ export const Swap: React.FC<ISwap> = ({
               {
                 variant: 'secondary-light',
                 layout: 'text-with-icon',
-                size: 'sm'
+                size: isMobile ? 'xs' : 'sm'
               },
               classes.slippageButton
             )}
@@ -506,7 +511,7 @@ export const Swap: React.FC<ISwap> = ({
                 {
                   variant: 'secondary-dark',
                   layout: 'icon-only',
-                  size: 'sm'
+                  size: isMobile ? 'xs' : 'sm'
                 },
                 classes.settingsIconBtn
               )}
@@ -685,28 +690,26 @@ export const Swap: React.FC<ISwap> = ({
           </Box>
         </div>
 
-        {
-          (tokens[tokenFrom ?? '']?.isUnknown || tokens[tokenTo ?? '']?.isUnknown) && (
-            <Box className={classes.unknownWarningContainer}>
-              {tokens[tokenFrom ?? '']?.isUnknown && (
-                <TooltipHover
-                  text={`${tokens[tokenFrom ?? ''].symbol} is unknown, make sure address is correct before trading`}>
-                  <Box className={classes.unknownWarning}>
-                    {tokens[tokenFrom ?? ''].symbol} is not verified
-                  </Box>
-                </TooltipHover>
-              )}
-              {tokens[tokenTo ?? '']?.isUnknown && (
-                <TooltipHover
-                  text={`${tokens[tokenTo ?? ''].symbol} is unknown, make sure address is correct before trading`}>
-                  <Box className={classes.unknownWarning}>
-                    {tokens[tokenTo ?? ''].symbol} is not verified
-                  </Box>
-                </TooltipHover>
-              )}
-            </Box>
-          )
-        }
+        {(tokens[tokenFrom ?? '']?.isUnknown || tokens[tokenTo ?? '']?.isUnknown) && (
+          <Box className={classes.unknownWarningContainer}>
+            {tokens[tokenFrom ?? '']?.isUnknown && (
+              <TooltipHover
+                text={`${tokens[tokenFrom ?? ''].symbol} is unknown, make sure address is correct before trading`}>
+                <Box className={classes.unknownWarning}>
+                  {tokens[tokenFrom ?? ''].symbol} is not verified
+                </Box>
+              </TooltipHover>
+            )}
+            {tokens[tokenTo ?? '']?.isUnknown && (
+              <TooltipHover
+                text={`${tokens[tokenTo ?? ''].symbol} is unknown, make sure address is correct before trading`}>
+                <Box className={classes.unknownWarning}>
+                  {tokens[tokenTo ?? ''].symbol} is not verified
+                </Box>
+              </TooltipHover>
+            )}
+          </Box>
+        )}
 
         <Box className={classes.transactionDetails}>
           <Box className={classes.exchangeRateWrapper}>
@@ -802,11 +805,14 @@ export const Swap: React.FC<ISwap> = ({
             onConnect={onConnectWallet}
             connected={false}
             onDisconnect={onDisconnectWallet}
-            className={getButtonClasses({
-              size: 'lg',
-              variant: 'primary',
-              layout: 'text-only'
-            }, classes.connectWalletButton)}
+            className={getButtonClasses(
+              {
+                size: isMobile ? 'md' : 'lg',
+                variant: 'primary',
+                layout: 'text-only'
+              },
+              classes.connectWalletButton
+            )}
           />
         ) : getStateMessage() === 'Insufficient VARA' ? (
           <TooltipHover
@@ -817,10 +823,22 @@ export const Swap: React.FC<ISwap> = ({
                 content={getStateMessage()}
                 className={
                   getStateMessage() === 'Connect a wallet'
-                    ? `${classes.swapButton}`
+                    ? `${getButtonClasses({
+                        size: isMobile ? 'md' : 'lg',
+                        layout: 'text-only',
+                        variant: 'primary'
+                      })} ${classes.swapButton}`
                     : getStateMessage() === 'Exchange' && progress === 'none'
-                      ? `${classes.swapButton} ${classes.ButtonSwapActive}`
-                      : classes.swapButton
+                      ? `${getButtonClasses({
+                          size: isMobile ? 'md' : 'lg',
+                          layout: 'text-only',
+                          variant: 'primary'
+                        })} ${classes.swapButton} ${classes.ButtonSwapActive}`
+                      : `${getButtonClasses({
+                        size: isMobile ? 'md' : 'lg',
+                        layout: 'text-only',
+                        variant: 'primary'
+                      })} ${classes.swapButton}`
                 }
                 disabled={getStateMessage() !== 'Exchange' || progress !== 'none'}
                 onClick={() => {
@@ -847,10 +865,22 @@ export const Swap: React.FC<ISwap> = ({
             content={getStateMessage()}
             className={
               getStateMessage() === 'Connect a wallet'
-                ? `${classes.swapButton}`
+                ? `${getButtonClasses({
+                    size: isMobile ? 'md' : 'lg',
+                    layout: 'text-only',
+                    variant: 'primary'
+                  })} ${classes.swapButton}`
                 : getStateMessage() === 'Exchange' && progress === 'none'
-                  ? `${classes.swapButton} ${classes.ButtonSwapActive}`
-                  : classes.swapButton
+                  ? `${getButtonClasses({
+                      size: isMobile ? 'md' : 'lg',
+                      layout: 'text-only',
+                      variant: 'primary'
+                    })} ${classes.swapButton} ${classes.ButtonSwapActive}`
+                  : `${getButtonClasses({
+                    size: isMobile ? 'md' : 'lg',
+                    layout: 'text-only',
+                    variant: 'primary'
+                  })} ${classes.swapButton}`
             }
             disabled={getStateMessage() !== 'Exchange' || progress !== 'none'}
             onClick={() => {

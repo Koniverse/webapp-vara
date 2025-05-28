@@ -14,7 +14,7 @@ export const unblurContent = () => {
 }
 
 type ButtonProps = {
-  size: 'xs' | 'sm' | 'md' | 'lg', // note: xs is only for icon-only
+  size: 'xxs' | 'xs' | 'sm' | 'md' | 'lg', // note: xs is only for icon-only
   variant: 'primary' | 'secondary-light' | 'secondary-dark' | 'ghost',
   layout: 'icon-only' | 'text-only' | 'text-with-icon',
 }

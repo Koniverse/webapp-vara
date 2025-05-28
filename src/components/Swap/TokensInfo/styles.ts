@@ -9,20 +9,22 @@ export const useWrapperStyles = makeStyles()(theme => ({
     backgroundColor: koniColors.background['light-1'],
     border: `1px solid ${koniColors.fadedDark['o-10']}`,
 
-    [theme.breakpoints.down('sm')]: {
-      // flexDirection: 'column'
+    [theme.breakpoints.down('md')]: {
+      flexDirection: 'column',
+      paddingInline: 12,
+      marginBottom: 16
     }
   },
   divider: {
     width: 1,
     height: 40,
     backgroundColor: koniColors.background['divider'],
-    margin: '0 16px'
-    // [theme.breakpoints.down('sm')]: {
-    //   height: 1,
-    //   width: '100%',
-    //   margin: '8px 0'
-    // }
+    margin: '0 16px',
+    [theme.breakpoints.down('md')]: {
+      height: 1,
+      width: '100%',
+      margin: '8px 0'
+    }
   }
 }))
 

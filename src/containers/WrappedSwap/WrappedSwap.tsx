@@ -32,9 +32,10 @@ import vftSingleton from '@store/services/vftSingleton'
 type Props = {
   initialTokenFrom: string
   initialTokenTo: string
+  className?: string
 }
 
-export const WrappedSwap = ({ initialTokenFrom, initialTokenTo }: Props) => {
+export const WrappedSwap = ({ initialTokenFrom, initialTokenTo, className }: Props) => {
   const dispatch = useDispatch()
 
   const walletAddress = useSelector(hexAddress)
@@ -278,6 +279,7 @@ export const WrappedSwap = ({ initialTokenFrom, initialTokenTo }: Props) => {
 
   return (
     <Swap
+      className={className}
       isFetchingNewPool={isFetchingNewPool}
       onRefresh={onRefresh}
       onSwap={(

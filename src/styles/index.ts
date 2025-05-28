@@ -15,6 +15,13 @@ export const rightContentContainerStyle: CSSObject  = {
   boxShadow: `8px 8px 0 0 ${koniColors.palette['violet-4']}`,
 }
 
+export const contentContainerMobileStyle: CSSObject  = {
+  backgroundColor: koniColors.palette['violet-1'],
+  border: `2px solid ${koniColors.fadedDark['o-85']}`,
+  borderRadius: 24,
+  boxShadow: `-4px 4px 0 0 ${koniColors.palette['violet-4']}`,
+}
+
 export const popoverLayoutStyle: CSSObject  = {
   backgroundColor: koniColors.palette['violet-1'],
   border: `2px solid ${koniColors.fadedLight['o-100']}`,
@@ -138,6 +145,25 @@ export const generalButtonStyle: CSSObject  = {
   },
 
   '&.-size-xs': {
+    height: 36,
+
+    '&.-layout-icon-only': {
+      width: 36,
+      minWidth: 36,
+
+      '.MuiButton-startIcon, .__button-icon': {
+        height: 22,
+        width: 22,
+      },
+    },
+
+    '&.-layout-text-only, &.-layout-text-with-icon': {
+      paddingLeft: 8,
+      paddingRight: 8,
+    },
+  },
+
+  '&.-size-xxs': {
     height: 32,
 
     '&.-layout-icon-only': {
@@ -148,6 +174,11 @@ export const generalButtonStyle: CSSObject  = {
         height: 20,
         width: 20,
       },
+    },
+
+    '&.-layout-text-only, &.-layout-text-with-icon': {
+      paddingLeft: 8,
+      paddingRight: 8,
     },
   },
 
@@ -171,7 +202,7 @@ export const generalButtonStyle: CSSObject  = {
       borderWidth: 2
     },
 
-    '&.-size-sm': {
+    '&.-size-sm, &.-size-xs, &.-size-xxs': {
       '&.-layout-text-only': {
         borderWidth: 1
       },
@@ -231,7 +262,7 @@ export const generalButtonStyle: CSSObject  = {
       borderWidth: 2
     },
 
-    '&.-size-sm': {
+    '&.-size-sm, &.-size-xs, &.-size-xxs': {
       '&.-layout-text-only': {
         borderWidth: 1
       },
