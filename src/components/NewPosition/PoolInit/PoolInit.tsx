@@ -1,6 +1,6 @@
 import RangeInput from '@components/Inputs/RangeInput/RangeInput'
 import SimpleInput from '@components/Inputs/SimpleInput/SimpleInput'
-import { Button, Grid, Typography } from '@mui/material'
+import { Button, Grid, Typography, useMediaQuery } from '@mui/material'
 import {
   calcPriceByTickIndex,
   calculateConcentrationRange,
@@ -21,6 +21,7 @@ import { MINIMAL_POOL_INIT_PRICE } from '@store/consts/static'
 import AnimatedNumber from '@components/AnimatedNumber/AnimatedNumber'
 import { getButtonClasses } from '@utils/uiUtils.ts'
 import { Info } from '@phosphor-icons/react'
+import { theme } from '@static/theme'
 
 export interface IPoolInit {
   tokenASymbol: string
@@ -59,6 +60,7 @@ export const PoolInit: React.FC<IPoolInit> = ({
 }) => {
   const minTick = getMinTick(tickSpacing)
   const maxTick = getMaxTick(tickSpacing)
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
 
   const { classes } = useStyles()
 
@@ -421,7 +423,7 @@ export const PoolInit: React.FC<IPoolInit> = ({
           <Grid container className={classes.buttons} justifyContent='center' alignItems='center'>
             <Button
               className={getButtonClasses({
-                size: 'lg',
+                size: isMobile ? 'md' : 'lg',
                 layout: 'text-only',
                 variant: 'secondary-light'
               }, classes.button)}
@@ -430,7 +432,7 @@ export const PoolInit: React.FC<IPoolInit> = ({
             </Button>
             <Button
               className={getButtonClasses({
-                size: 'lg',
+                size: isMobile ? 'md' : 'lg',
                 layout: 'text-only',
                 variant: 'secondary-light'
               }, classes.button)}

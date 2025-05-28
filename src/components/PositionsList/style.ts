@@ -11,7 +11,7 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     [theme.breakpoints.down('md')]: {
       ...contentContainerMobileStyle,
       width: '100%',
-      padding: '16px 16px 20px' as any,
+      padding: '16px 16px 20px' as any
     }
   },
   blockHeader: {
@@ -20,18 +20,18 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     display: 'flex',
 
     [theme.breakpoints.down('md')]: {
-      rowGap: 12
+      rowGap: 12,
+      padding: 0,
+      paddingBottom: 12
     }
   },
-  titleWrapper: {
-
-  },
+  titleWrapper: {},
   title: {
     ...koniTypography.heading5,
     color: koniColors.fadedDark['o-100'],
 
     [theme.breakpoints.down('md')]: {
-      ...koniTypography.heading7,
+      ...koniTypography.heading7
     }
   },
   searchWrapper: {
@@ -40,7 +40,7 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     alignItems: 'center',
 
     [theme.breakpoints.down('md')]: {
-      columnGap: 8,
+      columnGap: 8
     }
   },
   searchBar: {
@@ -57,37 +57,30 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     },
 
     [theme.breakpoints.down('md')]: {
-      width: '100%',
+      width: '100%'
     }
   },
 
   searchIcon: {
     minWidth: 20,
     height: 20,
-    color: koniColors.fadedDark['o-100'],
+    color: koniColors.fadedDark['o-100']
   },
 
   mobileSearchBarWrapper: {
-    width: '100%',
+    width: '100%'
   },
 
   button: {
-
-    '&:hover': {
-
-    },
-    [theme.breakpoints.down('sm')]: {
-
-    }
+    '&:hover': {},
+    [theme.breakpoints.down('sm')]: {}
   },
 
   listInner: {
     minWidth: 1200
   },
 
-  listHeader: {
-
-  },
+  listHeader: {},
 
   pagination: {
     width: '100%',
@@ -125,7 +118,7 @@ export const useStyles = makeStyles()((theme: Theme) => ({
   list: {
     position: 'relative',
     flex: 1,
-    overflowX: 'auto',
+    overflowX: 'auto'
   },
   itemLink: {
     textDecoration: 'none',
@@ -157,9 +150,7 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     margin: 0,
     minWidth: 'auto',
 
-    [theme.breakpoints.down('sm')]: {
-
-    }
+    [theme.breakpoints.down('sm')]: {}
   },
 
   titleMobileContainer: {

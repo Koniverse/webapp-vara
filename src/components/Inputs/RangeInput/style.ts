@@ -20,7 +20,10 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     borderRadius: 12,
 
     [theme.breakpoints.down('md')]: {
-
+      flexDirection: 'column',
+      height: 'auto',
+      gap: 0,
+      padding: 8
     }
   },
   label: {
@@ -131,6 +134,13 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     height: 46,
     paddingInline: 12,
     backgroundColor: koniColors.fadedDark['o-5'],
+
+    [theme.breakpoints.down('md')]: {
+      flexDirection: 'column',
+      height: 'auto',
+      gap: 0,
+      padding: 8
+    }
   },
 
   diffLabelWrapper: {
@@ -156,6 +166,10 @@ export const useStyles = makeStyles()((theme: Theme) => ({
       display: 'none',
       scrollbarWidth: 'none',
       msOverflowStyle: 'none'
+    },
+
+    [theme.breakpoints.down('md')]: {
+      marginLeft: 0,
     }
   }
 }))

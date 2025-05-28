@@ -1,5 +1,5 @@
 import { colors, koniColors, koniTypography, typography } from '@static/theme'
-import { rightContentContainerStyle } from '@styles'
+import { contentContainerMobileStyle, rightContentContainerStyle } from '@styles'
 import { makeStyles } from 'tss-react/mui'
 
 const useStyles = makeStyles()(theme => {
@@ -11,8 +11,10 @@ const useStyles = makeStyles()(theme => {
       paddingInline: 32,
       position: 'relative',
 
-      [theme.breakpoints.down('sm')]: {
-
+      [theme.breakpoints.down('md')]: {
+        ...contentContainerMobileStyle,
+        padding: 16,
+        paddingBottom: 20
       }
     },
     headerContainer: {
@@ -23,6 +25,11 @@ const useStyles = makeStyles()(theme => {
       paddingInline: 8,
       paddingBlock: 4,
       color: koniColors.fadedDark['o-100'],
+
+      [theme.breakpoints.down('md')]: {
+        ...koniTypography.heading7,
+        paddingInline: 4,
+      }
     },
 
     topInnerWrapper: {
@@ -45,6 +52,11 @@ const useStyles = makeStyles()(theme => {
       paddingBlock: 4,
       marginBottom: 12,
       color: koniColors.fadedDark['o-100'],
+
+      [theme.breakpoints.down('md')]: {
+        ...koniTypography.heading7,
+        paddingInline: 4,
+      }
     },
     inputs: {
       flexDirection: 'row',
@@ -55,10 +67,10 @@ const useStyles = makeStyles()(theme => {
       gap: 12,
 
       [theme.breakpoints.down('md')]: {
-        '&:first-of-type': {
-          marginRight: 0,
-          marginBottom: 8
-        }
+        // '&:first-of-type': {
+        //   marginRight: 0,
+        //   marginBottom: 8
+        // }
       }
     },
     button: {

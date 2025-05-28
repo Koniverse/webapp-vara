@@ -1,7 +1,7 @@
 import RangeInput from '@components/Inputs/RangeInput/RangeInput'
 import PriceRangePlot from '@components/PriceRangePlot/PriceRangePlot'
 import { getMaxTick, getMinTick } from '@invariant-labs/vara-sdk'
-import { Button, Checkbox, FormControlLabel, Grid, Tooltip, Typography } from '@mui/material'
+import { Button, Checkbox, FormControlLabel, Grid, Tooltip, Typography, useMediaQuery } from '@mui/material'
 import loader from '@static/gif/loader.gif'
 import activeLiquidity from '@static/svg/activeLiquidity.svg'
 import {
@@ -20,6 +20,7 @@ import useStyles from './style'
 import { PositionOpeningMethod } from '@store/consts/types'
 import { getButtonClasses } from '@utils/uiUtils.ts'
 import { Info } from '@phosphor-icons/react'
+import { theme } from '@static/theme'
 export interface IRangeSelector {
   data: PlotTickData[]
   midPrice: TickPlotPositionData
@@ -111,6 +112,7 @@ export const RangeSelector: React.FC<IRangeSelector> = ({
   const [cachedConcentrationArray, setCachedConcentrationArray] = useState(concentrationArray)
 
   const isMountedRef = useRef(false)
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
 
   useEffect(() => {
     isMountedRef.current = true
@@ -622,7 +624,7 @@ export const RangeSelector: React.FC<IRangeSelector> = ({
           <Grid container className={classes.buttons} justifyContent='center' alignItems='center'>
             <Button
               className={getButtonClasses({
-                size: 'lg',
+                size: isMobile ? 'md' : 'lg',
                 layout: 'text-only',
                 variant: 'secondary-light'
               }, classes.button)}
@@ -631,7 +633,7 @@ export const RangeSelector: React.FC<IRangeSelector> = ({
             </Button>
             <Button
               className={getButtonClasses({
-                size: 'lg',
+                size: isMobile ? 'md' : 'lg',
                 layout: 'text-only',
                 variant: 'secondary-light'
               }, classes.button)}
