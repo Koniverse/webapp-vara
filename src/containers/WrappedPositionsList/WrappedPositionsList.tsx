@@ -24,7 +24,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { IPositionItem } from '@components/PositionsList/PositionItem/PositionItem'
 
-export const WrappedPositionsList: React.FC = () => {
+type Props = {
+  className?: string
+}
+
+export const WrappedPositionsList: React.FC<Props> = ({className} : Props) => {
   const walletAddress = useSelector(address)
   const list = useSelector(positionsWithPoolsData)
   const isLoading = useSelector(isLoadingPositionsList)
@@ -152,6 +156,7 @@ export const WrappedPositionsList: React.FC = () => {
 
   return (
     <PositionsList
+      className={className}
       initialPage={lastPage}
       setLastPage={setLastPage}
       searchValue={value}

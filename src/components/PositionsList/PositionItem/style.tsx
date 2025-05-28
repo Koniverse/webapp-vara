@@ -65,7 +65,13 @@ export const useStyles = makeStyles()((theme: Theme) => ({
       paddingLeft: 16
     },
 
-    [theme.breakpoints.down('sm')]: {}
+    [theme.breakpoints.down('md')]: {
+      padding: '8px 0' as any,
+
+      '& p': {
+        ...koniTypography.body3
+      },
+    }
   },
 
   // action col
@@ -90,6 +96,10 @@ export const useStyles = makeStyles()((theme: Theme) => ({
   tokenIcon: {
     width: 36,
     borderRadius: '100%',
+
+    [theme.breakpoints.down('md')]: {
+      width: 32,
+    }
   },
 
   arrows: {
@@ -141,6 +151,7 @@ export const useStyles = makeStyles()((theme: Theme) => ({
 
   minMax: {
     display: 'flex',
+    ...koniTypography.body2,
 
     '.__col-content': {
       whiteSpace: 'nowrap',
@@ -153,35 +164,10 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     },
 
     [theme.breakpoints.down('md')]: {
-
+      ...koniTypography.body3,
     }
   },
 
-  mdInfo: {
-    width: 'fit-content',
-    flexWrap: 'nowrap',
-
-    [theme.breakpoints.down('lg')]: {
-      flexWrap: 'nowrap',
-      marginTop: 16,
-      width: '100%'
-    },
-
-    [theme.breakpoints.down('md')]: {
-      flexWrap: 'wrap'
-    }
-  },
-  mdTop: {
-    width: 'fit-content',
-
-    [theme.breakpoints.down('lg')]: {
-      width: '100%',
-      justifyContent: 'space-between'
-    }
-  },
-  label: {
-    marginRight: 2
-  },
   tooltip: {
     color: colors.invariant.textGrey,
     ...typography.caption4,

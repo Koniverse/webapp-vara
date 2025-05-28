@@ -6,7 +6,7 @@ const ListPage: React.FC = () => {
   const { classes } = useStyles()
   return (
     <Grid container className={classes.container}>
-      <WrappedPositionsList />
+      <WrappedPositionsList className={classes.wrappedPositionsList} />
     </Grid>
   )
 }

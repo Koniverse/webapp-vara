@@ -1,7 +1,7 @@
 import { EmptyPlaceholder } from '@components/EmptyPlaceholder/EmptyPlaceholder'
 import { INoConnected, NoConnected } from '@components/NoConnected/NoConnected'
 import { PaginationList } from '@components/PaginationList/PaginationList'
-import { Button, Grid, InputAdornment, InputBase, Typography } from '@mui/material'
+import { Button, Grid, InputAdornment, InputBase, Typography, useMediaQuery } from '@mui/material'
 import loader from '@static/gif/loader.gif'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -12,9 +12,12 @@ import { TooltipHover } from '@components/TooltipHover/TooltipHover'
 import { getButtonClasses } from '@utils/uiUtils.ts'
 import { ArrowsCounterClockwise, MagnifyingGlass, Plus } from '@phosphor-icons/react'
 import { PositionListHeader } from '@components/PositionsList/PositionItem/PositionListHeader.tsx'
+import classNames from 'classnames'
+import { theme } from '@static/theme'
 
 interface IProps {
   initialPage: number
+  className?: string
   setLastPage: (page: number) => void
   data: IPositionItem[]
   onAddPositionClick: () => void
@@ -34,6 +37,7 @@ interface IProps {
 
 export const PositionsList: React.FC<IProps> = ({
   initialPage,
+  className,
   setLastPage,
   data,
   onAddPositionClick,
@@ -54,6 +58,7 @@ export const PositionsList: React.FC<IProps> = ({
   const navigate = useNavigate()
   const [defaultPage] = useState(initialPage)
   const [page, setPage] = useState(initialPage)
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (Object.keys(loadedPages).length * POSITIONS_PER_QUERY < Number(length)) {
@@ -99,7 +104,7 @@ export const PositionsList: React.FC<IProps> = ({
   }, [page])
 
   return (
-    <Grid container direction='column' className={classes.root}>
+    <Grid container direction='column' className={classNames(classes.root, className)}>
       <Grid
         className={classes.blockHeader}
         container
@@ -117,30 +122,34 @@ export const PositionsList: React.FC<IProps> = ({
               onClick={showNoConnected ? () => {} : handleRefresh}
               startIcon={<ArrowsCounterClockwise />}
               className={getButtonClasses({
-                size: 'sm',
+                size: isMobile ? 'xs' : 'sm',
                 variant: 'ghost',
                 layout: 'icon-only'
               }, classes.refreshIconBtn)}>
             </Button>
           </TooltipHover>
 
-          <InputBase
-            type={'text'}
-            className={classes.searchBar}
-            placeholder='Search position'
-            startAdornment={
-              <InputAdornment position='start'>
-                <MagnifyingGlass className={classes.searchIcon} />
-              </InputAdornment>
-            }
-            onChange={handleChangeInput}
-            value={searchValue}
-            disabled={noInitialPositions}
-          />
+          {
+            !isMobile && (
+              <InputBase
+                type={'text'}
+                className={classes.searchBar}
+                placeholder='Search position'
+                startAdornment={
+                  <InputAdornment position='start'>
+                    <MagnifyingGlass className={classes.searchIcon} />
+                  </InputAdornment>
+                }
+                onChange={handleChangeInput}
+                value={searchValue}
+                disabled={noInitialPositions}
+              />
+            )
+          }
 
           <Button
             className={getButtonClasses({
-              size: 'sm',
+              size: isMobile ? 'xs' : 'sm',
               variant: 'primary',
               layout: 'text-only'
             }, classes.button)}
@@ -150,36 +159,58 @@ export const PositionsList: React.FC<IProps> = ({
             Add Position
           </Button>
         </Grid>
+
+        {
+          isMobile && (
+            <div className={classes.mobileSearchBarWrapper}>
+              <InputBase
+                type={'text'}
+                className={classes.searchBar}
+                placeholder='Search position'
+                startAdornment={
+                  <InputAdornment position='start'>
+                    <MagnifyingGlass className={classes.searchIcon} />
+                  </InputAdornment>
+                }
+                onChange={handleChangeInput}
+                value={searchValue}
+                disabled={noInitialPositions}
+              />
+            </div>
+          )
+        }
       </Grid>
 
       <Grid container direction='column' className={classes.list} justifyContent='flex-start'>
-        <PositionListHeader className={classes.listHeader} />
+        <div className={classes.listInner}>
+          <PositionListHeader className={classes.listHeader} />
 
-        {data.length > 0 && !loading ? (
-          paginator(page).data.map((element) => (
-            <PositionItem key={element.address + element.id} {...element} handleViewDetail={() => {
-              navigate(`/position/${element.address}/${element.id}`)
-            }}
+          {data.length > 0 && !loading ? (
+            paginator(page).data.map((element) => (
+              <PositionItem key={element.address + element.id} {...element} handleViewDetail={() => {
+                navigate(`/position/${element.address}/${element.id}`)
+              }}
+              />
+            ))
+          ) : showNoConnected ? (
+            <NoConnected {...noConnectedBlockerProps} />
+          ) : loading ? (
+            <Grid container style={{ flex: 1 }}>
+              <img src={loader} className={classes.loading} alt='Loader' />
+            </Grid>
+          ) : (
+            <EmptyPlaceholder
+              desc={
+                noInitialPositions
+                  ? 'Add your first position by pressing the button and start earning!'
+                  : 'Did not find any matching positions'
+              }
+              className={classes.placeholder}
+              onAction={onAddPositionClick}
+              withButton={noInitialPositions}
             />
-          ))
-        ) : showNoConnected ? (
-          <NoConnected {...noConnectedBlockerProps} />
-        ) : loading ? (
-          <Grid container style={{ flex: 1 }}>
-            <img src={loader} className={classes.loading} alt='Loader' />
-          </Grid>
-        ) : (
-          <EmptyPlaceholder
-            desc={
-              noInitialPositions
-                ? 'Add your first position by pressing the button and start earning!'
-                : 'Did not find any matching positions'
-            }
-            className={classes.placeholder}
-            onAction={onAddPositionClick}
-            withButton={noInitialPositions}
-          />
-        )}
+          )}
+        </div>
       </Grid>
       {paginator(page).totalPages > 1 ? (
         <Grid className={classes.pagination}>

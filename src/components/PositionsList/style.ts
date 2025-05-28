@@ -1,26 +1,27 @@
 import { Theme } from '@mui/material'
 import { colors, koniColors, koniTypography, typography } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
-import { leftContentContainerStyle } from '@styles'
+import { contentContainerMobileStyle, leftContentContainerStyle } from '@styles'
 
 export const useStyles = makeStyles()((theme: Theme) => ({
   root: {
     ...leftContentContainerStyle,
-    maxWidth: 1384,
-    minHeight: 507,
-    marginTop: 92,
-    marginLeft: 'auto',
-    marginRight: 'auto',
     padding: '0 32px 32px' as any,
 
     [theme.breakpoints.down('md')]: {
-      width: '100%'
+      ...contentContainerMobileStyle,
+      width: '100%',
+      padding: '16px 16px 20px' as any,
     }
   },
   blockHeader: {
     paddingTop: 32,
     paddingBottom: 24,
     display: 'flex',
+
+    [theme.breakpoints.down('md')]: {
+      rowGap: 12
+    }
   },
   titleWrapper: {
 
@@ -28,14 +29,18 @@ export const useStyles = makeStyles()((theme: Theme) => ({
   title: {
     ...koniTypography.heading5,
     color: koniColors.fadedDark['o-100'],
+
+    [theme.breakpoints.down('md')]: {
+      ...koniTypography.heading7,
+    }
   },
   searchWrapper: {
     display: 'flex',
     columnGap: 16,
     alignItems: 'center',
 
-    [theme.breakpoints.down('sm')]: {
-
+    [theme.breakpoints.down('md')]: {
+      columnGap: 8,
     }
   },
   searchBar: {
@@ -51,7 +56,7 @@ export const useStyles = makeStyles()((theme: Theme) => ({
       marginRight: 8
     },
 
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       width: '100%',
     }
   },
@@ -62,6 +67,10 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     color: koniColors.fadedDark['o-100'],
   },
 
+  mobileSearchBarWrapper: {
+    width: '100%',
+  },
+
   button: {
 
     '&:hover': {
@@ -70,6 +79,10 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     [theme.breakpoints.down('sm')]: {
 
     }
+  },
+
+  listInner: {
+    minWidth: 1200
   },
 
   listHeader: {
@@ -111,7 +124,8 @@ export const useStyles = makeStyles()((theme: Theme) => ({
   },
   list: {
     position: 'relative',
-    flex: 1
+    flex: 1,
+    overflowX: 'auto',
   },
   itemLink: {
     textDecoration: 'none',
