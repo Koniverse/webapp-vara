@@ -38,6 +38,10 @@ const useStyles = makeStyles()(theme => {
       [theme.breakpoints.down('xl')]: {
         width: '100%',
       },
+
+      [theme.breakpoints.down('md')]: {
+        marginBottom: 24,
+      },
     },
 
     back: {
@@ -77,6 +81,7 @@ const useStyles = makeStyles()(theme => {
       justifyContent: 'space-between',
       alignItems: 'center',
       flexGrow: 1,
+
       [theme.breakpoints.down('md')]: {
         maxWidth: 'none'
       }
@@ -86,7 +91,9 @@ const useStyles = makeStyles()(theme => {
       color: koniColors.background['light-1'],
       ...koniTypography.heading6,
 
-      [theme.breakpoints.down('sm')]: {}
+      [theme.breakpoints.down('md')]: {
+        ...koniTypography.heading7,
+      }
     },
 
     row: {
@@ -137,7 +144,9 @@ const useStyles = makeStyles()(theme => {
       justifyContent: 'space-between',
 
       [theme.breakpoints.down('md')]: {
-        width: '100%'
+        marginTop: -4,
+        width: '100%',
+        alignItems: 'center',
       }
     },
     switch: {

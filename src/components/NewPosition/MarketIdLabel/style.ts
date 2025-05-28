@@ -1,4 +1,4 @@
-import { koniColors, koniTypography } from '@static/theme'
+import { koniColors, koniTypography, theme } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
 
 export const useLabelStyles = makeStyles()(() => {
@@ -11,7 +11,11 @@ export const useLabelStyles = makeStyles()(() => {
       overflow: 'hidden',
       display: 'flex',
       alignItems: 'center',
-      gap: 4
+      gap: 4,
+
+      [theme.breakpoints.down('md')]: {
+        ...koniTypography.heading9,
+      }
     },
 
     marketIdText: {

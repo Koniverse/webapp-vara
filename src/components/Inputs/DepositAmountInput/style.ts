@@ -15,16 +15,21 @@ export const useStyles = makeStyles<{ isSelected: boolean }>()((theme: Theme) =>
     width: '100%',
     paddingInline: 20,
     paddingTop: 16,
-    paddingBottom: 12
+    paddingBottom: 12,
+
+    [theme.breakpoints.down('md')]: {
+      paddingInline: 12,
+      paddingBlock: 8
+    }
   },
 
   // input
 
   inputContainer: {
-    marginBottom: 6,
+    marginBottom: 8,
 
-    [theme.breakpoints.down('sm')]: {
-      marginBottom: 0
+    [theme.breakpoints.down('md')]: {
+      marginBottom: 4,
     }
   },
   input: {
@@ -39,6 +44,10 @@ export const useStyles = makeStyles<{ isSelected: boolean }>()((theme: Theme) =>
 
     '& ::placeholder': {
       color: koniColors.fadedDark['o-45'],
+    },
+
+    [theme.breakpoints.down('md')]: {
+      ...koniTypography.heading6,
     }
   },
 
@@ -58,7 +67,9 @@ export const useStyles = makeStyles<{ isSelected: boolean }>()((theme: Theme) =>
     color: koniColors.fadedDark['o-85'],
 
     [theme.breakpoints.down('md')]: {
-
+      height: 40,
+      paddingLeft: 6,
+      paddingRight: 6,
     }
   },
 
@@ -73,8 +84,8 @@ export const useStyles = makeStyles<{ isSelected: boolean }>()((theme: Theme) =>
   },
 
   currencyIcon: {
-    width: 32,
-    height: 32,
+    width: 24,
+    height: 24,
     borderRadius: '100%'
   },
 

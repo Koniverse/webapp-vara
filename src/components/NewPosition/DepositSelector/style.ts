@@ -1,6 +1,6 @@
 import { colors, koniColors, koniTypography, typography } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
-import { leftContentContainerStyle } from '@styles'
+import { contentContainerMobileStyle, leftContentContainerStyle } from '@styles'
 
 export const useStyles = makeStyles()(theme => {
   return {
@@ -9,8 +9,9 @@ export const useStyles = makeStyles()(theme => {
       padding: '40px 32px',
       flex: '1 1 0%',
 
-      [theme.breakpoints.down('sm')]: {
-        padding: '16px 8px  16px 8px '
+      [theme.breakpoints.down('md')]: {
+        ...contentContainerMobileStyle,
+        padding: '16px 16px 24px'
       }
     },
 
@@ -20,6 +21,10 @@ export const useStyles = makeStyles()(theme => {
       paddingInline: 8,
       paddingBlock: 4,
       marginBottom: 12,
+
+      [theme.breakpoints.down('md')]: {
+        ...koniTypography.heading7,
+      }
     },
 
     sectionWrapper: {
@@ -34,7 +39,12 @@ export const useStyles = makeStyles()(theme => {
     tokenArea: {
       paddingBlock: 16,
       paddingInline: 20,
-      marginBottom: 20
+      marginBottom: 20,
+
+      [theme.breakpoints.down('md')]: {
+        padding: 12,
+        marginBottom: 12,
+      }
     },
 
     // selects
@@ -76,7 +86,11 @@ export const useStyles = makeStyles()(theme => {
     // depositAmountArea
 
     depositAmountArea: {
-      marginBottom: 24
+      marginBottom: 24,
+
+      [theme.breakpoints.down('md')]: {
+        marginBottom: 16,
+      }
     },
 
     amountInputSeparator: {
@@ -90,6 +104,11 @@ export const useStyles = makeStyles()(theme => {
         height: 1,
         display: 'block',
         backgroundColor: koniColors.fadedDark['o-10'],
+      },
+
+      [theme.breakpoints.down('md')]: {
+        paddingTop: 12,
+        paddingBottom: 12,
       }
     },
 
