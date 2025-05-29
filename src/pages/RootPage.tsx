@@ -8,6 +8,7 @@ import { Status, actions as varaConnectionActions } from '@store/reducers/connec
 import { status as connectionStatus } from '@store/selectors/connection'
 import { toBlur } from '@utils/uiUtils'
 import useStyles from './style'
+import FooterWrapper from '@containers/FooterWrapper'
 
 const RootPage: React.FC = React.memo(() => {
   const dispatch = useDispatch()
@@ -41,7 +42,7 @@ const RootPage: React.FC = React.memo(() => {
           <Grid className={classes.body}>
             <Outlet />
           </Grid>
-          {/*<FooterWrapper />*/}
+          <FooterWrapper />
         </Grid>
       </div>
     </>
