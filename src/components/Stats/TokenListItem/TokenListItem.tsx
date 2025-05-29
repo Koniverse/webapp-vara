@@ -1,9 +1,8 @@
 import React from 'react'
-import { theme } from '@static/theme'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp'
 import { useStyles } from './style'
-import { Box, Grid, Typography, useMediaQuery } from '@mui/material'
+import { Box, Grid, Typography } from '@mui/material'
 import { formatNumber } from '@utils/utils'
 import { SortTypeTokenList } from '@store/consts/static'
 import icons from '@static/icons'
@@ -43,8 +42,10 @@ const TokenListItem: React.FC<IProps> = ({
   const { classes } = useStyles()
   // const isNegative = priceChange < 0
 
-  const isSm = useMediaQuery(theme.breakpoints.down('sm'))
-  const hideName = useMediaQuery(theme.breakpoints.down('xs'))
+  // const isSm = useMediaQuery(theme.breakpoints.down('sm'))
+  const isSm = false
+  // const hideName = useMediaQuery(theme.breakpoints.down('xs'))
+  const hideName = false
 
   return (
     <>

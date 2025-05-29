@@ -9,7 +9,7 @@ export const useStyles = makeStyles()(() => ({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'transparent',
-    paddingInline: 94,
+    paddingInline: 32,
     maxWidth: '100%',
 
     [theme.breakpoints.down('lg')]: {
@@ -17,11 +17,12 @@ export const useStyles = makeStyles()(() => ({
     },
 
     [theme.breakpoints.down('md')]: {
-      paddingInline: 40
+      marginTop: 0,
+      paddingInline: 16
     },
-
-    [theme.breakpoints.down('sm')]: {
-      paddingInline: 8
-    }
+    //
+    // [theme.breakpoints.down('sm')]: {
+    //   paddingInline: 8
+    // }
   }
 }))

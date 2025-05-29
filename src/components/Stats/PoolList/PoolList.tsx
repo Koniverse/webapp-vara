@@ -86,29 +86,34 @@ const PoolList: React.FC<PoolListInterface> = ({ data, network }) => {
        <Typography className={classes.blockTitle}>Top pools</Typography>
       </div>
 
-      <PoolListItem displayType='header' onSort={setSortType} sortType={sortType} />
-      {paginator(page).map((element, index) => (
-        <PoolListItem
-          displayType='token'
-          tokenIndex={index + 1 + (page - 1) * 10}
-          symbolFrom={element.symbolFrom}
-          symbolTo={element.symbolTo}
-          iconFrom={element.iconFrom}
-          iconTo={element.iconTo}
-          volume={element.volume}
-          TVL={element.TVL}
-          fee={element.fee}
-          hideBottomLine={pages === 1 && index + 1 === data.length}
-          // apy={element.apy}
-          // apyData={element.apyData}
-          key={index}
-          addressFrom={element.addressFrom}
-          addressTo={element.addressTo}
-          network={network}
-          isUnknownFrom={element.isUnknownFrom}
-          isUnknownTo={element.isUnknownTo}
-        />
-      ))}
+      <div className={classes.list}>
+        <div className={classes.listInner}>
+          <PoolListItem displayType='header' onSort={setSortType} sortType={sortType} />
+          {paginator(page).map((element, index) => (
+            <PoolListItem
+              displayType='token'
+              tokenIndex={index + 1 + (page - 1) * 10}
+              symbolFrom={element.symbolFrom}
+              symbolTo={element.symbolTo}
+              iconFrom={element.iconFrom}
+              iconTo={element.iconTo}
+              volume={element.volume}
+              TVL={element.TVL}
+              fee={element.fee}
+              hideBottomLine={pages === 1 && index + 1 === data.length}
+              // apy={element.apy}
+              // apyData={element.apyData}
+              key={index}
+              addressFrom={element.addressFrom}
+              addressTo={element.addressTo}
+              network={network}
+              isUnknownFrom={element.isUnknownFrom}
+              isUnknownTo={element.isUnknownTo}
+            />
+          ))}
+        </div>
+      </div>
+
       {pages > 1 ? (
         <Grid className={classes.pagination}>
           <PaginationList

@@ -1,7 +1,6 @@
 import React from 'react'
-import { theme } from '@static/theme'
 import { useStyles } from './style'
-import { Box, Grid, Typography, useMediaQuery } from '@mui/material'
+import { Box, Grid, Typography } from '@mui/material'
 import { addressToTicker, formatNumber, parseFeeToPathFee } from '@utils/utils'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp'
@@ -68,7 +67,8 @@ const PoolListItem: React.FC<IProps> = ({
   const { classes } = useStyles()
 
   const navigate = useNavigate()
-  const isSm = useMediaQuery(theme.breakpoints.down('sm'))
+  // const isSm = useMediaQuery(theme.breakpoints.down('sm'))
+  const isSm = false;
 
   const handleOpenPosition = () => {
     navigate(

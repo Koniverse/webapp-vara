@@ -89,25 +89,30 @@ const TokensList: React.FC<ITokensList> = ({ data }) => {
         <Typography className={classes.blockTitle}>Top tokens</Typography>
       </div>
 
-      <TokenListItem displayType='header' onSort={setSortType} sortType={sortType} />
-      {paginator(page).data.map((token, index) => {
-        return (
-          <TokenListItem
-            key={index}
-            displayType='tokens'
-            itemNumber={index + 1 + (page - 1) * 10}
-            icon={token.icon}
-            name={token.name}
-            symbol={token.symbol}
-            price={token.price}
-            // priceChange={token.priceChange}
-            volume={token.volume}
-            TVL={token.TVL}
-            hideBottomLine={pages === 1 && index + 1 === data.length}
-            isUnknown={token.isUnknown}
-          />
-        )
-      })}
+      <div className={classes.list}>
+        <div className={classes.listInner}>
+          <TokenListItem displayType='header' onSort={setSortType} sortType={sortType} />
+          {paginator(page).data.map((token, index) => {
+            return (
+              <TokenListItem
+                key={index}
+                displayType='tokens'
+                itemNumber={index + 1 + (page - 1) * 10}
+                icon={token.icon}
+                name={token.name}
+                symbol={token.symbol}
+                price={token.price}
+                // priceChange={token.priceChange}
+                volume={token.volume}
+                TVL={token.TVL}
+                hideBottomLine={pages === 1 && index + 1 === data.length}
+                isUnknown={token.isUnknown}
+              />
+            )
+          })}
+        </div>
+      </div>
+
       {pages > 1 ? (
         <Grid className={classes.pagination}>
           <PaginationList
