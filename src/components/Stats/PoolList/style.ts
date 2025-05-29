@@ -38,6 +38,7 @@ export const useStyles = makeStyles()(() => ({
   },
 
   list: {
+    maxWidth: '100%',
     overflowX: 'auto',
   },
 

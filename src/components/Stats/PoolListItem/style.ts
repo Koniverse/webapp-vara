@@ -8,8 +8,8 @@ export const useStyles = makeStyles()(() => ({
     whiteSpace: 'nowrap',
     maxWidth: '100%',
 
-    [theme.breakpoints.down('sm')]: {
-      gridTemplateColumns: '32.5% 17.5% 35% 15% ',
+    [theme.breakpoints.down('md')]: {
+      // gridTemplateColumns: '32.5% 17.5% 35% 15% ',
 
       '& p': {}
     }
@@ -58,7 +58,11 @@ export const useStyles = makeStyles()(() => ({
       paddingRight: 16
     },
 
-    [theme.breakpoints.down('sm')]: {}
+    [theme.breakpoints.down('md')]: {
+      '& p': {
+        ...koniTypography.body3
+      },
+    }
   },
 
   symbolsContainer: {
@@ -73,13 +77,13 @@ export const useStyles = makeStyles()(() => ({
     },
 
     [theme.breakpoints.down('sm')]: {
-      marginLeft: 0,
-      justifyContent: 'flex-start'
+      // marginLeft: 0,
+      // justifyContent: 'flex-start'
     }
   },
   icon: {
     [theme.breakpoints.down('sm')]: {
-      marginLeft: -4
+      // marginLeft: -4
     }
   },
   activeLiquidityIcon: {
@@ -144,13 +148,25 @@ export const useStyles = makeStyles()(() => ({
       '.__token-icon': {
         boxShadow: '-3.6px 0 3.6px 0 rgba(0, 0, 0, 0.3)' as any
       },
+    },
+
+    [theme.breakpoints.down('md')]: {
+      minWidth: 32,
+      maxWidth: 32,
+      height: 32,
     }
   },
   tokenIcon: {
     minWidth: 36,
     maxWidth: 36,
     height: 36,
-    borderRadius: '50%'
+    borderRadius: '50%',
+
+    [theme.breakpoints.down('md')]: {
+      minWidth: 32,
+      maxWidth: 32,
+      height: 32,
+    }
   },
   warningIcon: {
     position: 'absolute',

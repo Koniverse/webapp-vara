@@ -1,8 +1,7 @@
 import React from 'react'
 import classNames from 'classnames'
-import { theme } from '@static/theme'
 import { useStyles } from './style'
-import { Box, Grid, Typography, useMediaQuery } from '@mui/material'
+import { Box, Grid, Typography } from '@mui/material'
 import { formatNumber } from '@utils/utils'
 
 interface Iprops {
@@ -24,7 +23,8 @@ const VolumeBar: React.FC<Iprops> = ({
 }) => {
   const { classes } = useStyles()
 
-  const isXDown = useMediaQuery(theme.breakpoints.down('xs'))
+  // const isXDown = useMediaQuery(theme.breakpoints.down('xs'))
+  const isXDown = false
 
   return (
     <Grid container classes={{ container: classes.container }}>
@@ -34,7 +34,7 @@ const VolumeBar: React.FC<Iprops> = ({
         {!isXDown && (
           <Typography
             className={classNames(
-              classes.tokenContent,
+              classes.tokenPercent,
               percentVolume < 0 ? classes.tokenLow : classes.tokenUp
             )}>
             {percentVolume < 0
@@ -49,7 +49,7 @@ const VolumeBar: React.FC<Iprops> = ({
         {!isXDown && (
           <Typography
             className={classNames(
-              classes.tokenContent,
+              classes.tokenPercent,
               percentTvl < 0 ? classes.tokenLow : classes.tokenUp
             )}>
             {percentTvl < 0 ? `(${percentTvl.toFixed(2)}%)` : `(+${percentTvl.toFixed(2)}%)`}
@@ -62,7 +62,7 @@ const VolumeBar: React.FC<Iprops> = ({
         {!isXDown && (
           <Typography
             className={classNames(
-              classes.tokenContent,
+              classes.tokenPercent,
               percentFees < 0 ? classes.tokenLow : classes.tokenUp
             )}>
             {percentFees < 0 ? `(${percentFees.toFixed(2)}%)` : `(+${percentFees.toFixed(2)}%)`}

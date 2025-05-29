@@ -66,7 +66,7 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     },
 
     [theme.breakpoints.down('md')]: {
-      padding: '8px 0' as any,
+      // padding: '8px 0' as any,
 
       '& p': {
         ...koniTypography.body3

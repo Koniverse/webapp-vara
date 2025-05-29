@@ -9,10 +9,10 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     whiteSpace: 'nowrap',
 
     [theme.breakpoints.down('sm')]: {
-      gridTemplateColumns: '30% 22.5% 32.5% 15%',
-      '& p': {
-
-      }
+      // gridTemplateColumns: '30% 22.5% 32.5% 15%',
+      // '& p': {
+      //
+      // }
     }
   },
 
@@ -46,7 +46,7 @@ export const useStyles = makeStyles()((theme: Theme) => ({
 
     [theme.breakpoints.down('sm')]: {
       '& p': {
-
+        ...koniTypography.body3
       }
     }
   },
@@ -89,7 +89,7 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     width: 16,
     height: 16,
     [theme.breakpoints.down('sm')]: {
-      marginLeft: -4
+      // marginLeft: -4
     }
   },
   imageContainer: {
@@ -99,13 +99,19 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     marginRight: 8,
     position: 'relative',
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
+
+    [theme.breakpoints.down('md')]: {
+      minWidth: 32,
+      maxWidth: 32,
+      height: 32,
+    }
   },
 
   tokenIcon: {
-    minWidth: 36,
-    maxWidth: 36,
-    height: 36,
+    minWidth: 32,
+    maxWidth: 32,
+    height: 32,
     marginRight: 8,
     borderRadius: '50%'
   },
