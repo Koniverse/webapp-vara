@@ -181,10 +181,10 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     borderRadius: 32,
     cursor: 'pointer',
 
-    [theme.breakpoints.down('sm')]: {
-      height: 28,
-      width: 40
-    }
+    // [theme.breakpoints.down('sm')]: {
+    //   height: 28,
+    //   width: 40
+    // }
   },
 
   swapArrows: {
@@ -196,9 +196,9 @@ export const useStyles = makeStyles()((theme: Theme) => ({
       display: 'block'
     },
 
-    [theme.breakpoints.down('sm')]: {
-      fontSize: 16,
-    }
+    // [theme.breakpoints.down('sm')]: {
+    //   fontSize: 16,
+    // }
   },
 
   transactionDetails: {

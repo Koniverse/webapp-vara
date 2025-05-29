@@ -1,7 +1,7 @@
 import { Theme } from '@mui/material'
 import { colors, koniColors, koniTypography, typography } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
-import { rightContentContainerStyle } from '@styles'
+import { contentContainerMobileStyle, rightContentContainerStyle } from '@styles'
 
 export const useStyles = makeStyles()((theme: Theme) => ({
   root: {
@@ -9,8 +9,11 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     width: '100%',
     padding: '40px 32px' as any,
     borderRadius: 24,
-    [theme.breakpoints.down('sm')]: {
-      padding: '24px 8px'
+
+    [theme.breakpoints.down('md')]: {
+      ...contentContainerMobileStyle,
+      padding: 16,
+      paddingBottom: 20,
     }
   },
   headerContainer: {

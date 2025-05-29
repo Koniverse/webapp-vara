@@ -1,12 +1,29 @@
 import { Theme } from '@mui/material'
-import { typography } from '@static/theme'
+import { koniColors, koniTypography } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
 
 export const useStyles = makeStyles()((theme: Theme) => ({
+  mainContainer: {
+    width: '100%',
+
+    [theme.breakpoints.down('xl')]: {
+      paddingInline: 32
+    },
+
+    [theme.breakpoints.down('lg')]: {
+      paddingInline: 24
+    },
+
+    [theme.breakpoints.down('md')]: {
+      paddingInline: 16
+    }
+  },
+
   wrapperContainer: {
-    width: 1084,
-    flexDirection: 'row',
+    width: 1156,
     maxWidth: '100%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
 
     [theme.breakpoints.down('md')]: {
       flexDirection: 'column'
@@ -17,7 +34,8 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     marginRight: 32,
 
     [theme.breakpoints.down('lg')]: {
-      width: '100%'
+      width: '100%',
+      marginRight: 16,
     },
 
     [theme.breakpoints.down('md')]: {
@@ -30,31 +48,46 @@ export const useStyles = makeStyles()((theme: Theme) => ({
       width: '100%'
     }
   },
-  back: {
-    height: 40,
-    width: 'fit-content',
-    transition: 'filter 300ms',
 
-    '&:hover': {
-      filter: 'brightness(2)',
-      '@media (hover: none)': {
-        filter: 'none'
-      }
+  backWrapper: {
+    maxWidth: '100%',
+    width: 1620,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginBottom: 36,
+
+    [theme.breakpoints.down('xl')]: {
+      width: '100%'
+    },
+
+    [theme.breakpoints.down('md')]: {
+      marginBottom: 24
     }
   },
+
+  back: {
+    width: 'fit-content'
+    // height: 40,
+    // transition: 'filter 300ms',
+    //
+    // '&:hover': {
+    //   filter: 'brightness(2)',
+    //   '@media (hover: none)': {
+    //     filter: 'none'
+    //   }
+    // }
+  },
   backIcon: {
-    width: 22,
-    height: 24,
-    marginRight: 12
+    width: 20,
+    height: 20,
+    marginRight: 8,
+    color: koniColors.fadedLight['o-100']
   },
   backText: {
-    color: 'rgba(169, 182, 191, 1)',
-    WebkitPaddingBefore: '2px',
-    ...typography.body2
+    color: koniColors.fadedLight['o-100'],
+    ...koniTypography.body2
   },
-  button: {
-
-  },
+  button: {},
   buttonStartIcon: {
     marginRight: 0
   },
@@ -69,15 +102,16 @@ export const useStyles = makeStyles()((theme: Theme) => ({
   },
   positionPlotWrapper: {
     width: '100%',
-    marginTop: 56,
+    // marginTop: 56,
 
     [theme.breakpoints.down('md')]: {
       marginTop: 0
     }
   },
   marketIdWithRefresher: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       width: '100%',
+      marginBottom: 12,
       justifyContent: 'space-between'
     }
   },

@@ -1,7 +1,7 @@
 import { Theme } from '@mui/material'
 import { colors, koniColors, koniTypography, typography } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
-import { leftContentContainerStyle } from '@styles'
+import { contentContainerMobileStyle, leftContentContainerStyle } from '@styles'
 
 export const useBoxInfoStyles = makeStyles()((theme: Theme) => ({
   boxInfo: {
@@ -13,7 +13,11 @@ export const useBoxInfoStyles = makeStyles()((theme: Theme) => ({
     color: koniColors.fadedDark['o-100'],
     paddingInline: 16,
     paddingBlock: 4,
-    marginBottom: 12
+    marginBottom: 12,
+
+    [theme.breakpoints.down('md')]: {
+      ...koniTypography.heading7,
+    }
   },
 
   violetButton: {
@@ -57,6 +61,10 @@ export const useBoxInfoStyles = makeStyles()((theme: Theme) => ({
     justifyContent: 'space-between',
     paddingInline: 20,
     paddingBlock: 8,
+
+    [theme.breakpoints.down('md')]: {
+      paddingInline: 12,
+    }
   },
 
   tokenAreaUpperPart: {
@@ -81,6 +89,10 @@ export const useBoxInfoStyles = makeStyles()((theme: Theme) => ({
     color: koniColors.fadedDark['o-85'],
     marginRight: 8,
     textOverflow: 'ellipsis',
+
+    [theme.breakpoints.down('md')]: {
+      ...koniTypography.heading6,
+    }
   },
 
   tokenAreaLowerPart: {
@@ -110,12 +122,21 @@ export const useBoxInfoStyles = makeStyles()((theme: Theme) => ({
     width: 32,
     height: 32,
     marginRight: 4,
-    borderRadius: '100%'
+    borderRadius: '100%',
+
+    [theme.breakpoints.down('md')]: {
+      width: 24,
+      height: 24,
+    }
   },
 
   tokenName: {
     color: koniColors.fadedDark['o-85'],
     ...koniTypography.heading8,
+
+    [theme.breakpoints.down('md')]: {
+      ...koniTypography.heading9,
+    }
   },
 
   tokenBalance: {
@@ -199,7 +220,11 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     width: '100%',
     flexGrow: 1,
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+
+    [theme.breakpoints.down('md')]: {
+      marginBottom: 16
+    }
   },
   iconsGrid: {
     display: 'flex',
@@ -270,7 +295,8 @@ export const useStyles = makeStyles()((theme: Theme) => ({
 
   rangeGrid: {
     display: 'flex',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    marginLeft: 8
   },
   header: {
     display: 'flex',
@@ -319,8 +345,10 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     flexDirection: 'column',
     gap: 20,
 
-    [theme.breakpoints.down('sm')]: {
-      padding: '16px 8px  16px 8px '
+    [theme.breakpoints.down('md')]: {
+      ...contentContainerMobileStyle,
+      padding: 16,
+      paddingBottom: 20,
     }
   },
 
@@ -330,29 +358,29 @@ export const useStyles = makeStyles()((theme: Theme) => ({
     }
   },
   button: {
-    color: colors.invariant.black,
-    ...typography.body1,
-    textTransform: 'none',
-    background: colors.invariant.pinkLinearGradientOpacity,
-    borderRadius: 12,
-    height: 40,
-    width: 130,
-    paddingRight: 9,
-    paddingLeft: 9,
-    letterSpacing: -0.03,
-
-    '&:hover': {
-      background: colors.invariant.pinkLinearGradient,
-      boxShadow: `0 0 16px ${colors.invariant.pink}`,
-      '@media (hover: none)': {
-        background: colors.invariant.pinkLinearGradientOpacity,
-        boxShadow: 'none'
-      }
-    },
-    [theme.breakpoints.down('sm')]: {
-      width: '50%',
-      ...typography.caption1
-    }
+    // color: colors.invariant.black,
+    // ...typography.body1,
+    // textTransform: 'none',
+    // background: colors.invariant.pinkLinearGradientOpacity,
+    // borderRadius: 12,
+    // height: 40,
+    // width: 130,
+    // paddingRight: 9,
+    // paddingLeft: 9,
+    // letterSpacing: -0.03,
+    //
+    // '&:hover': {
+    //   background: colors.invariant.pinkLinearGradient,
+    //   boxShadow: `0 0 16px ${colors.invariant.pink}`,
+    //   '@media (hover: none)': {
+    //     background: colors.invariant.pinkLinearGradientOpacity,
+    //     boxShadow: 'none'
+    //   }
+    // },
+    // [theme.breakpoints.down('sm')]: {
+    //   width: '50%',
+    //   ...typography.caption1
+    // }
   },
   buttonText: {
     WebkitPaddingBefore: '2px',

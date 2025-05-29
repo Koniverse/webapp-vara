@@ -11,7 +11,7 @@ import { TokenPriceData } from '@store/consts/types'
 import { addressToTicker } from '@utils/utils'
 import { TooltipHover } from '@components/TooltipHover/TooltipHover'
 import { Network } from '@invariant-labs/vara-sdk'
-import { ArrowsLeftRight } from '@phosphor-icons/react'
+import { ArrowsLeftRight, Plus } from '@phosphor-icons/react'
 
 interface IProp {
   fee: number
@@ -193,15 +193,20 @@ const SinglePositionInfo: React.FC<IProp> = ({
           </TooltipHover>
           <Hidden smUp>
             <Button
-              className={classes.button}
+              className={getButtonClasses({
+                size: 'sm',
+                variant: 'primary',
+                layout: 'text-only'
+              }, classes.button)}
               variant='contained'
+              startIcon={<Plus />}
               onClick={() => {
                 const address1 = addressToTicker(network, tokenX.name)
                 const address2 = addressToTicker(network, tokenY.name)
 
                 navigate(`/newPosition/${address1}/${address2}/${fee}`)
               }}>
-              <span className={classes.buttonText}>+ Add Position</span>
+              <span className={classes.buttonText}>Add Position</span>
             </Button>
           </Hidden>
         </Grid>

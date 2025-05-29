@@ -11,6 +11,7 @@ export const useLabelStyles = makeStyles()(() => {
       overflow: 'hidden',
       display: 'flex',
       alignItems: 'center',
+      textOverflow: 'ellipsis',
       gap: 4,
 
       [theme.breakpoints.down('md')]: {

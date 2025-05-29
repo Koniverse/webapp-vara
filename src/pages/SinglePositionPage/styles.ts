@@ -5,21 +5,21 @@ const useStyles = makeStyles()((theme: Theme) => {
   return {
     container: {
       backgroundColor: 'transparent',
-      marginTop: 45,
-      paddingInline: 138,
-      minHeight: '70vh',
+      marginTop: 40,
+      // paddingInline: 138,
+      // minHeight: '70vh',
 
-      [theme.breakpoints.down('lg')]: {
-        paddingInline: 36
-      },
+      // [theme.breakpoints.down('lg')]: {
+      //   paddingInline: 36
+      // },
 
       [theme.breakpoints.down('md')]: {
-        paddingInline: 40
-      },
-
-      [theme.breakpoints.down('sm')]: {
-        paddingInline: 8
+        marginTop: 16,
       }
+      //
+      // [theme.breakpoints.down('sm')]: {
+      //   paddingInline: 8
+      // }
     }
   }
 })

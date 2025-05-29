@@ -10,9 +10,9 @@ const SinglePositionPage: React.FC = () => {
 
   return (
     <Grid container className={classes.container} justifyContent='center'>
-      <Grid item>
-        <SinglePositionWrapper address={address ?? ''} id={id ? BigInt(id) : -1n} />
-      </Grid>
+      <SinglePositionWrapper address={address ?? ''} id={id ? BigInt(id) : -1n} />
+      {/*<Grid item>*/}
+      {/*</Grid>*/}
     </Grid>
   )
 }

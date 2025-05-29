@@ -1,4 +1,4 @@
-import { Button, Grid, Tooltip, Typography } from '@mui/material'
+import { Button, Grid, Tooltip, Typography, useMediaQuery } from '@mui/material'
 import loader from '@static/gif/loading2.gif'
 import { formatNumber, formatNumbers, showPrefix } from '@utils/utils'
 import React from 'react'
@@ -9,6 +9,7 @@ import { FormatNumberThreshold, PrefixConfig } from '@store/consts/types'
 import { TooltipHover } from '@components/TooltipHover/TooltipHover'
 import { getButtonClasses } from '@utils/uiUtils.ts'
 import { ArrowsDownUp } from '@phosphor-icons/react'
+import { theme } from '@static/theme'
 
 export interface BoxInfoToken extends Omit<ILiquidityToken, 'claimValue' | 'liqValue'> {
   value: number
@@ -35,6 +36,7 @@ export const BoxInfo: React.FC<{
   isBalanceLoading
 }) => {
   const { classes } = useBoxInfoStyles()
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
 
   const thresholdsWithTokenDecimal = (decimals: number): FormatNumberThreshold[] => [
     {
@@ -198,7 +200,7 @@ export const BoxInfo: React.FC<{
       {onClickButton ? (
         <Button
           className={getButtonClasses({
-            size: 'lg',
+            size: isMobile ? 'md' : 'lg',
             layout: 'text-only',
             variant: 'primary'
           }, classes.violetButton)}

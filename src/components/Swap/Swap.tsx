@@ -617,9 +617,10 @@ export const Swap: React.FC<ISwap> = ({
               }}>
               <Box
                 className={classes.swapArrows}
-                sx={{
-                  transform: `rotate(${-rotates * 180}deg)`
-                }}>
+                // sx={{
+                //   transform: `rotate(${-rotates * 180}deg)`
+                // }}
+              >
                 <ArrowsDownUp />
               </Box>
             </Box>
