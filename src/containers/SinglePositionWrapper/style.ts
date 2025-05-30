@@ -1,4 +1,4 @@
-import { colors, typography } from '@static/theme'
+import { colors, theme, typography } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
 
 const useStyles = makeStyles()(() => {
@@ -18,7 +18,26 @@ const useStyles = makeStyles()(() => {
       marginTop: 104,
       width: 1122,
       display: 'flex',
-      maxWidth: '100%'
+      maxWidth: '100%',
+      [theme.breakpoints.down('xl')]: {
+        paddingInline: 32
+      },
+
+      [theme.breakpoints.down('lg')]: {
+        marginTop: 0,
+        paddingInline: 24
+      },
+
+      [theme.breakpoints.down('md')]: {
+        paddingInline: 16
+      }
+    },
+    emptyPlaceholder: {
+      paddingTop: 68,
+      paddingBottom: 68,
+      paddingInline: 32,
+      width: '100%',
+      borderRadius: 16
     }
   }
 })
