@@ -1,8 +1,8 @@
 import { Box, Typography } from '@mui/material'
-import loadingAnimation from '@static/gif/loading.gif'
 import { formatNumber } from '@utils/utils'
 import React from 'react'
 import useStyles from './style'
+import images from '@static/images.ts'
 
 interface iProps {
   tokenFromSymbol: string
@@ -25,7 +25,7 @@ const ExchangeRate: React.FC<iProps> = ({
   const setLoading = () => {
     return loading ? (
       <Box className={classes.loadingContainer}>
-        <img src={loadingAnimation} className={classes.loading} alt='Loading'></img>
+        <img src={images.loading} className={classes.loading} alt='Loading'></img>
       </Box>
     ) : (
       <Typography className={classes.rateText}>

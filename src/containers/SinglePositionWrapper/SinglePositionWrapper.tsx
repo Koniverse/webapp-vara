@@ -2,7 +2,6 @@ import { EmptyPlaceholder } from '@components/EmptyPlaceholder/EmptyPlaceholder'
 import PositionDetails from '@components/PositionDetails/PositionDetails'
 import { calculateFee, calculateTokenAmounts } from '@invariant-labs/vara-sdk'
 import { Grid } from '@mui/material'
-import loader from '@static/gif/loader.gif'
 import {
   calcPriceBySqrtPrice,
   calcPriceByTickIndex,
@@ -34,6 +33,7 @@ import useStyles from './style'
 import { TokenPriceData } from '@store/consts/types'
 import { NoConnected } from '@components/NoConnected/NoConnected'
 import { openWalletSelectorModal } from '@utils/web3/selector'
+import images from '@static/images.ts'
 
 export interface IProps {
   address: string
@@ -411,7 +411,7 @@ export const SinglePositionWrapper: React.FC<IProps> = ({ id }) => {
         justifyContent='center'
         alignItems='center'
         className={classes.fullHeightContainer}>
-        <img src={loader} className={classes.loading} alt='Loading' />
+        <img src={images.loading} className={classes.loading} alt='Loading' />
       </Grid>
     )
   }

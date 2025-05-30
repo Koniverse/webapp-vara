@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import loader from '@static/gif/loader.gif'
 import useStyles from './styles'
 import { Grid, Typography } from '@mui/material'
 import { EmptyPlaceholder } from '@components/EmptyPlaceholder/EmptyPlaceholder'
@@ -21,6 +20,7 @@ import Liquidity from '@components/Stats/Liquidity/Liquidity'
 import VolumeBar from '@components/Stats/volumeBar/VolumeBar'
 import TokensList from '@components/Stats/TokensList/TokensList'
 import PoolList from '@components/Stats/PoolList/PoolList'
+import images from '@static/images.ts'
 
 export const WrappedStats: React.FC = () => {
   const { classes } = useStyles()
@@ -44,7 +44,7 @@ export const WrappedStats: React.FC = () => {
   return (
     <Grid container className={classes.wrapper} direction='column'>
       {isLoadingStats ? (
-        <img src={loader} className={classes.loading} alt='Loading' />
+        <img src={images.loading} className={classes.loading} alt='Loading' />
       ) : liquidityPlotData.length === 0 ? (
         <Grid container direction='column' alignItems='center'>
           <EmptyPlaceholder desc={'We have not started collecting statistics yet'} />

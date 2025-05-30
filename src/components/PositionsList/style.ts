@@ -133,10 +133,15 @@ export const useStyles = makeStyles()((theme: Theme) => ({
       }
     }
   },
-
+  loadingWrapper: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 300
+  },
   loading: {
-    width: 150,
-    height: 150,
+    width: 80,
+    height: 80,
     margin: 'auto'
   },
   placeholder: {

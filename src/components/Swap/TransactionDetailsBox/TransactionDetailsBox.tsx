@@ -1,9 +1,9 @@
 import React from 'react'
 import { PERCENTAGE_SCALE } from '@invariant-labs/vara-sdk/target/consts'
 import { Grid, Typography } from '@mui/material'
-import loadingAnimation from '@static/gif/loading.gif'
 import { formatNumber, printBigint } from '@utils/utils'
 import { useStyles } from './styles'
+import images from '@static/images.ts'
 
 interface IProps {
   open: boolean
@@ -33,7 +33,7 @@ const TransactionDetailsBox: React.FC<IProps> = ({
         <Grid container justifyContent='space-between' className={classes.row}>
           <Typography className={classes.label}>Exchange rate:</Typography>
           {isLoadingRate ? (
-            <img src={loadingAnimation} className={classes.loading} alt='Loading' />
+            <img src={images.loading} className={classes.loading} alt='Loading' />
           ) : (
             <Typography className={classes.value}>
               {exchangeRate.val === Infinity

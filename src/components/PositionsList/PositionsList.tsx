@@ -2,7 +2,6 @@ import { EmptyPlaceholder } from '@components/EmptyPlaceholder/EmptyPlaceholder'
 import { INoConnected, NoConnected } from '@components/NoConnected/NoConnected'
 import { PaginationList } from '@components/PaginationList/PaginationList'
 import { Button, Grid, InputAdornment, InputBase, Typography, useMediaQuery } from '@mui/material'
-import loader from '@static/gif/loader.gif'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { IPositionItem, PositionItem } from './PositionItem/PositionItem'
@@ -14,6 +13,7 @@ import { ArrowsCounterClockwise, MagnifyingGlass, Plus } from '@phosphor-icons/r
 import { PositionListHeader } from '@components/PositionsList/PositionItem/PositionListHeader.tsx'
 import classNames from 'classnames'
 import { theme } from '@static/theme'
+import images from '@static/images.ts'
 
 interface IProps {
   initialPage: number
@@ -195,8 +195,8 @@ export const PositionsList: React.FC<IProps> = ({
           ) : showNoConnected ? (
             <NoConnected {...noConnectedBlockerProps} />
           ) : loading ? (
-            <Grid container style={{ flex: 1 }}>
-              <img src={loader} className={classes.loading} alt='Loader' />
+            <Grid container style={{ flex: 1 }} className={classes.loadingWrapper}>
+              <img src={images.loading} className={classes.loading} alt='Loader' />
             </Grid>
           ) : (
             <EmptyPlaceholder

@@ -1,8 +1,15 @@
 import RangeInput from '@components/Inputs/RangeInput/RangeInput'
 import PriceRangePlot from '@components/PriceRangePlot/PriceRangePlot'
 import { getMaxTick, getMinTick } from '@invariant-labs/vara-sdk'
-import { Button, Checkbox, FormControlLabel, Grid, Tooltip, Typography, useMediaQuery } from '@mui/material'
-import loader from '@static/gif/loader.gif'
+import {
+  Button,
+  Checkbox,
+  FormControlLabel,
+  Grid,
+  Tooltip,
+  Typography,
+  useMediaQuery
+} from '@mui/material'
 import activeLiquidity from '@static/svg/activeLiquidity.svg'
 import {
   calcPriceByTickIndex,
@@ -21,6 +28,8 @@ import { PositionOpeningMethod } from '@store/consts/types'
 import { getButtonClasses } from '@utils/uiUtils.ts'
 import { Info } from '@phosphor-icons/react'
 import { theme } from '@static/theme'
+import images from '@static/images.ts'
+
 export interface IRangeSelector {
   data: PlotTickData[]
   midPrice: TickPlotPositionData
@@ -653,7 +662,7 @@ export const RangeSelector: React.FC<IRangeSelector> = ({
         <Grid className={classes.blocker}>
           {blockerInfo === 'Loading pool info...' ? (
             <Grid container style={{ height: '100%' }}>
-              <img src={loader} className={classes.loader} alt='Loader' />
+              <img src={images.loading} className={classes.loader} alt='Loader' />
             </Grid>
           ) : (
             <Typography className={classes.blockedInfo}>{blockerInfo}</Typography>

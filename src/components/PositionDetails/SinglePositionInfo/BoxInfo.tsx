@@ -1,15 +1,14 @@
 import { Button, Grid, Tooltip, Typography, useMediaQuery } from '@mui/material'
-import loader from '@static/gif/loading2.gif'
 import { formatNumber, formatNumbers, showPrefix } from '@utils/utils'
 import React from 'react'
-import loadingAnimation from '@static/gif/loading.gif'
 import { ILiquidityToken } from './consts'
-import {useBoxInfoStyles} from './style'
+import { useBoxInfoStyles } from './style'
 import { FormatNumberThreshold, PrefixConfig } from '@store/consts/types'
 import { TooltipHover } from '@components/TooltipHover/TooltipHover'
 import { getButtonClasses } from '@utils/uiUtils.ts'
 import { ArrowsDownUp } from '@phosphor-icons/react'
 import { theme } from '@static/theme'
+import images from '@static/images'
 
 export interface BoxInfoToken extends Omit<ILiquidityToken, 'claimValue' | 'liqValue'> {
   value: number
@@ -87,7 +86,7 @@ export const BoxInfo: React.FC<{
       <Grid className={classes.tokenGrid} container direction='column'>
         {showLoader ? (
           <Grid container className={classes.cover}>
-            <img src={loader} className={classes.loader} alt='Loader' />
+            <img src={images.loading} className={classes.loader} alt='Loader' />
           </Grid>
         ) : null}
         <Grid className={classes.tokenArea}>
@@ -126,7 +125,7 @@ export const BoxInfo: React.FC<{
               <Typography className={classes.tokenBalance}>
                 Balance:{' '}
                 {isBalanceLoading ? (
-                  <img src={loadingAnimation} className={classes.loadingBalance} alt='Loading' />
+                  <img src={images.loading} className={classes.loadingBalance} alt='Loading' />
                 ) : (
                   formatNumber(tokenA.balance)
                 )}{' '}
@@ -186,7 +185,7 @@ export const BoxInfo: React.FC<{
               <Typography className={classes.tokenBalance}>
                 Balance:{' '}
                 {isBalanceLoading ? (
-                  <img src={loadingAnimation} className={classes.loadingBalance} alt='Loading' />
+                  <img src={images.loading} className={classes.loadingBalance} alt='Loading' />
                 ) : (
                   formatNumber(tokenB.balance)
                 )}{' '}

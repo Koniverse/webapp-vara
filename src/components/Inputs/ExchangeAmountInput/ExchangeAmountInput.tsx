@@ -1,13 +1,13 @@
 import Select from '@components/Inputs/Select/Select'
 import { OutlinedButton } from '@components/OutlinedButton/OutlinedButton'
 import { Grid, Input, Tooltip, Typography } from '@mui/material'
-import loadingAnimation from '@static/gif/loading.gif'
 import { formatNumber, trimDecimalZeros } from '@utils/utils'
 import { SwapToken } from '@store/selectors/wallet'
 import classNames from 'classnames'
 import React, { CSSProperties, useRef } from 'react'
 import useStyles from './style'
 import { HexString } from '@gear-js/api'
+import images from '@static/images.ts'
 
 interface IProps {
   setValue: (value: string) => void
@@ -166,7 +166,7 @@ export const AmountInput: React.FC<IProps> = ({
               <>
                 {current ? (
                   priceLoading ? (
-                    <img src={loadingAnimation} className={classes.loading} alt='loading' />
+                    <img src={images.loading} className={classes.loading} alt='loading' />
                   ) : tokenPrice ? (
                     <Tooltip
                       enterTouchDelay={0}
@@ -210,7 +210,7 @@ export const AmountInput: React.FC<IProps> = ({
           <Typography className={classes.BalanceTypography}>
             Balance:{' '}
             {isBalanceLoading ? (
-              <img src={loadingAnimation} className={classes.loadingBalance} alt='loading' />
+              <img src={images.loading} className={classes.loadingBalance} alt='loading' />
             ) : hideBalance ? (
               <>-</>
             ) : (

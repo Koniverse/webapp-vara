@@ -1,7 +1,6 @@
 import { Button, Grid, Typography, useMediaQuery } from '@mui/material'
 import { linearGradientDef } from '@nivo/core'
 import { Layer, ResponsiveLine } from '@nivo/line'
-import loader from '@static/gif/loader.gif'
 import ZoomInIcon from '@static/svg/zoom-in-icon.svg'
 import ZoomOutIcon from '@static/svg/zoom-out-icon.svg'
 import { colors, koniColors, theme } from '@static/theme'
@@ -12,6 +11,7 @@ import React, { useCallback, useMemo, useRef } from 'react'
 import Brush from './Brush/Brush'
 import useStyles from './style'
 import { getButtonClasses } from '@utils/uiUtils.ts'
+import images from '@static/images.ts'
 
 export type TickPlotPositionData = Omit<PlotTickData, 'y'>
 
@@ -367,7 +367,7 @@ export const PriceRangePlot: React.FC<IPriceRangePlot> = ({
       ref={containerRef}>
       {loading && coverOnLoading ? (
         <Grid container className={classes.cover}>
-          <img src={loader} className={classes.loader} alt='Loader' />
+          <img src={images.loading} className={classes.loader} alt='Loader' />
         </Grid>
       ) : null}
       {!loading && hasError ? (

@@ -1,9 +1,9 @@
 import { Box, Button, Grid, Input, Tooltip, Typography } from '@mui/material'
-import loadingAnimation from '@static/gif/loading.gif'
 import { formatNumber, getScaleFromString } from '@utils/utils'
 import React, { CSSProperties, useRef } from 'react'
 import useStyles from './style'
 import icons from '@static/icons'
+import images from '@static/images.ts'
 
 interface IProps {
   setValue: (value: string) => void
@@ -148,7 +148,7 @@ export const DepositAmountInput: React.FC<IProps> = ({
           <Grid className={classes.percentages} container alignItems='center' wrap='nowrap'>
             {currency && !walletUninitialized ? (
               priceLoading ? (
-                <img src={loadingAnimation} className={classes.loading} alt='loading' />
+                <img src={images.loading} className={classes.loading} alt='loading' />
               ) : tokenPrice ? (
                 <Tooltip
                   enterTouchDelay={0}
@@ -190,7 +190,7 @@ export const DepositAmountInput: React.FC<IProps> = ({
               {walletUninitialized ? (
                 <>-</>
               ) : isBalanceLoading ? (
-                <img src={loadingAnimation} className={classes.loadingBalance} alt='loading' />
+                <img src={images.loading} className={classes.loadingBalance} alt='loading' />
               ) : (
                 <>{formatNumber(balanceValue || 0)}</>
               )}{' '}

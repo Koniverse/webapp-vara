@@ -1,10 +1,10 @@
 import { Button } from '@mui/material'
 import errorGif from '@static/gif/errorAnimation.gif'
-import loadingAnimation from '@static/gif/loading.gif'
 import successGif from '@static/gif/successAnimation.gif'
 import classNames from 'classnames'
 import React from 'react'
 import useStyles from './style'
+import images from '@static/images.ts'
 
 export type ProgressState =
   | 'progress'
@@ -85,7 +85,7 @@ const AnimatedButton: React.FC<Props> = ({
       progress === 'approvedWithFail' ||
       content === 'Loading' ? (
         <img
-          src={loadingAnimation}
+          src={images.loading}
           style={{ height: 25, width: 25, zIndex: 10 }}
           alt='loading'></img>
       ) : (
