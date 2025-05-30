@@ -15,7 +15,7 @@ export const useStyles = makeStyles()((theme: Theme) => ({
       fontWeight: 500,
 
       [theme.breakpoints.down('md')]: {
-        fontSize: '8px!important'
+        // fontSize: '8px!important'
       }
     }
   },

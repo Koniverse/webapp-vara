@@ -1,12 +1,20 @@
-import { typography, colors } from '@static/theme'
+import { colors, koniColors, koniTypography } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
 
 export const useStyles = makeStyles()(() => ({
   container: {
-    backgroundColor: colors.invariant.component,
-    borderRadius: 24,
+    backgroundColor: koniColors.background['light-1'],
+    borderRadius: 16,
     padding: 24,
-    boxSizing: 'border-box'
+    boxSizing: 'border-box',
+
+    '& g > text': {
+      stroke: 'none',
+      fontSize: '10px !important',
+      fill: 'rgba(21, 24, 35, 0.65) !important',
+      fontFamily: 'Bricolage Grotesque !important',
+      fontWeight: 500,
+    }
   },
   volumeContainer: {
     display: 'flex',
@@ -15,67 +23,66 @@ export const useStyles = makeStyles()(() => ({
     fontWeight: 'normal'
   },
   volumeHeader: {
-    color: colors.invariant.textGrey,
-    ...typography.body2
+   ...koniTypography.body2,
+    color: koniColors.fadedDark['o-65']
   },
   volumePercentContainer: {
     display: 'flex',
     alignItems: 'center'
   },
   volumePercentHeader: {
-    ...typography.heading1,
+    ...koniTypography.heading5,
     letterSpacing: '-0.03em',
-    color: colors.white.main,
-    marginTop: 5
+    color: koniColors.fadedDark['o-100'],
+    marginTop: 8
   },
   volumeStatusContainer: {
-    marginLeft: 10,
+    marginLeft: 12,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     minWidth: 'auto'
   },
+
   volumeStatusColor: {
     minWidth: 'auto',
-    padding: '5px 15px 5px 15px',
-    borderRadius: 6
+    padding: '3px 8px' as any,
+    borderRadius: 8,
+    backgroundColor: koniColors.background['dark-2'],
   },
 
   volumeStatusHeader: {
-    ...typography.caption3,
-    filter: 'brightness(1.2)'
+    ...koniTypography.body3
   },
+
+  volumeLow: {
+    color: koniColors.semantic.error
+  },
+
+  volumeUp: {
+    color: koniColors.semantic.success
+  },
+
   barContainer: {
     height: 200,
     display: 'flex'
   },
-  volumeLow: {
-    color: colors.invariant.Error
-  },
-  backgroundVolumeLow: {
-    backgroundColor: 'rgba(251,85,95,0.2)'
-  },
-  backgroundVolumeUp: {
-    backgroundColor: 'rgba(46, 224, 149,0.2)'
-  },
-  volumeUp: {
-    color: colors.invariant.green
-  },
+
   tooltip: {
-    background: colors.invariant.component,
+    background: koniColors.background['dark-2'],
     border: `1px solid ${colors.invariant.lightGrey}`,
-    borderRadius: 5,
+    borderRadius: 8,
     width: 100,
-    padding: 5
+    padding: 4
   },
   tooltipDate: {
-    ...typography.caption4,
-    color: colors.white.main,
+    ...koniTypography.body4,
+    color: koniColors.fadedLight['o-100'],
     textAlign: 'center'
   },
   tooltipValue: {
-    ...typography.caption3,
-    color: colors.invariant.pink,
+    ...koniTypography.body3,
+    color: koniColors.palette['violet-4'],
     textAlign: 'center'
   }
 }))

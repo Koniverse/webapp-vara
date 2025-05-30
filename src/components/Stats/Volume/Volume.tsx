@@ -1,7 +1,7 @@
 import React from 'react'
 import { ResponsiveBar } from '@nivo/bar'
 import classNames from 'classnames'
-import { colors, theme, typography } from '@static/theme'
+import { colors, koniColors, koniTypography, theme } from '@static/theme'
 import { linearGradientDef } from '@nivo/core'
 import { useStyles } from './style'
 import { TimeData } from '@store/reducers/stats'
@@ -28,7 +28,13 @@ const Volume: React.FC<StatsInterface> = ({ percentVolume, volume, data, classNa
       ticks: { line: { stroke: colors.invariant.component }, text: { fill: '#A9B6BF' } },
       legend: { text: { stroke: 'transparent' } }
     },
-    grid: { line: { stroke: colors.invariant.light } }
+    grid: {
+      line: {
+        stroke: koniColors.fadedDark['o-30'],
+        strokeWidth: 1,
+        strokeDasharray: '4 4'
+      }
+    }
   }
 
   const isLower = percentVolume < 0
@@ -42,8 +48,7 @@ const Volume: React.FC<StatsInterface> = ({ percentVolume, volume, data, classNa
           <Box className={classes.volumeStatusContainer}>
             <Box
               className={classNames(
-                classes.volumeStatusColor,
-                isLower ? classes.backgroundVolumeLow : classes.backgroundVolumeUp
+                classes.volumeStatusColor
               )}>
               <Typography
                 component='p'
@@ -79,7 +84,7 @@ const Volume: React.FC<StatsInterface> = ({ percentVolume, volume, data, classNa
               return dayMod === 0
                 ? `${day < 10 ? '0' : ''}${day}/${month < 10 ? '0' : ''}${month}`
                 : ''
-            }
+            },
           }}
           axisLeft={{
             tickSize: 0,
@@ -90,7 +95,7 @@ const Volume: React.FC<StatsInterface> = ({ percentVolume, volume, data, classNa
               <g transform={`translate(${x - 30},${y + 4})`}>
                 {' '}
                 <text
-                  style={{ fill: colors.invariant.textGrey, ...typography.tiny2 }}
+                  style={{ fill: koniColors.fadedDark['o-65'], ...koniTypography.body5 }}
                   textAnchor='start'
                   dominantBaseline='center'>
                   {formatNumber(value, true)}
@@ -109,12 +114,12 @@ const Volume: React.FC<StatsInterface> = ({ percentVolume, volume, data, classNa
           indexScale={{ type: 'band', round: true }}
           defs={[
             linearGradientDef('gradient', [
-              { offset: 0, color: '#EF84F5' },
-              { offset: 100, color: '#9C3EBD', opacity: 0.7 }
+              { offset: 0, color: '#4A3AFF' },
+              { offset: 100, color: '#6D3AFF', opacity: 0.7 }
             ])
           ]}
           fill={[{ match: '*', id: 'gradient' }]}
-          colors={colors.invariant.pink}
+          colors={koniColors.palette['violet-4']}
           tooltip={({ data }) => {
             const date = new Date(data.timestamp)
             const day = date.getDate()

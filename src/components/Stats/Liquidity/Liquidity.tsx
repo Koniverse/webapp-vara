@@ -2,7 +2,7 @@ import React from 'react'
 import { ResponsiveLine } from '@nivo/line'
 import { linearGradientDef } from '@nivo/core'
 import classNames from 'classnames'
-import { colors, typography } from '@static/theme'
+import { colors, koniColors, koniTypography } from '@static/theme'
 import { useStyles } from './style'
 import { TimeData } from '@store/reducers/stats'
 import { Grid, Typography } from '@mui/material'
@@ -37,7 +37,6 @@ const Liquidity: React.FC<LiquidityInterface> = ({
             <Grid
               className={classNames(
                 classes.volumeStatusColor,
-                isLower ? classes.backgroundVolumeLow : classes.backgroundVolumeUp
               )}>
               <Typography
                 component='p'
@@ -89,7 +88,7 @@ const Liquidity: React.FC<LiquidityInterface> = ({
               <g transform={`translate(${x - 30},${y + 4})`}>
                 {' '}
                 <text
-                  style={{ fill: colors.invariant.textGrey, ...typography.tiny2 }}
+                  style={{ fill: koniColors.fadedDark['o-65'], ...koniTypography.body5 }}
                   textAnchor='start'
                   dominantBaseline='center'>
                   {formatNumber(value, true)}
@@ -110,12 +109,12 @@ const Liquidity: React.FC<LiquidityInterface> = ({
           isInteractive
           useMesh
           animate
-          colors={colors.invariant.green}
+          colors={koniColors.palette['green-8']}
           theme={{
             axis: {
               ticks: {
                 line: { stroke: colors.invariant.component },
-                text: { fill: '#A9B6BF' }
+                text: { fill: koniColors.fadedDark['o-65'], ...koniTypography.body5 }
               }
             },
             crosshair: {
@@ -125,7 +124,13 @@ const Liquidity: React.FC<LiquidityInterface> = ({
                 strokeDasharray: 'solid'
               }
             },
-            grid: { line: { stroke: colors.invariant.light } }
+            grid: {
+              line: {
+                stroke: koniColors.fadedDark['o-30'],
+                strokeWidth: 1,
+                strokeDasharray: '4 4'
+              }
+            }
           }}
           lineWidth={1}
           defs={[

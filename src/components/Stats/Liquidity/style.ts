@@ -1,11 +1,10 @@
-import { typography, colors } from '@static/theme'
+import { typography, colors, koniColors, koniTypography } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
 
 export const useStyles = makeStyles()(() => ({
   container: {
-    backgroundColor: colors.invariant.component,
-    color: 'white',
-    borderRadius: 24,
+    backgroundColor: koniColors.background['light-1'],
+    borderRadius: 16,
     paddingBlock: 24,
     paddingLeft: 24,
     boxSizing: 'border-box'
@@ -15,18 +14,18 @@ export const useStyles = makeStyles()(() => ({
     flexDirection: 'column',
     alignItems: 'flex-start',
     fontWeight: 'normal',
-    marginLeft: 24
   },
 
   liquidityHeader: {
-    color: colors.invariant.textGrey,
-    ...typography.body2
+    ...koniTypography.body2,
+    color: koniColors.fadedDark['o-65']
   },
 
   volumeLiquidityHeader: {
-    ...typography.heading1,
+    ...koniTypography.heading5,
     letterSpacing: '-0.03em',
-    marginTop: 5
+    color: koniColors.fadedDark['o-100'],
+    marginTop: 8
   },
 
   barContainer: {
@@ -47,29 +46,21 @@ export const useStyles = makeStyles()(() => ({
   },
   volumeStatusColor: {
     minWidth: 'auto',
-    padding: '5px 15px 5px 15px',
-    borderRadius: 6
+    padding: '3px 8px' as any,
+    borderRadius: 8,
+    backgroundColor: koniColors.background['dark-2'],
   },
 
   volumeStatusHeader: {
-    ...typography.caption3,
-    filter: 'brightness(1.2)'
+    ...koniTypography.body3
   },
 
   volumeLow: {
-    color: colors.invariant.Error
-  },
-
-  backgroundVolumeLow: {
-    backgroundColor: 'rgba(251,85,95,0.2)'
-  },
-
-  backgroundVolumeUp: {
-    backgroundColor: 'rgba(46, 224, 149,0.2)'
+    color: koniColors.semantic.error
   },
 
   volumeUp: {
-    color: colors.invariant.green
+    color: koniColors.semantic.success
   },
 
   LineKeys: {
@@ -84,20 +75,20 @@ export const useStyles = makeStyles()(() => ({
     ...typography.caption4
   },
   tooltip: {
-    background: colors.invariant.component,
+    background: koniColors.background['dark-2'],
     border: `1px solid ${colors.invariant.lightGrey}`,
-    borderRadius: 5,
+    borderRadius: 8,
     width: 100,
-    padding: 5
+    padding: 4
   },
   tooltipDate: {
-    ...typography.caption4,
-    color: colors.white.main,
+    ...koniTypography.body4,
+    color: koniColors.fadedLight['o-100'],
     textAlign: 'center'
   },
   tooltipValue: {
-    ...typography.caption3,
-    color: colors.invariant.green,
+    ...koniTypography.body3,
+    color: koniColors.semantic.success,
     textAlign: 'center'
   }
 }))
