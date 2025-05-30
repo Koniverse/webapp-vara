@@ -117,7 +117,7 @@ export const useStyles = makeStyles()((theme: Theme) => ({
   },
   list: {
     position: 'relative',
-    flex: 1,
+    // flex: 1,
     overflowX: 'auto'
   },
   itemLink: {

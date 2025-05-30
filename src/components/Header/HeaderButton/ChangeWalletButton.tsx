@@ -71,6 +71,10 @@ export const ChangeWalletButton: React.FC<IProps> = ({
         id='connect-wallet-button'
         className={classNames(
           connected ? classes.headerButtonConnected : classes.headerButtonConnect,
+          {
+            '-connected': connected,
+            '-not-connected': !connected,
+          },
           className,
         )}
         variant='contained'

@@ -18,6 +18,7 @@ export const useStyles = makeStyles()(() => ({
 
     [theme.breakpoints.down('md')]: {
       overflow: 'auto',
+      paddingTop: 8,
       paddingBottom: 44,
     },
   }

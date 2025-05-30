@@ -1,37 +1,45 @@
 import { Theme } from '@mui/material'
-import { colors, typography } from '@static/theme'
+import { koniColors, koniTypography, typography } from '@static/theme'
 import { makeStyles } from 'tss-react/mui'
 
 const useStyles = makeStyles()((theme: Theme) => {
   return {
     headerButton: {
-      background: 'transparent',
-      color: colors.white.main,
+      ...koniTypography.heading8,
+      color: koniColors.fadedLight['o-85'],
+      backgroundColor: 'transparent',
+      height: 48,
       paddingInline: 12,
-      borderRadius: 14,
-      textTransform: 'none',
-      ...typography.body1,
-      lineHeight: '22px',
-      height: 32,
+
+      // background: 'transparent',
+      // color: colors.white.main,
+      // paddingInline: 12,
+      // borderRadius: 14,
+      // textTransform: 'none',
+      // ...typography.body1,
+      // lineHeight: '22px',
+      // height: 32,
+
       boxShadow: 'none',
+
       '&:hover': {
-        background: colors.invariant.light,
-        '@media (hover: none)': {
-          background: 'transparent'
-        }
+        backgroundColor: 'transparent',
+        color: koniColors.fadedLight['o-100'],
+        // background: colors.invariant.light,
+        // '@media (hover: none)': {
+        //   background: 'transparent'
+        // }
       },
       '&:active': {
         '& #downIcon': {
           transform: 'rotateX(180deg)'
         }
       },
-      [theme.breakpoints.down('sm')]: {
-        paddingInline: 6
+      [theme.breakpoints.down('md')]: {
+        height: 40,
       }
     },
-    label: {
-
-    },
+    label: {},
     headerButtonConnect: {
       // background: colors.invariant.pinkLinearGradientOpacity,
       // color: colors.invariant.newDark,
@@ -79,19 +87,13 @@ const useStyles = makeStyles()((theme: Theme) => {
       ...typography.body1,
       whiteSpace: 'nowrap'
     },
-    disabled: {
-
-    },
+    disabled: {},
     paper: {
       background: 'transparent',
       boxShadow: 'none'
     },
-    startIcon: {
-
-    },
-    endIcon: {
-
-    },
+    startIcon: {},
+    endIcon: {},
     innerEndIcon: {
       marginLeft: 0,
       marginBottom: 3

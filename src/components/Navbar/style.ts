@@ -26,6 +26,7 @@ const useStyles = makeStyles()(() => {
       },
 
       '&:hover': {
+        boxShadow: 'none',
         backgroundColor: 'transparent',
         color: koniColors.fadedLight['o-100']
       }

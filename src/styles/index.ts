@@ -225,6 +225,49 @@ export const generalButtonStyle: CSSObject  = {
     }
   },
 
+  '&.-variant-primary-2': {
+    '&, &.Mui-disabled': {
+      borderStyle: 'solid',
+      borderColor: koniColors.fadedDark['o-85'],
+      backgroundColor: koniColors.palette['violet-4'],
+      color: koniColors.background['dark-2'],
+    },
+
+    '&.-layout-icon-only': {
+      borderWidth: 0
+    },
+
+    '&.-layout-text-only': {
+      borderWidth: 2
+    },
+
+    '&.-layout-text-with-icon': {
+      borderWidth: 2
+    },
+
+    '&.-size-sm, &.-size-xs, &.-size-xxs': {
+      '&.-layout-text-only': {
+        borderWidth: 1
+      },
+
+      '&.-layout-text-with-icon': {
+        borderWidth: 1
+      },
+    },
+
+    '&:hover:not(:disabled):not(.-non-interactive)': {
+      borderColor: koniColors.fadedDark['o-85'],
+      backgroundColor: koniColors.palette['violet-5'],
+      color: koniColors.background['dark-2'],
+    },
+
+    '&:active:not(:disabled):not(.-non-interactive)': {
+      borderColor: koniColors.fadedDark['o-85'],
+      backgroundColor: koniColors.palette['violet-6'],
+      color: koniColors.background['dark-2'],
+    }
+  },
+
   '&.-variant-secondary-dark': {
     '&, &.Mui-disabled': {
       backgroundColor: koniColors.background['dark-2'],

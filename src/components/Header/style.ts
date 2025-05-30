@@ -4,6 +4,12 @@ import { makeStyles } from 'tss-react/mui'
 
 const useStyles = makeStyles()((theme: Theme) => {
   return {
+    rootWrapper: {
+      [theme.breakpoints.down('md')]: {
+        minHeight: 56,
+      }
+    },
+
     root: {
       margin: 'auto',
       maxWidth: 1920,
@@ -20,21 +26,33 @@ const useStyles = makeStyles()((theme: Theme) => {
         paddingInline: 24
       },
 
-      [theme.breakpoints.down('sm')]: {
-        paddingInline: 8
+      [theme.breakpoints.down('md')]: {
+        paddingInline: 16,
+        height: 56,
       }
     },
-    logo: {
-      width: 150,
-      height: 40,
 
-      '&:hover': {
-        cursor: 'pointer'
-      }
+    logoWrapper: {
+      backgroundColor: koniColors.fadedLight['o-6'],
+      borderRadius: 28,
+      paddingLeft: 28,
+      paddingRight: 28,
+      height: 56,
+      display: 'flex',
+      alignItems: 'center',
     },
+
+    logo: {
+      width: 92,
+      height: 32,
+      cursor: 'pointer',
+    },
+
     logoShort: {
       minWidth: 40,
-      height: 30,
+      height: 40,
+      backgroundSize: '32px 32px',
+      backgroundPosition: 'center center',
       marginRight: 8,
 
       '&:hover': {
@@ -48,6 +66,26 @@ const useStyles = makeStyles()((theme: Theme) => {
       width: 'fit-content',
       margin: '0 10px 0 10px'
     },
+
+    changeWalletButton: {
+      height: 56,
+      borderRadius: 40,
+      color: koniColors.fadedDark['o-100'],
+      backgroundColor: koniColors.palette['violet-4'],
+
+      '&:hover': {
+        backgroundColor: koniColors.palette['violet-5'],
+      },
+
+      '&:active': {
+        backgroundColor: koniColors.palette['violet-6'],
+      },
+
+      [theme.breakpoints.down('md')]: {
+        height: 40,
+      }
+    },
+
     connectedWalletIcon: {
       minWidth: 21,
       height: 21,
@@ -57,6 +95,11 @@ const useStyles = makeStyles()((theme: Theme) => {
         boxShadow: '0px 0px 10px rgba(157, 212, 109, 0.5)'
       }
     },
+
+    notConnectedWalletIcon: {
+
+    },
+
     buttons: {
       display: 'flex',
       width: 'auto',
@@ -89,10 +132,14 @@ const useStyles = makeStyles()((theme: Theme) => {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: colors.invariant.component,
-      borderRadius: 14,
+      backgroundColor: koniColors.fadedLight['o-6'],
+      borderRadius: 28,
       width: 'auto',
-      padding: 4
+      padding: 4,
+
+      [theme.breakpoints.down('md')]: {
+        padding: 0,
+      }
     },
     buttonsLgConnected: {
       [theme.breakpoints.up('lg')]: {
@@ -103,21 +150,21 @@ const useStyles = makeStyles()((theme: Theme) => {
       textDecoration: 'none',
       minWidth: 'fit-content'
     },
-    menu: {
-      width: 40,
-      height: 25,
-      transition: 'filter 300ms'
+
+    rightSide: {
+
     },
+
     menuButton: {
-      width: 142,
-      display: 'flex',
-      justifyContent: 'flex-end',
-      borderRadius: 10,
-      paddingInline: 6,
-      paddingBlock: 1,
-      height: 45,
-      transition: 'background 300ms',
-      marginLeft: 8,
+      // width: 142,
+      // display: 'flex',
+      // justifyContent: 'flex-end',
+      // borderRadius: 10,
+      // paddingInline: 6,
+      // paddingBlock: 1,
+      // height: 45,
+      // transition: 'background 300ms',
+      // marginLeft: 8,
       '&:hover': {
         background: 'transparent'
       },

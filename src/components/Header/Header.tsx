@@ -2,12 +2,11 @@ import RoutesModal from '@components/Modals/RoutesModal'
 import SelectTestnetRPC from '@components/Modals/SelectTestnetRPC/SelectTestnetRPC'
 import NavbarButton from '@components/Navbar/Button'
 import DotIcon from '@mui/icons-material/FiberManualRecordRounded'
-import { Box, Button, CardMedia, Grid, IconButton, useMediaQuery } from '@mui/material'
+import { Box, Button, CardMedia, Grid, useMediaQuery } from '@mui/material'
 import icons from '@static/icons'
-import Hamburger from '@static/svg/Hamburger.svg'
 import { theme } from '@static/theme'
-import { RPC, CHAINS } from '@store/consts/static'
-import { blurContent, unblurContent } from '@utils/uiUtils'
+import { CHAINS, RPC } from '@store/consts/static'
+import { blurContent, getButtonClasses, unblurContent } from '@utils/uiUtils'
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import ChangeWalletButton from './HeaderButton/ChangeWalletButton'
@@ -21,7 +20,7 @@ import { ISelectChain } from '@store/consts/types'
 import SelectChain from '@components/Modals/SelectChain/SelectChain'
 import SelectMainnetRPC from '@components/Modals/SelectMainnetRPC/SelectMainnetRPC'
 import { RpcStatus } from '@store/reducers/connection'
-import { ArrowsLeftRight, ChartBar, DropHalf } from '@phosphor-icons/react'
+import { ArrowsLeftRight, ChartBar, DropHalf, List, Wallet } from '@phosphor-icons/react'
 
 export interface IHeader {
   address: string
@@ -118,23 +117,27 @@ export const Header: React.FC<IHeader> = ({
   ]
 
   return (
-    <Grid container>
+    <Grid container className={classes.rootWrapper}>
       <Grid container className={classes.root} direction='row' alignItems='center' wrap='nowrap'>
         <Grid
           container
           item
           className={classes.leftSide}
           justifyContent='flex-start'
-          sx={{ display: { xs: 'none', md: 'block' } }}>
-          <CardMedia
-            className={classes.logo}
-            image={icons.LogoTitle}
+          sx={{ display: { xs: 'none', md: 'flex' } }}>
+          <div
+            className={classes.logoWrapper}
             onClick={() => {
               if (!activePath.startsWith('exchange')) {
                 navigate('/exchange')
               }
             }}
-          />
+          >
+            <CardMedia
+              className={classes.logo}
+              image={icons.LogoTitle}
+            />
+          </div>
         </Grid>
         <Box sx={{ display: { xs: 'block', md: 'none' } }}>
           <Grid container item className={classes.leftSide} justifyContent='flex-start'>
@@ -229,6 +232,7 @@ export const Header: React.FC<IHeader> = ({
             </Box>
           </Grid>
           <ChangeWalletButton
+            className={classes.changeWalletButton}
             name={
               walletConnected
                 ? `${address.toString().slice(0, 4)}...${
@@ -244,23 +248,30 @@ export const Header: React.FC<IHeader> = ({
             connected={walletConnected}
             onDisconnect={onDisconnectWallet}
             startIcon={
-              walletConnected ? <DotIcon className={classes.connectedWalletIcon} /> : undefined
+              walletConnected ? <DotIcon className={classes.connectedWalletIcon} /> : <Wallet weight={'fill'} className={classes.notConnectedWalletIcon} />
             }
             onCopyAddress={onCopyAddress}
             onChangeWallet={onChangeWallet}
           />
         </Grid>
 
-        <Grid sx={{ display: { xs: 'block', lg: 'none' } }}>
-          <IconButton
-            className={classes.menuButton}
+        <Grid sx={{ display: { xs: 'block', lg: 'none' } }} className={classes.rightSide}>
+          <Button
+            className={getButtonClasses({
+              size: 'sm',
+              variant: 'primary-2',
+              layout: 'icon-only'
+            }, classes.menuButton)}
+            startIcon={(
+              <List />
+            )}
             onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
               setRoutesModalAnchor(event.currentTarget)
               setRoutesModalOpen(true)
               blurContent()
-            }}>
-            <CardMedia className={classes.menu} image={Hamburger} />
-          </IconButton>
+            }}
+          />
+
           <RoutesModal
             routes={routes.map((route) => route.path)}
             anchorEl={routesModalAnchor}
