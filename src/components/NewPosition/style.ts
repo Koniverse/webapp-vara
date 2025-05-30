@@ -120,7 +120,7 @@ const useStyles = makeStyles()(theme => {
       marginRight: 24,
 
       [theme.breakpoints.down('md')]: {
-        marginBottom: 24,
+        marginBottom: 16,
         marginRight: 0
       }
     },

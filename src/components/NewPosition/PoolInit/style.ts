@@ -174,7 +174,7 @@ const useStyles = makeStyles()(theme => {
       paddingInline: 8,
       position: 'relative',
 
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('md')]: {
         paddingBottom: 24
       }
     }

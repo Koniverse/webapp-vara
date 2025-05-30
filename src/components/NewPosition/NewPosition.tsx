@@ -699,23 +699,23 @@ export const NewPosition: React.FC<INewPosition> = ({
             onDisconnectWallet={onDisconnectWallet}
           />
           <Hidden mdUp>
-            <Grid container justifyContent='end' mb={2}>
-              {poolKey !== '' && (
-                <ConcentrationTypeSwitch
-                  onSwitch={val => {
-                    if (val) {
-                      setPositionOpeningMethod('concentration')
-                      onPositionOpeningMethodChange('concentration')
-                    } else {
-                      setPositionOpeningMethod('range')
-                      onPositionOpeningMethodChange('range')
-                    }
-                  }}
-                  className={classes.switch}
-                  currentValue={positionOpeningMethod === 'concentration' ? 0 : 1}
-                />
-              )}
-            </Grid>
+            {poolKey !== '' && (
+              <Grid container justifyContent='end' mb={2}>
+                  <ConcentrationTypeSwitch
+                    onSwitch={val => {
+                      if (val) {
+                        setPositionOpeningMethod('concentration')
+                        onPositionOpeningMethodChange('concentration')
+                      } else {
+                        setPositionOpeningMethod('range')
+                        onPositionOpeningMethodChange('range')
+                      }
+                    }}
+                    className={classes.switch}
+                    currentValue={positionOpeningMethod === 'concentration' ? 0 : 1}
+                  />
+              </Grid>
+            )}
           </Hidden>
           {isCurrentPoolExisting ||
           tokenA === null ||
