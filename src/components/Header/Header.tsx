@@ -15,7 +15,7 @@ import SelectRPCButton from './HeaderButton/SelectRPCButton'
 import useButtonStyles from './HeaderButton/style'
 import useStyles from './style'
 import { Network } from '@invariant-labs/vara-sdk'
-import SelectChainButton from './HeaderButton/SelectChainButton'
+// import SelectChainButton from './HeaderButton/SelectChainButton'
 import { ISelectChain } from '@store/consts/types'
 import SelectChain from '@components/Modals/SelectChain/SelectChain'
 import SelectMainnetRPC from '@components/Modals/SelectMainnetRPC/SelectMainnetRPC'
@@ -223,13 +223,13 @@ export const Header: React.FC<IHeader> = ({
               ]}
               onSelect={onNetworkSelect}
             />
-            <Box sx={{ display: { xs: 'none', md: 'block' } }}>
-              <SelectChainButton
-                activeChain={activeChain}
-                chains={CHAINS}
-                onSelect={onChainSelect}
-              />
-            </Box>
+            {/*<Box sx={{ display: { xs: 'none', md: 'block' } }}>*/}
+            {/*  <SelectChainButton*/}
+            {/*    activeChain={activeChain}*/}
+            {/*    chains={CHAINS}*/}
+            {/*    onSelect={onChainSelect}*/}
+            {/*  />*/}
+            {/*</Box>*/}
           </Grid>
           <ChangeWalletButton
             className={classes.changeWalletButton}
@@ -295,14 +295,14 @@ export const Header: React.FC<IHeader> = ({
                   }
                 : undefined
             }
-            onChainSelect={
-              isMdDown
-                ? () => {
-                    setRoutesModalOpen(false)
-                    setChainSelectOpen(true)
-                  }
-                : undefined
-            }
+            // onChainSelect={
+            //   isMdDown
+            //     ? () => {
+            //         setRoutesModalOpen(false)
+            //         setChainSelectOpen(true)
+            //       }
+            //     : undefined
+            // }
           />
           {typeOfNetwork === Network.Testnet ? (
             <SelectTestnetRPC
