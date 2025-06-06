@@ -37,7 +37,7 @@ export default defineConfig({
       external: ['fs/promises', 'path', 'invariant-vara-wasm'],
       plugins: [inject({
         Buffer: ['buffer', 'Buffer'],
-        process: 'process/browser.js'
+        process: 'process',
       }) as any]
     }
   },
