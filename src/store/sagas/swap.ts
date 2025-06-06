@@ -34,8 +34,8 @@ import {
 import { actions as snackbarsActions } from '@store/reducers/snackbars'
 import { actions as poolsActions } from '@store/reducers/pools'
 import { all, call, put, select, spawn, takeEvery } from 'typed-redux-saga'
-import { balance, hexAddress, tokensBalances } from '@store/selectors/wallet'
-import { getWallet, withdrawTokenPairTx } from './wallet'
+import { balance, hexAddress, tokensBalances, walletSigner } from '@store/selectors/wallet'
+import { withdrawTokenPairTx } from './wallet'
 import { invariantAddress } from '@store/selectors/connection'
 import { getApi, getVft, getInvariant } from './connection'
 import { closeSnackbar } from 'notistack'
@@ -60,7 +60,8 @@ export function* handleSwap(action: PayloadAction<Omit<Swap, 'txid'>>): Generato
   const loaderSigningTx = createLoaderKey()
 
   const walletAddress = yield* select(hexAddress)
-  const adapter = yield* call(getWallet)
+  const signer = yield* select(walletSigner)
+
   const maxTokenBalances = yield* select(tokensBalances)
   const invAddress = yield* select(invariantAddress)
 
@@ -80,7 +81,7 @@ export function* handleSwap(action: PayloadAction<Omit<Swap, 'txid'>>): Generato
 
     const xToY = tokenFrom === poolKey.tokenX
 
-    api.setSigner(adapter.signer as any)
+    api.setSigner(signer)
 
     const sqrtPriceLimit = calculateSqrtPriceAfterSlippage(estimatedPriceAfterSwap, slippage, !xToY)
 

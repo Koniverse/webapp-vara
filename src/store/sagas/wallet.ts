@@ -1,11 +1,8 @@
-import { NightlyConnectAdapter } from '@nightlylabs/wallet-selector-polkadot'
 import { PayloadAction } from '@reduxjs/toolkit'
 import { actions as positionsActions } from '@store/reducers/positions'
 import { actions as snackbarsActions } from '@store/reducers/snackbars'
-
 import { tokens } from '@store/selectors/pools'
 import { address, balance, hexAddress, status } from '@store/selectors/wallet'
-import { disconnectWallet, getVaraWallet } from '@utils/web3/wallet'
 import { actions, Status, actions as walletActions } from '@store/reducers/wallet'
 import {
   SagaGenerator,
@@ -20,7 +17,6 @@ import {
 } from 'typed-redux-saga'
 import { positionsList } from '@store/selectors/positions'
 import { getApi, getVft } from './connection'
-import { openWalletSelectorModal } from '@utils/web3/selector'
 import { createLoaderKey, getTokenBalances } from '@utils/utils'
 import { GearKeyring, HexString } from '@gear-js/api'
 import {
@@ -30,25 +26,15 @@ import {
   FAUCET_DEPLOYER_MNEMONIC,
   FAUCET_SAFE_TRANSACTION_FEE,
   getFaucetTokenList,
-  TokenAirdropAmount
+  TokenAirdropAmount, WALLET_LABELS_SUPPORTED
 } from '@store/consts/static'
 import { closeSnackbar } from 'notistack'
+import { SubstrateProvider } from "@subwallet-connect/common";
 import { ActorId, batchTxs, Invariant } from '@invariant-labs/vara-sdk'
 import { VARA_ADDRESS } from '@invariant-labs/vara-sdk/target/consts'
 import { networkType } from '@store/selectors/connection'
-export function* getWallet(): SagaGenerator<NightlyConnectAdapter> {
-  const wallet = yield* call(getVaraWallet)
-  if (!wallet.connected) {
-    yield* call([wallet, wallet.connect])
-
-    const accounts = yield* call([wallet.accounts, wallet.accounts.get])
-
-    yield* put(actions.setAddress(accounts[0].address))
-    yield* put(actions.setStatus(Status.Initialized))
-  }
-
-  return wallet
-}
+import { WalletConnectActionPayload } from '@store/consts/types.ts'
+import { getWCSigner } from '@utils/connector'
 
 type FrameSystemAccountInfo = {
   data: {
@@ -166,16 +152,14 @@ export function* handleAirdrop(): Generator {
   }
 }
 
-export function* init(isEagerConnect: boolean): Generator {
+export function* init({ isEagerConnect, wallet }: WalletConnectActionPayload): Generator {
   try {
     if (isEagerConnect) {
       yield* delay(500)
     }
     yield* put(actions.setStatus(Status.Init))
 
-    const walletAdapter = yield* call(getWallet)
-    yield* call([walletAdapter, walletAdapter.connect])
-    const accounts = yield* call([walletAdapter.accounts, walletAdapter.accounts.get])
+    const accounts = wallet.accounts;
 
     if (isEagerConnect) {
       yield* put(
@@ -195,8 +179,27 @@ export function* init(isEagerConnect: boolean): Generator {
       )
     }
 
-    yield* put(actions.setAddress(accounts[0].address))
+    const provider = wallet.provider as SubstrateProvider;
+    const address = accounts[0].address;
+    const api = yield* getApi()
+    yield* put(actions.setAddress(address))
 
+    if( wallet.label === WALLET_LABELS_SUPPORTED.WALLETCONNECT) {
+      wallet.signer = yield* call(getWCSigner, address, provider, api);
+    }
+
+    if (!wallet.signer) {
+      yield* put(
+        snackbarsActions.add({
+          message: 'No signer found.',
+          variant: 'error',
+          persist: false
+        })
+      )
+      return
+    }
+
+    yield* put(actions.setSigner(wallet.signer))
     const allTokens = yield* select(tokens)
     yield* call(fetchBalances, Object.keys(allTokens) as HexString[])
 
@@ -210,7 +213,7 @@ export const sleep = (ms: number) => {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
 
-export function* handleConnect(action: PayloadAction<boolean>): Generator {
+export function* handleConnect(action: PayloadAction<WalletConnectActionPayload>): Generator {
   const walletStatus = yield* select(status)
   if (walletStatus === Status.Initialized) {
     yield* put(
@@ -229,7 +232,6 @@ export function* handleDisconnect(): Generator {
   try {
     const { loadedPages } = yield* select(positionsList)
 
-    yield* call(disconnectWallet)
     yield* put(actions.resetState())
 
     yield* put(
@@ -297,11 +299,7 @@ export function* fetchBalances(tokens: HexString[]): Generator {
   }
 }
 
-export function* handleReconnect(): Generator {
-  yield* call(handleDisconnect)
-  yield* call(openWalletSelectorModal)
-  yield* call(handleConnect, { type: actions.connect.type, payload: false })
-}
+export function* handleReconnect(): Generator {}
 
 export function* withdrawTokenPairTx(tokenX: HexString, tokenY: HexString, invariant: Invariant) {
   const withdrawTxs = []

@@ -1,6 +1,7 @@
 import { HexString } from '@gear-js/api'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { PayloadType } from '@store/consts/types'
+import { PayloadType, WalletConnectActionPayload } from '@store/consts/types'
+import type { Signer } from '@polkadot/types/types';
 
 export enum Status {
   Uninitialized = 'uninitialized',
@@ -19,7 +20,8 @@ export interface IVaraWallet {
   address: string
   balance: bigint
   tokensBalances: { [key in string]: ITokenBalance }
-  balanceLoading: boolean
+  balanceLoading: boolean,
+  signer: Signer
 }
 
 export const defaultState: IVaraWallet = {
@@ -27,7 +29,8 @@ export const defaultState: IVaraWallet = {
   address: '',
   balance: 0n,
   tokensBalances: {},
-  balanceLoading: false
+  balanceLoading: false,
+  signer: {} as Signer
 }
 export const walletSliceName = 'wallet'
 const walletSlice = createSlice({
@@ -36,6 +39,10 @@ const walletSlice = createSlice({
   reducers: {
     resetState() {
       return defaultState
+    },
+    setSigner(state, action: PayloadAction<Signer>) {
+      state.signer = action.payload
+      return state;
     },
     setAddress(state, action: PayloadAction<string>) {
       state.address = action.payload
@@ -74,7 +81,7 @@ const walletSlice = createSlice({
       return state
     },
     airdrop() {},
-    connect(state, _action: PayloadAction<boolean>) {
+    connect(state, _action: PayloadAction<WalletConnectActionPayload>) {
       return state
     },
     disconnect() {},

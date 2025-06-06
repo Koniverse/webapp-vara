@@ -9,6 +9,8 @@ import Notifier from '@containers/Notifier'
 import { filterConsoleMessages, messagesToHide } from './hideErrors'
 import { GlobalStyles } from '@mui/material'
 import { generalButtonStyle } from "@styles"
+import { Web3OnboardProvider } from '@subwallet-connect/react'
+import SubConnect from '@utils/connector'
 
 filterConsoleMessages(messagesToHide)
 
@@ -23,10 +25,10 @@ function App() {
             }
           }} />
           <SnackbarProvider maxSnack={99}>
-            <>
-              <Notifier />
-              <RouterProvider router={router} />
-            </>
+            <Web3OnboardProvider web3Onboard={SubConnect}>
+                <Notifier />
+                <RouterProvider router={router} />
+            </Web3OnboardProvider>
           </SnackbarProvider>
         </ThemeProvider>
       </Provider>

@@ -6,15 +6,17 @@ import { tokens } from './pools'
 import { decodeAddress, HexString } from '@gear-js/api'
 import { VARA_ADDRESS } from '@invariant-labs/vara-sdk/target/consts'
 import { EXTRA_BALANCE_TO_DEPOSIT_VARA } from '@store/consts/static'
+import type { Signer } from '@polkadot/types/types';
 
 const store = (s: AnyProps) => s[walletSliceName] as IVaraWallet
 
-export const { address, balance, tokensBalances, status, balanceLoading } = keySelectors(store, [
+export const { address, balance, tokensBalances, status, balanceLoading, signer } = keySelectors(store, [
   'address',
   'balance',
   'tokensBalances',
   'status',
-  'balanceLoading'
+  'balanceLoading',
+  'signer'
 ])
 
 export const tokenBalance = (tokenAddress: string) =>
@@ -110,6 +112,11 @@ export const hexAddress = createSelector(
   (addressString: string): HexString => (addressString ? decodeAddress(addressString) : '0x')
 )
 
+export const walletSigner = createSelector(
+  signer,
+  (signer: Signer) => signer
+)
+
 export type TokenBalances = ITokenBalance & {
   symbol: string
   usdValue: BN
@@ -123,6 +130,7 @@ export const varaWalletSelectors = {
   tokensBalances,
   status,
   tokenBalance,
-  balanceLoading
+  balanceLoading,
+  walletSigner
 }
 export default varaWalletSelectors

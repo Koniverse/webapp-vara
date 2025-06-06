@@ -25,7 +25,7 @@ import { positionsList } from '@store/selectors/positions'
 import { getApi, getVft, getInvariant } from './connection'
 import { actions as snackbarsActions } from '@store/reducers/snackbars'
 import { invariantAddress } from '@store/selectors/connection'
-import { balance, hexAddress, tokensBalances } from '@store/selectors/wallet'
+import { balance, hexAddress, tokensBalances, walletSigner } from '@store/selectors/wallet'
 import {
   ActorId,
   batchTxs,
@@ -44,7 +44,7 @@ import {
 } from '@store/consts/static'
 import { closeSnackbar } from 'notistack'
 import { Pool, Position } from '@invariant-labs/vara-sdk'
-import { fetchBalances, getWallet, withdrawTokenPairTx } from './wallet'
+import { fetchBalances, withdrawTokenPairTx } from './wallet'
 import { VARA_ADDRESS } from '@invariant-labs/vara-sdk/target/consts'
 
 function* handleInitPosition(action: PayloadAction<InitPositionData>): Generator {
@@ -64,7 +64,6 @@ function* handleInitPosition(action: PayloadAction<InitPositionData>): Generator
   const loaderCreatePosition = createLoaderKey()
   const loaderSigningTx = createLoaderKey()
   const hexWalletAddress = yield* select(hexAddress)
-  const adapter = yield* call(getWallet)
   const maxTokenBalances = yield* select(tokensBalances)
   const invAddress = yield* select(invariantAddress)
   const varaBalance = yield* select(balance)
@@ -85,7 +84,8 @@ function* handleInitPosition(action: PayloadAction<InitPositionData>): Generator
         key: loaderCreatePosition
       })
     )
-    api.setSigner(adapter.signer as any)
+    const signer = yield* select(walletSigner)
+    api.setSigner(signer)
 
     let [xAmountWithSlippage, yAmountWithSlippage] = calculateTokenAmountsWithSlippage(
       feeTier.tickSpacing,
@@ -502,12 +502,10 @@ export function* handleClaimFee(action: PayloadAction<HandleClaimFee>) {
       })
     )
 
-    const adapter = yield* call(getWallet)
-
     const api = yield* getApi()
     const invariant = yield* getInvariant()
-
-    api.setSigner(adapter.signer as any)
+    const signer = yield* select(walletSigner)
+    api.setSigner(signer)
     const txs = []
     const claimTx = yield* call(
       [invariant, invariant.claimFeeTx],
@@ -658,12 +656,11 @@ export function* handleClosePosition(action: PayloadAction<ClosePositionData>) {
     )
 
     const walletAddress = yield* select(hexAddress)
-    const adapter = yield* call(getWallet)
     const allPositions = yield* select(positionsList)
     const api = yield* getApi()
     const invariant = yield* getInvariant()
-
-    api.setSigner(adapter.signer as any)
+    const signer = yield* select(walletSigner)
+    api.setSigner(signer)
 
     const getPositionsListPagePayload: PayloadAction<{ index: number; refresh: boolean }> = {
       type: actions.getPositionsListPage.type,

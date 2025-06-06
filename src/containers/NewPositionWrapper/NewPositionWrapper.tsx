@@ -44,7 +44,6 @@ import {
 } from '@store/selectors/pools'
 import { initPosition, plotTicks, shouldNotUpdateRange } from '@store/selectors/positions'
 import { balanceLoading, hexAddress, status, poolTokens, balance } from '@store/selectors/wallet'
-import { openWalletSelectorModal } from '@utils/web3/selector'
 import { VariantType } from 'notistack'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -52,6 +51,7 @@ import apiSingleton from '@store/services/apiSingleton'
 import vftSingleton from '@store/services/vftSingleton'
 import { useNavigate } from 'react-router-dom'
 import { decodeAddress } from '@gear-js/api'
+import useWalletConnection from '@hooks/useWalletConnection.tsx'
 
 export interface IProps {
   initialTokenFrom: string
@@ -77,6 +77,7 @@ export const NewPositionWrapper: React.FC<IProps> = ({
   const shouldNotUpdatePriceRange = useSelector(shouldNotUpdateRange)
   const network = useSelector(networkType)
 
+  const { connectWallet, disconnectWallet } = useWalletConnection();
   const { success, inProgress } = useSelector(initPosition)
 
   const [onlyUserPositions, setOnlyUserPositions] = useState(false)
@@ -681,13 +682,8 @@ export const NewPositionWrapper: React.FC<IProps> = ({
       isLoadingTokens={isCurrentlyLoadingTokens}
       varaBalance={varaBalance}
       walletStatus={walletStatus}
-      onConnectWallet={async () => {
-        await openWalletSelectorModal()
-        dispatch(walletActions.connect(false))
-      }}
-      onDisconnectWallet={() => {
-        dispatch(walletActions.disconnect())
-      }}
+      onConnectWallet={async () => { await connectWallet()}}
+      onDisconnectWallet={ async () => { await disconnectWallet()}}
     />
   )
 }

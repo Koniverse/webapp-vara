@@ -28,7 +28,8 @@ const configureAppStore = (initialState = {}) => {
         serializableCheck: {
           isSerializable,
           getEntries,
-          ignoredActions: ['positions/closePosition', 'pools/setTickMaps']
+          ignoredActions: ['positions/closePosition', 'pools/setTickMaps', 'wallet/connect', 'wallet/setSigner'],
+          ignoredPaths: ['wallet.signer', 'wallet.provider']
         }
       }).concat(middleware),
     preloadedState: initialState,

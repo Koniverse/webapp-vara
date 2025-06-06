@@ -9,7 +9,6 @@ import {
   printBigint
 } from '@utils/utils'
 import { actions } from '@store/reducers/positions'
-import { actions as walletActions } from '@store/reducers/wallet'
 import { Status } from '@store/reducers/wallet'
 import {
   isLoadingPositionsList,
@@ -18,11 +17,11 @@ import {
   positionsWithPoolsData
 } from '@store/selectors/positions'
 import { address, status } from '@store/selectors/wallet'
-import { openWalletSelectorModal } from '@utils/web3/selector'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { IPositionItem } from '@components/PositionsList/PositionItem/PositionItem'
+import useWalletConnection from '@hooks/useWalletConnection.tsx'
 
 type Props = {
   className?: string
@@ -36,6 +35,7 @@ export const WrappedPositionsList: React.FC<Props> = ({className} : Props) => {
   const walletStatus = useSelector(status)
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const { connectWallet } = useWalletConnection()
   const { loadedPages, length } = useSelector(positionsList)
 
   const [value, setValue] = useState<string>('')
@@ -171,8 +171,7 @@ export const WrappedPositionsList: React.FC<Props> = ({className} : Props) => {
       itemsPerPage={POSITIONS_PER_PAGE}
       noConnectedBlockerProps={{
         onConnect: async () => {
-          await openWalletSelectorModal()
-          dispatch(walletActions.connect(false))
+          await connectWallet()
         },
         title: 'Start exploring liquidity pools right now!',
         descCustomText: 'Or, connect your wallet to see existing positions, and create a new one!'
