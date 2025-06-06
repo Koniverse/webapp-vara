@@ -361,3 +361,16 @@ export const RECOMMENDED_RPC_ADDRESS = {
   [Network.Mainnet]: RPC.MAIN,
   [Network.Local]: ''
 }
+
+export const GENESIS_HASHES = {
+  [Network.Testnet]: '0x525639f713f397dcf839bd022cd821f367ebcf179de7b9253531f8adbe5436d6',
+  [Network.Local]: '0x0',
+  [Network.Mainnet]: '0xfe1b4c55fd4d668101126434206571a7838a8b6b93a6d1b95d607e78e6c53763'
+}
+
+export enum WALLET_LABELS_SUPPORTED {
+  WALLETCONNECT = 'WalletConnect',
+  INJECTED = 'Injected',
+  POLKADOT_VAULT = 'Polkadot Vault',
+  LEDGER = 'Ledger',
+}

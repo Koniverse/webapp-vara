@@ -1,6 +1,7 @@
 import { HexString, Network, PoolKey } from '@invariant-labs/vara-sdk'
 import { ActionCreatorWithPayload } from '@reduxjs/toolkit'
 import { SwapError } from '@store/sagas/swap'
+import { WalletState } from '@subwallet-connect/core'
 
 interface ActionsBasicType {
   [k: string]: ActionCreatorWithPayload<any>
@@ -134,4 +135,14 @@ export interface PoolStatsDataWithString {
   volume24: number
   tvl: number
   apy: number
+}
+
+export interface WalletConnectActionPayload {
+  isEagerConnect?: boolean;
+  wallet: WalletState;
+}
+
+export interface RequestArguments {
+  method: string;
+  params?: object | unknown[] | Record<string, unknown> | undefined;
 }

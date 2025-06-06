@@ -32,8 +32,8 @@ import { useNavigate } from 'react-router-dom'
 import useStyles from './style'
 import { TokenPriceData } from '@store/consts/types'
 import { NoConnected } from '@components/NoConnected/NoConnected'
-import { openWalletSelectorModal } from '@utils/web3/selector'
 import images from '@static/images.ts'
+import useWalletConnection from '@hooks/useWalletConnection.tsx'
 
 export interface IProps {
   address: string
@@ -64,6 +64,7 @@ export const SinglePositionWrapper: React.FC<IProps> = ({ id }) => {
   const walletStatus = useSelector(status)
   const isBalanceLoading = useSelector(balanceLoading)
   const poolsArray = useSelector(poolsArraySortedByFees)
+  const { connectWallet } = useWalletConnection()
 
   const [waitingForTicksData, setWaitingForTicksData] = useState<boolean | null>(null)
 
@@ -423,10 +424,7 @@ export const SinglePositionWrapper: React.FC<IProps> = ({ id }) => {
         justifyContent='center'
         className={classes.fullHeightContainer}>
         <NoConnected
-          onConnect={async () => {
-            await openWalletSelectorModal()
-            dispatch(walletActions.connect(false))
-          }}
+          onConnect={async () => {await connectWallet()}}
           title='Connect a wallet to view your position,'
           descCustomText='or start exploring liquidity pools now!'
         />

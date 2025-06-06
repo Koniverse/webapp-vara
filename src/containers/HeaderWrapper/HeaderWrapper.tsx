@@ -4,43 +4,24 @@ import { actions, RpcStatus } from '@store/reducers/connection'
 import { Status, actions as walletActions } from '@store/reducers/wallet'
 import { networkType, rpcAddress, rpcStatus } from '@store/selectors/connection'
 import { address, status } from '@store/selectors/wallet'
-import { openWalletSelectorModal } from '@utils/web3/selector'
-import { getVaraWallet } from '@utils/web3/wallet'
-import React, { useEffect, useMemo } from 'react'
+import React, { useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { actions as snackbarsActions } from '@store/reducers/snackbars'
 import { Chain } from '@store/consts/types'
 import { Network } from '@invariant-labs/vara-sdk'
 import { RpcErrorModal } from '@components/RpcErrorModal/RpcErrorModal'
+import useWalletConnection from '@hooks/useWalletConnection.tsx'
 
 export const HeaderWrapper: React.FC = () => {
   const dispatch = useDispatch()
+  const { connectWallet, disconnectWallet, reconnectWallet } = useWalletConnection()
   const walletStatus = useSelector(status)
   const currentNetwork = useSelector(networkType)
   const currentRpc = useSelector(rpcAddress)
   const location = useLocation()
   const walletAddress = useSelector(address)
   const navigate = useNavigate()
-
-  useEffect(() => {
-    const fetchWallet = async () => {
-      const wallet = await getVaraWallet()
-
-      await wallet.canEagerConnect().then(
-        async canEagerConnect => {
-          if (canEagerConnect) {
-            dispatch(walletActions.connect(true))
-          }
-        },
-        error => {
-          console.log(error)
-        }
-      )
-    }
-
-    fetchWallet()
-  }, [])
 
   const defaultTestnetRPC = useMemo(() => {
     const lastRPC = localStorage.getItem(`INVARIANT_RPC_Vara_${Network.Testnet}`)
@@ -114,13 +95,12 @@ export const HeaderWrapper: React.FC = () => {
           }
         }}
         onConnectWallet={async () => {
-          await openWalletSelectorModal()
-          dispatch(walletActions.connect(false))
+          await connectWallet()
         }}
         landing={location.pathname.substring(1)}
         walletConnected={walletStatus === Status.Initialized}
-        onDisconnectWallet={() => {
-          dispatch(walletActions.disconnect())
+        onDisconnectWallet={async () => {
+          await disconnectWallet()
         }}
         onFaucet={() => dispatch(walletActions.airdrop())}
         typeOfNetwork={currentNetwork}
@@ -137,8 +117,8 @@ export const HeaderWrapper: React.FC = () => {
             })
           )
         }}
-        onChangeWallet={() => {
-          dispatch(walletActions.reconnect())
+        onChangeWallet={async () => {
+          await reconnectWallet()
         }}
         activeChain={activeChain}
         onChainSelect={chain => {

@@ -21,13 +21,13 @@ import {
 } from '@store/selectors/pools'
 import { simulateResult, swap as swapPool } from '@store/selectors/swap'
 import { balance, balanceLoading, hexAddress, status, swapTokens } from '@store/selectors/wallet'
-import { openWalletSelectorModal } from '@utils/web3/selector'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { VariantType } from 'notistack'
 import { decodeAddress, HexString } from '@gear-js/api'
 import apiSingleton from '@store/services/apiSingleton'
 import vftSingleton from '@store/services/vftSingleton'
+import useWalletConnection from '@hooks/useWalletConnection.tsx'
 
 type Props = {
   initialTokenFrom: string
@@ -50,6 +50,7 @@ export const WrappedSwap = ({ initialTokenFrom, initialTokenTo, className }: Pro
   const isFetchingNewPool = useSelector(isLoadingLatestPoolsForTransaction)
   const network = useSelector(networkType)
   const swapSimulateResult = useSelector(simulateResult)
+  const { connectWallet, disconnectWallet } = useWalletConnection();
 
   const [progress, setProgress] = useState<ProgressState>('none')
   const [tokenFrom, setTokenFrom] = useState<HexString | null>(null)
@@ -333,11 +334,10 @@ export const WrappedSwap = ({ initialTokenFrom, initialTokenTo, className }: Pro
         }
       }}
       onConnectWallet={async () => {
-        await openWalletSelectorModal()
-        dispatch(walletActions.connect(false))
+        await connectWallet()
       }}
-      onDisconnectWallet={() => {
-        dispatch(walletActions.disconnect())
+      onDisconnectWallet={async () => {
+        await disconnectWallet()
       }}
       walletStatus={walletStatus}
       tokens={tokensList}

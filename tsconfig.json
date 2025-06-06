@@ -28,7 +28,8 @@
       "@utils/*": ["src/utils/*"],
       "@styles": ["src/styles/index.ts"],
       "@styles/*": ["src/styles/*"],
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@hooks/*": ["src/hooks/*"],
     }
   },
   "include": ["src"],

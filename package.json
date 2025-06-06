@@ -18,12 +18,12 @@
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
+    "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
     "@gear-js/api": "^0.41.1",
     "@invariant-labs/vara-sdk": "^0.1.20",
     "@invariant-labs/vara-sdk-wasm": "^0.1.17",
     "@mui/icons-material": "^5.15.15",
     "@mui/material": "^5.15.15",
-    "@nightlylabs/wallet-selector-polkadot": "^0.2.5",
     "@nivo/bar": "^0.87.0",
     "@nivo/line": "^0.87.0",
     "@phosphor-icons/react": "^2.1.7",
@@ -32,12 +32,19 @@
     "@polkadot/extension-inject": "^0.47.1",
     "@reduxjs/toolkit": "^2.2.3",
     "@storybook/addon-actions": "^8.1.10",
+    "@subwallet-connect/polkadot-js": "^1.0.8",
+    "@subwallet-connect/polkadot-vault": "^1.0.8",
+    "@subwallet-connect/react": "^1.0.8",
+    "@subwallet-connect/subwallet-polkadot": "^1.0.8",
+    "@subwallet-connect/talisman": "^1.0.8",
+    "@subwallet-connect/walletconnect-polkadot": "^1.0.8",
     "@subwallet/invariant-vara-sdk": "^0.1.21",
     "@subwallet/invariant-vara-sdk-wasm": "^0.1.21",
     "axios": "^1.6.8",
     "buffer": "^6.0.3",
     "classnames": "^2.5.1",
     "notistack": "^3.0.1",
+    "process": "^0.11.10",
     "rc-scrollbars": "^1.1.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -95,7 +102,8 @@
     "@subwallet/invariant-vara-sdk-wasm": "^0.1.21",
     "@types/react": "^18.2.66",
     "vite": "5.4.8",
-    "vite-node": "1.6.0"
+    "vite-node": "1.6.0",
+    "esbuild": "^0.19.0"
   },
   "packageManager": "yarn@4.8.1"
 }
