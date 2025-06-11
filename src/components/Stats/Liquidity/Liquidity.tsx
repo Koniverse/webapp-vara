@@ -75,8 +75,7 @@ const Liquidity: React.FC<LiquidityInterface> = ({
             tickSize: 0,
             tickPadding: 10,
             tickRotation: 0,
-            tickValues:
-              data.length >= 24 ? 'every 4 days' : data.length >= 8 ? 'every 2 days' : 'every day',
+            tickValues: 10,
             format: '%d/%m'
           }}
           axisLeft={{
